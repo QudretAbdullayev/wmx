@@ -1,0 +1,16 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.container{
+    width: max-content;
+    .title{
+        color: $brand-color;
+        @include font(32, 450);
+        white-space: pre-wrap;
+    }
+    .description{
+        margin-top: 32rem;
+        color: $secondary-color;
+        @include font(16, 400);
+        white-space: pre-wrap;
+    }
+}

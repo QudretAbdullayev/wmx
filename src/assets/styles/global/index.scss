@@ -1,0 +1,42 @@
+@use '../abstracts' as *;
+
+html {
+    font-size: calc(1 * 100vw/375);
+
+    @media screen and (min-width: 700px) {
+        font-size: calc(1 * 100vw/1440);
+    }
+
+    @media screen and (min-width: 1440px) {
+        font-size: 1px;
+    }
+}
+
+body {
+    position: relative;
+    height: 100%;
+    font-family: $font-family-text;
+    overflow-x: hidden !important;
+}
+img{
+    object-fit: cover;
+}
+.g-container {
+    margin: 0 auto;
+    max-width: 1440rem;
+    padding: 0 80rem;
+
+    @media only screen and (max-width: 700px) {
+        padding: 0 16rem;
+    }
+}
+
+.mt{
+    margin-top: 100rem;
+}
+.mb{
+    margin-bottom: 100rem;
+}
+.ml{
+    margin-left: 217rem;
+}

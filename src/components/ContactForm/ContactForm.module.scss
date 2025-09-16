@@ -1,0 +1,305 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.contact {
+    position: relative;
+    width: 1063rem;
+    height: 337rem;
+    padding: 32rem 28rem 20rem;
+    background: linear-gradient(90deg, #596974 0%, #595A5A 33.05%, #2D4351 100%);
+    box-shadow: inset 0rem 0rem 193.5rem 2rem rgba(250, 249, 246, 0.25);
+    border-radius: 16rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .vector {
+        position: absolute;
+        width: 315rem;
+        height: 271rem;
+        left: 163rem;
+        top: calc(50% - 271rem/2 + 61rem);
+        background: #716764;
+        filter: blur(57.95rem);
+        z-index: -1;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16rem;
+        width: 417rem;
+        margin-bottom: 32rem;
+
+        &__title,
+        &__subtitle {
+            color: #FAF9F6;
+            text-align: center;
+        }
+
+        &__title {
+            @include font(32, 450, 37rem);
+        }
+
+        &__subtitle {
+            @include font(16, 400, 19rem);
+            text-align: center;
+        }
+    }
+
+    .form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6rem;
+        border-bottom: 1rem solid #748088;
+        padding-bottom: 20rem;
+
+        &__field {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10rem;
+            width: 220rem;
+            height: 76rem;
+        }
+
+        &__label {
+            width: 220rem;
+            height: 16rem;
+            @include font(14, 400);
+            color: #FFFFFF;
+            align-self: stretch;
+        }
+
+        &__phone {
+            width: 220rem;
+            height: 50rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 4rem;
+            position: relative;
+            padding: 0 10rem;
+            gap: 8rem;
+            &__input {
+                width: 100%;
+                height: 50rem;
+            
+                :global(.PhoneInputInput) {
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    color: #FAF9F6;
+                    font-size: 14rem;
+                    line-height: 16rem;
+                    height: 100%;
+                    width: 100%;
+            
+                    &::placeholder {
+                        color: #FAF9F6;
+                        opacity: 0.6;
+                    }
+                }
+                :global(.PhoneInputCountry) {
+                    gap: 8rem;
+                }
+                :global(.PhoneInputCountrySelect) {
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 8rem;
+                }
+            
+                :global(.PhoneInputCountryIcon) {
+                    width: 20rem;
+                    height: 15rem;
+                    border-radius: 2rem;
+                    border: none;
+                    border-width: 0;
+                    border-color: transparent;
+                    background-color: transparent;
+                    box-shadow: none;
+                    overflow: hidden;
+                }
+            
+                :global(.PhoneInputCountrySelectArrow) {
+                    color: #FAF9F6;
+                    width: 12rem;
+                    height: 12rem;
+                }
+
+                :global(.PhoneInputCountrySelect) {
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    color: #FAF9F6;
+                    font-size: 14rem;
+                    line-height: 16rem;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 8rem;
+                    cursor: pointer;
+                }
+
+                :global(.PhoneInputCountryIcon) {
+                    width: 20rem;
+                    height: 15rem;
+                    border-radius: 2rem;
+                    border: none;
+                    border-width: 0;
+                    border-color: transparent;
+                    background-color: transparent;
+                    box-shadow: none;
+                    overflow: hidden;
+                    flex-shrink: 0;
+                }
+            }
+        }
+
+        &__error {
+            color: #ff6b6b;
+            font-size: 12rem;
+            line-height: 14rem;
+            margin-top: 4rem;
+            display: block;
+        }
+
+        &__input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0 10rem;
+            font-weight: 400;
+            font-size: 14rem;
+            line-height: 16rem;
+            width: 220rem;
+            height: 50rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 4rem;
+            position: relative;
+            color: rgba(#FAF9F6, 0.6);
+            font-family: $font-family-text;
+        }
+
+        &__submit {
+            align-self: flex-end;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10rem;
+            gap: 10rem;
+            width: 103rem;
+            height: 50rem;
+            background: $foundation;
+            border-radius: 4rem;
+            cursor: pointer;
+            &:hover {
+                background: $foundation-hover;
+            }
+            &__text {
+                @include font(14, 450);
+                color: #FAF9F6;
+            }
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20rem;
+    gap: 10rem;
+    .privacyText {
+        width: 452rem;
+        height: 16rem;
+        font-weight: 400;
+        font-size: 14rem;
+        line-height: 16rem;
+        text-align: center;
+        color: #D5D5D5;
+        align-self: stretch;
+        margin: 0;
+    }
+    
+    .checkboxContainer {
+        display: flex;
+        align-items: center;
+        gap: 56rem;
+        width: 452rem;
+        height: 16rem;
+    }
+    
+    .checkboxRow {
+        display: flex;
+        align-items: center;
+        gap: 8rem;
+        width: 262rem;
+        height: 16rem;
+    }
+    
+    .checkboxWrapper {
+        display: flex;
+        align-items: center;
+        gap: 10rem;
+        width: 12rem;
+        height: 12rem;
+    }
+    
+    .checkboxRowSimple {
+        display: flex;
+        align-items: center;
+        gap: 8rem;
+        width: 134rem;
+        height: 16rem;
+        order: 1;
+    }
+    
+    .checkbox {
+        box-sizing: border-box;
+        width: 12rem;
+        height: 12rem;
+        border: 1rem solid #FAF9F6;
+        border-radius: 2rem;
+        background: transparent;
+        cursor: pointer;
+        appearance: none;
+        position: relative;
+    
+        &:checked {
+            background: #FAF9F6;
+    
+            &::after {
+                content: '✓';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #2D4351;
+                font-size: 8rem;
+                font-weight: bold;
+            }
+        }
+    }
+    
+    .checkboxLabel {
+        display: none;
+        /* Hide the label since we're using the checkbox directly */
+    }
+    
+    .checkboxText {
+        font-weight: 400;
+        font-size: 14rem;
+        line-height: 16rem;
+        text-align: center;
+        color: #D5D5D5;
+        order: 1;
+    }
+}

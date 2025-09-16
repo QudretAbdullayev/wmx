@@ -1,0 +1,151 @@
+@use '@/assets/styles/abstracts/' as *;
+
+
+.header {
+    padding: 36rem 0 22rem 0;
+    border-bottom: 1rem solid $secondary-color;
+
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__menu {
+            display: flex;
+            gap: 95rem;
+        }
+
+        &__items {
+            display: flex;
+            flex-direction: column;
+            gap: 7rem;
+        }
+
+        &__item {
+            @include font(14, 450, 16);
+            color: $secondary-color;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            position: relative;
+            cursor: pointer;
+            svg {
+                width: 12rem;
+                height: 12rem;
+                color: $secondary-color;
+            }
+
+            &:hover {
+                color: $foundation;
+
+                svg {
+                    color: $foundation;
+                }
+            }
+        }
+        &__arrow {
+            transition: transform 0.3s ease;
+            
+            &_open {
+                transform: rotate(180deg);
+            }
+        }
+        &__dropdown {
+            cursor: pointer;
+            color: $brand-color;
+            svg{
+                color: $brand-color;
+            }
+            &:hover{
+                color: $brand-color;
+                svg {
+                    color: $brand-color;
+                }
+            }
+        }
+
+        &__select {
+            position: absolute;
+            padding: 16rem 20rem;
+            width: max-content;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(90deg, #596974 0%, #595A5A 33.05%, #2D4351 100%);
+            box-shadow: inset 0rem 0rem 54.5rem 2rem rgba(250, 249, 246, 0.25);
+            border-radius: 6rem;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10rem);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+            &_open {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .box {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 16rem;
+                z-index: 2;
+
+                &__vector {
+                    position: absolute;
+                    width: 194rem;
+                    height: 167rem;
+                    left: 32rem;
+                    top: calc(50% - 167rem/2 + 47rem);
+                    background: #716764;
+                    filter: blur(57.95rem);
+                    z-index: 0;
+                }
+
+                &__subitem {
+                    @include font(16, 400, 19);
+                    color: #FAF9F6;
+                    position: relative;
+                    z-index: 3;
+                    text-decoration: none;
+                    transition: color 0.2s ease;
+
+                    &:hover {
+                        color: $brand-color;
+                    }
+                }
+            }
+        }
+
+        &__logo {
+            position: relative;
+            width: 192rem;
+            height: 86rem;
+
+        }
+
+        &__cta {
+            width: 146rem;
+            height: 42rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10rem;
+            background: $foundation;
+            border-radius: 4rem;
+            border: none;
+            color: #FAF9F6;
+            @include font(16, 450);
+            cursor: pointer;
+            &:hover {
+                background: $foundation-hover;
+            }
+        }
+
+        
+    }
+}

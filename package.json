@@ -1,0 +1,26 @@
+{
+  "name": "wmx",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "libphonenumber-js": "^1.12.17",
+    "next": "15.5.3",
+    "next-intl": "^4.3.8",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-phone-number-input": "^3.4.12",
+    "sass": "^1.92.1",
+    "swiper": "^12.0.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3"
+  }
+}

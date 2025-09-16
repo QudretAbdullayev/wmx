@@ -1,0 +1,14 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.title{
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    @include font(16, 400);
+    color: $brand-color;
+    svg{
+        width: 6rem;
+        height: 6rem;
+        color: $foundation
+    }
+}

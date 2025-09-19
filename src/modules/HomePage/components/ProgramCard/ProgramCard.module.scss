@@ -1,7 +1,7 @@
 @use '@/assets/styles/abstracts/' as *;
 
 .card {
-    width: 413rem;
+    width: 100%;
     height: 460rem;
     position: relative;
     overflow: hidden;
@@ -13,33 +13,27 @@
         position: absolute;
         z-index: 2;
         bottom: 0;
-        width: 413rem;
+        width: 100%;
         height: 366rem;
         overflow: hidden;
-        border-radius: 34rem;
-        border: none;
+        border-radius: 34rem 34rem 0 0;
         background-color: #E7E7E7;
+
     }
 
-    &__effect {
-        position: relative;
-        z-index: 1;
-        top: 0;
-        height: 50%;
-        width: 100%;
-        background-color: black;
-    }
-    &__small{
-        position: relative;
-        width: fit-content;
-        height: fit-content;
-        display: inline-block;
+    &__lock {
+        background: linear-gradient(90deg, #596974 0%, #595A5A 33.05%, #2D4351 100%);
+        box-shadow: inset 0rem 0rem 193.5rem 2rem rgba(250, 249, 246, 0.25);
+        overflow: hidden;
     }
 
     &__detail {
         width: 100%;
         height: 100%;
         padding: 32rem 23rem 32rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
 
         .program {
             margin-top: 81rem;
@@ -66,7 +60,9 @@
                 justify-content: center;
 
                 svg {
-                    color: #FFFFFF;
+                    color: $main-white;
+                    width: 24rem;
+                    height: 24rem;
                 }
             }
         }
@@ -84,6 +80,15 @@
                 @include font(16, 400);
                 color: $secondary-color;
             }
+        }
+    }
+
+    &__small {
+        width: max-content;
+        height: max-content;
+
+        img {
+            height: 62rem;
         }
     }
 }

@@ -1,0 +1,52 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.explain {
+    position: relative;
+    .title {
+        @include font(32, 400);
+        color: $brand-color;
+        leading-trim: NONE;
+        width: 956rem;
+        margin-bottom: 60rem;
+    }
+
+    .slider {
+        margin-bottom: 100rem;
+        position: relative;
+    }
+
+    .slide {
+        width: 955rem !important;
+        height: 537rem !important;
+        border-radius: 32rem;
+        overflow: hidden;
+        position: relative;
+        margin-right: 20rem !important;
+    }
+
+    .slideReel {
+        width: 336rem !important;
+        height: 537rem !important;
+        border-radius: 32rem;
+        overflow: hidden;
+        position: relative;
+        margin-right: 20rem !important;
+    }
+
+    .swiper {
+        margin-left: 297rem !important;
+        overflow: initial !important;
+
+
+        // Hide default pagination
+        :global(.swiper-pagination) {
+            display: none !important;
+        }
+
+        :global(.swiper-slide) {
+            &:last-child {
+                margin-right: 80rem !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.features {
+    &__title {
+        @include font(24, 400);
+        color: $brand-color;
+        leading-trim: NONE;
+        width: 814rem;
+    }
+
+    &__description {
+        @include font(16, 400);
+        color: $secondary-color;
+        leading-trim: NONE;
+        width: 814rem;
+        padding: 24rem 0 70rem;
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 69.5rem;
+        gap: 78rem;
+    }
+}

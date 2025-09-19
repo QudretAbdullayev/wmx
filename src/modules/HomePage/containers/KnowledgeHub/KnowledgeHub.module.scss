@@ -1,0 +1,21 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.knowledge {
+    .swiper {
+        overflow: initial !important;
+        margin-left: 297rem;
+
+        :global(.swiper-slide) {
+            &:last-child {
+                margin-right: 80rem !important;
+            }
+        }
+        
+    }
+    .slide {
+        width: 522rem !important;
+        margin-right: 20rem !important;
+        
+
+    }
+}

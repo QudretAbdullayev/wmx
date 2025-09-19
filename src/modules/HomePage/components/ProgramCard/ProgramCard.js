@@ -1,33 +1,31 @@
 import SafeImage from "@/components/SafeImage/SafeImage";
 import styles from "./ProgramCard.module.scss";
 import LinkArrow from "@/assets/icons/LinkArrow";
+import SafeLink from "@/components/SafeLink/SafeLink";
 
-const ProgramCard = ({ backColor, bigIcon, smallIcon, image, founder }) => {
+const ProgramCard = ({  data }) => {
   return (
-    <div className={styles.card} style={{ backgroundColor: backColor }}>
-      {bigIcon && (
-        <div className={styles.card__effect}>
-          <SafeImage src={bigIcon} alt="Big Icon" fill />
-        </div>
+    <div className={styles.card}>
+      {data.background_image && (
+          <SafeImage src={data.background_image} alt="Background" fill />
       )}
-      <div className={styles.card__container}>
+      <div className={`${styles.card__container} ${data.lock ? styles.card__lock : ''}`}>
         <div className={styles.card__detail}>
-          {smallIcon && (
+          {(!data.lock && data.icon) && (
             <div className={styles.card__small}>
-              <img src={smallIcon} alt="Small Icon" />
+              <img src={data.icon} alt="icon" />
             </div>
           )}
           <div className={styles.program}>
-            <span className={styles.program__title}>CMO</span>
-            <div className={styles.program__icon}>
+            <span className={styles.program__title}>{data.title}</span>
+            <SafeLink href={`/programs/${data.slug}`} className={styles.program__icon}>
               <LinkArrow />
-            </div>
+            </SafeLink>
           </div>
           <div className={styles.content}>
-            <h3 className={styles.content__title}>Subscribe</h3>
+            <h3 className={styles.content__title}>{data.subtitle}</h3>
             <p className={styles.content__desc}>
-              Stay ahead in education and tech — subscribe now and never miss an
-              update.
+              {data.description}
             </p>
           </div>
         </div>

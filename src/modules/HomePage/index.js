@@ -4,24 +4,26 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import Hero from "./components/Hero/Hero";
-import About from "./components/About/About";
-import Programs from "./components/Programs/Programs";
-import KnowledgeHub from "./components/KnowledgeHub/KnowledgeHub";
-import Explain from "./components/Explain/Explain";
-import TellUs from "./components/TellUs/TellUs";
-import FAQSection from "./components/FAQSection/FAQSection";
+import Founder from "./containers/Founder/Founder";
+import About from "./containers/About/About";
+import Programs from "./containers/Programs/Programs";
+import KnowledgeHub from "./containers/KnowledgeHub/KnowledgeHub";
+import Explain from "./containers/Explain/Explain";
+import TellUs from "./containers/TellUs/TellUs";
+import FAQ from "./containers/FAQ/FAQ";
+import Hero from "./containers/Hero/Hero";
 
-const HomePage = ({}) => {
+const HomePage = ({data}) => {
   return (
     <>
-      <Hero />
-      <About/>
-      <Programs/>
-      <KnowledgeHub/>
-      <Explain/>
-      <TellUs/>
-      <FAQSection/>
+      <Hero data={data.hero}/>
+      <Founder data={data.founder}/>
+      <About data={data.about}/>
+      <Programs data={data.programs}/>
+      <KnowledgeHub data={data.knowledge_hub}/>
+      <Explain />
+      <TellUs />
+      <FAQ data={data.faq}/>
     </>
   );
 };

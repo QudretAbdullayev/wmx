@@ -1,0 +1,56 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20rem;
+
+    .detail {
+        padding: 56rem 36rem;
+        height: 630rem;
+        width: 630rem;
+        border-radius: 28rem;
+
+        &__title {
+            @include font(46, 500);
+            color: $main-white;
+            leading-trim: NONE;
+        }
+        &__desc {
+            margin: 20rem 0;
+            @include font(16, 400);
+            letter-spacing: 0.3rem;
+            color: $main-white;
+            width: 437rem;
+        }
+        &__tags {
+            display: flex;
+            align-items: center;
+            gap: 12rem;
+        }
+        &__tag {
+            color: $main-white;
+            @include font(16, 400);
+            letter-spacing: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 12rem;
+            svg{
+                width: 4rem;
+                height: 4rem;
+                color: $main-white;
+            }
+        }
+        &__button {
+            margin-top: 20rem;
+            padding: 14rem 32rem;
+            background: $brand-color;
+            border-radius: 4rem;
+            color: $main-white;
+            @include font(16, 500);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+    }
+
+}

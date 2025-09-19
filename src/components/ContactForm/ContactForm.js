@@ -1,97 +1,36 @@
 // ContactForm.jsx
 import { useState } from 'react';
+import { useForm, Controller } from "react-hook-form";
 import PhoneInput from 'react-phone-number-input';
 import { isValidPhoneNumber, parsePhoneNumber } from 'libphonenumber-js';
 import 'react-phone-number-input/style.css';
 import styles from './ContactForm.module.scss';
 import SafeLink from '../SafeLink/SafeLink';
-import CheckInput from '@/assets/icons/CheckInput';
+import HoverText from '../HoverText/HoverText';
 
 const ContactForm = () => {
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [extraField, setExtraField] = useState('');
     const [promotionalEmails, setPromotionalEmails] = useState(false);
     const [isLegalEntity, setIsLegalEntity] = useState(false);
-    const [phoneError, setPhoneError] = useState('');
-    const [fullNameError, setFullNameError] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [extraFieldError, setExtraFieldError] = useState('');
+    
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        control
+    } = useForm({
+        defaultValues: {
+            fullName: '',
+            phoneNumber: '',
+            email: '',
+            extraField: ''
+        },
+        mode: 'onSubmit'
+    });
 
-    const handlePhoneChange = (value) => {
-        setPhoneNumber(value);
-        // Don't show error immediately, only on submit
+    const onSubmit = (data) => {
+        console.log('Form submitted successfully', data);
     };
 
-    const validateFullName = (value) => {
-        if (!value.trim()) {
-            setFullNameError('Full name is required');
-            return false;
-        }
-        if (value.trim().length < 2) {
-            setFullNameError('Full name must be at least 2 characters');
-            return false;
-        }
-        setFullNameError('');
-        return true;
-    };
-
-    const validateEmail = (value) => {
-        if (!value.trim()) {
-            setEmailError('Email is required');
-            return false;
-        }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) {
-            setEmailError('Please enter a valid email address');
-            return false;
-        }
-        setEmailError('');
-        return true;
-    };
-
-    const validateExtraField = (value) => {
-        if (!value.trim()) {
-            setExtraFieldError('This field is required');
-            return false;
-        }
-        setExtraFieldError('');
-        return true;
-    };
-
-    const validatePhone = (value) => {
-        if (!value) {
-            setPhoneError('Phone number is required');
-            return false;
-        }
-        try {
-            const phoneNumberObj = parsePhoneNumber(value);
-            if (phoneNumberObj && phoneNumberObj.isValid()) {
-                setPhoneError('');
-                return true;
-            } else {
-                setPhoneError('Please enter a valid phone number');
-                return false;
-            }
-        } catch (error) {
-            setPhoneError('Please enter a valid phone number');
-            return false;
-        }
-    };
-
-    const handleSubmit = () => {
-        const isFullNameValid = validateFullName(fullName);
-        const isEmailValid = validateEmail(email);
-        const isExtraFieldValid = validateExtraField(extraField);
-        const isPhoneValid = validatePhone(phoneNumber);
-
-        if (isFullNameValid && isEmailValid && isExtraFieldValid && isPhoneValid) {
-            // Form is valid, proceed with submission
-            console.log('Form submitted successfully');
-            // Here you can add your form submission logic
-        }
-    };
 
     return (
         <div className={styles.contact}>
@@ -102,69 +41,106 @@ const ContactForm = () => {
                     Some sessions are live, while others are available as pre-recorded videos you can watch anytime.
                 </p>
             </div>
-            <div className={styles.form}>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.form__field}>
                     <label className={styles.form__label}>Full name</label>
                     <input
                         type="text"
-                        className={styles.form__input}
+                        className={`${styles.form__input} ${errors.fullName ? styles.form__inputError : ''}`}
                         placeholder="Full name"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
+                        {...register('fullName', {
+                            required: 'Full name is required',
+                            minLength: {
+                                value: 2,
+                                message: 'Full name must be at least 2 characters'
+                            }
+                        })}
                     />
-                    {fullNameError && (
-                        <span className={styles.form__error}>{fullNameError}</span>
+                    {errors.fullName && (
+                        <span className={styles.form__error}>{errors.fullName.message}</span>
                     )}
                 </div>
                 <div className={styles.form__field}>
                     <label className={styles.form__label}>Number</label>
-                    <div className={styles.form__phone}>
-                        <PhoneInput
-                            placeholder="Enter phone number"
-                            value={phoneNumber}
-                            onChange={handlePhoneChange}
-                            defaultCountry="AZ"
-                            className={styles.form__phone__input}
-                            error={phoneError}
-                            international
-                            countryCallingCodeEditable={false}
-                            limitMaxLength={true}
-                        />
-                        {phoneError && (
-                            <span className={styles.form__error}>{phoneError}</span>
+                    <Controller
+                        name="phoneNumber"
+                        control={control}
+                        rules={{
+                            required: 'Phone number is required',
+                            validate: {
+                                isValid: (value) => {
+                                    if (!value) return 'Phone number is required';
+                                    try {
+                                        const phoneNumberObj = parsePhoneNumber(value);
+                                        if (!phoneNumberObj || !phoneNumberObj.isValid()) {
+                                            return 'Phone Number is invalid';
+                                        }
+                                        const nationalNumber = phoneNumberObj.nationalNumber;
+                                        if (!nationalNumber || nationalNumber.length < 7) {
+                                            return 'Please enter a complete phone number';
+                                        }
+                                        return true;
+                                    } catch (error) {
+                                        return 'Phone Number is invalid';
+                                    }
+                                }
+                            }
+                        }}
+                        render={({ field }) => (
+                            <div className={`${styles.form__phone} ${errors.phoneNumber ? styles.form__inputError : ''}`}>
+                                <PhoneInput
+                                    placeholder="Enter phone number"
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    defaultCountry="AZ"
+                                    className={styles.form__phone__input}
+                                    international
+                                    countryCallingCodeEditable={false}
+                                    limitMaxLength={true}
+                                />
+                            </div>
                         )}
-                    </div>
+                    />
+                    {errors.phoneNumber && (
+                        <span className={styles.form__error}>{errors.phoneNumber.message}</span>
+                    )}
                 </div>
                 <div className={styles.form__field}>
                     <label className={styles.form__label}>E-mail</label>
                     <input
                         type="email"
-                        className={styles.form__input}
+                        className={`${styles.form__input} ${errors.email ? styles.form__inputError : ''}`}
                         placeholder="E-mail"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        {...register('email', {
+                            required: 'Email is required',
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: 'Please enter a valid email address'
+                            }
+                        })}
                     />
-                    {emailError && (
-                        <span className={styles.form__error}>{emailError}</span>
+                    {errors.email && (
+                        <span className={styles.form__error}>{errors.email.message}</span>
                     )}
                 </div>
                 <div className={styles.form__field}>
                     <label className={styles.form__label}>Ex!</label>
                     <input
                         type="text"
-                        className={styles.form__input}
-                        placeholder="Extra field"
-                        value={extraField}
-                        onChange={(e) => setExtraField(e.target.value)}
+                        className={`${styles.form__input} ${errors.extraField ? styles.form__inputError : ''}`}
+                        {...register('extraField', {
+                            required: 'This field is required'
+                        })}
                     />
-                    {extraFieldError && (
-                        <span className={styles.form__error}>{extraFieldError}</span>
+                    {errors.extraField && (
+                        <span className={styles.form__error}>{errors.extraField.message}</span>
                     )}
                 </div>
-                <div className={styles.form__submit} onClick={handleSubmit}>
-                    <span className={styles.form__submit__text}>Submit</span>
-                </div>
-            </div>
+                <HoverText 
+                        text="Submit"
+                        className={styles.form__submit}
+                    />
+            </form>
             <div className={styles.footer}>
                 <p className={styles.footer__privacy}>
                     By clicking, I agree to the <SafeLink className={styles.footer__privacy__link} href="/privacy-policy">Privacy Policy</SafeLink> and <SafeLink className={styles.footer__privacy__link} href="/terms-of-service">Terms</SafeLink>.

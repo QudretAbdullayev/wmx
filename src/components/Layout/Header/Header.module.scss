@@ -24,15 +24,19 @@
         &__item {
             @include font(14, 450, 16);
             color: $secondary-color;
-            display: flex;
-            align-items: center;
-            gap: 3rem;
             position: relative;
-            cursor: pointer;
-            svg {
-                width: 12rem;
-                height: 12rem;
-                color: $secondary-color;
+            &__dropdown {
+                display: flex;
+                align-items: center;
+                gap: 3rem;
+                position: relative;
+                cursor: pointer;
+
+                svg {
+                    width: 12rem;
+                    height: 12rem;
+                    color: $secondary-color;
+                }
             }
 
             &:hover {
@@ -43,21 +47,26 @@
                 }
             }
         }
+
         &__arrow {
             transition: transform 0.3s ease;
-            
+
             &_open {
                 transform: rotate(180deg);
             }
         }
+
         &__dropdown {
             cursor: pointer;
             color: $brand-color;
-            svg{
+
+            svg {
                 color: $brand-color;
             }
-            &:hover{
+
+            &:hover {
                 color: $brand-color;
+
                 svg {
                     color: $brand-color;
                 }
@@ -141,11 +150,10 @@
             color: #FAF9F6;
             @include font(16, 450);
             cursor: pointer;
+
             &:hover {
                 background: $foundation-hover;
             }
         }
-
-        
     }
 }

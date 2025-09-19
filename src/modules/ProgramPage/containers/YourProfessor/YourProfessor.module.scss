@@ -1,0 +1,12 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.professor {
+    display: flex;
+    gap: 128rem;
+    &__description{
+        width: 488rem;
+    }
+    &__title{
+        width: 488rem;
+    }
+}

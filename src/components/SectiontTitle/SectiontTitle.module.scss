@@ -1,0 +1,27 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10rem;
+        @include font(16, 400);
+        color: $brand-color;
+
+        svg {
+            width: 6rem;
+            height: 6rem;
+            color: $foundation
+        }
+    }
+    .link{
+        @include font(14, 450);
+        color: $foundation;
+        span{
+            text-decoration: underline;
+        }
+    }
+}

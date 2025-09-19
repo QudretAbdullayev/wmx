@@ -1,0 +1,162 @@
+@use '@/assets/styles/abstracts/' as *;
+
+
+.footer {
+    height: max-content;
+    margin-top: -163rem;
+    background-color: transparent;
+    position: relative;
+    z-index: 0;
+    padding: 235rem 0 26rem;
+
+    &__container {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: space-between;
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            &__left {
+                .logo {
+                    width: 182rem;
+                    height: 95rem;
+                    position: relative;
+                }
+
+                .description {
+                    width: 305rem;
+                    @include font(14, 400);
+                    leading-trim: NONE;
+                    color: $main-white;
+                    padding: 20rem 0 16rem;
+                }
+
+                .button {
+                    border-radius: 4rem;
+                    background-color: $brand-color;
+                    @include font(14, 400);
+                    color: $main-white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 140rem;
+                    height: 36rem;
+                }
+            }
+
+            &__right {
+                display: flex;
+                gap: 110rem;
+
+                .list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12rem;
+
+                    &__title {
+                        @include font(14, 400);
+                        leading-trim: NONE;
+                        color: $brand-color;
+                    }
+
+                    &__items {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6rem;
+                    }
+
+                    &__item {
+                        &__link {
+                            @include font(14, 400);
+                            leading-trim: NONE;
+                            color: $main-white;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .lang {
+                    width: 71rem;
+                    height: 36rem;
+                    border: 1rem solid #AAAAAA;
+                    color: $main-white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10rem;
+                    border-radius: 4rem;
+                    @include font(14, 400);
+
+                    svg {
+                        width: 20rem;
+                        height: 20rem;
+                        color: $main-white;
+                    }
+                }
+            }
+        }
+
+        .middle {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 28rem 0 26rem;
+
+            &__text {
+                @include font(14, 500);
+                leading-trim: NONE;
+                color: $main-white;
+                cursor: pointer;
+                background: none;
+                border: none;
+                transition: all 0.5s cubic-bezier(1.8, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+                border-radius: 4rem;
+
+                &__container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 4rem;
+
+                    svg {
+                        color: $main-white;
+                        transition: all 0.5s cubic-bezier(1.8, 0, 0.2, 1);
+                        width: 18rem;
+                        height: 18rem;
+                    }
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+
+            }
+
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1rem solid $main-white;
+            padding-top: 26rem;
+
+            &__copyright,
+            &__location {
+                z-index: 1;
+                @include font(14, 450);
+                leading-trim: NONE;
+                color: $main-white;
+            }
+        }
+    }
+
+}

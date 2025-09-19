@@ -1,0 +1,191 @@
+import { useState, useEffect, useRef } from 'react'
+import styles from './Hero.module.scss'
+import X from '@/assets/icons/X'
+import Square from '@/assets/icons/Square'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import HoverText from '@/components/HoverText/HoverText'
+
+const slideDuration = 3000
+
+const Hero = ({data}) => {
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0)
+    const [currentSlide, setCurrentSlide] = useState(0)
+    const [progress, setProgress] = useState(0)
+
+    const [forceCompleteIndex, setForceCompleteIndex] = useState(null)
+
+    const swiperRef = useRef(null)
+
+    const rafRef = useRef(null)
+    const startRef = useRef(null)
+    const isPausedRef = useRef(false)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) =>
+                prevIndex === data.x_images.length - 1 ? 0 : prevIndex + 1
+            )
+        }, 100)
+        return () => clearInterval(interval)
+    }, [data.x_images.length])
+
+    useEffect(() => {
+        if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current)
+            rafRef.current = null
+        }
+
+        if (currentSlide >= data.sliders.length - 1) {
+            setProgress(100)
+            return
+        }
+
+        startRef.current = performance.now()
+        setProgress(0)
+
+        const tick = (now) => {
+            if (isPausedRef.current) {
+                startRef.current = now - (progress / 100) * slideDuration
+            } else {
+                const elapsed = now - startRef.current
+                const pct = Math.min(100, (elapsed / slideDuration) * 100)
+                setProgress(pct)
+
+                if (pct > 0 && forceCompleteIndex !== null) {
+                    setForceCompleteIndex(null)
+                }
+
+                if (pct >= 100) {
+                    setCurrentSlide((s) => Math.min(s + 1, data.sliders.length - 1))
+                    return
+                }
+            }
+            rafRef.current = requestAnimationFrame(tick)
+        }
+
+        rafRef.current = requestAnimationFrame(tick)
+
+        return () => {
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+                rafRef.current = null
+            }
+        }
+    }, [currentSlide, data.sliders.length])
+
+    useEffect(() => {
+        if (swiperRef.current && typeof swiperRef.current.slideTo === 'function') {
+            if (swiperRef.current.activeIndex !== currentSlide) {
+                swiperRef.current.slideTo(currentSlide, 300)
+            }
+        }
+    }, [currentSlide])
+
+    const handleDotClick = (index) => {
+        if (index < 0 || index >= data.sliders.length) return
+
+        if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current)
+            rafRef.current = null
+        }
+
+        setCurrentSlide(index)
+        setProgress(0)
+        setForceCompleteIndex(index)
+
+        if (swiperRef.current && typeof swiperRef.current.slideTo === 'function') {
+            swiperRef.current.slideTo(index, 300)
+        }
+    }
+
+    const handleSlideChange = (swiper) => {
+        const newIndex = swiper.activeIndex
+        if (newIndex !== currentSlide && newIndex < data.sliders.length) {
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+                rafRef.current = null
+            }
+            setCurrentSlide(newIndex)
+            setProgress(0)
+            setForceCompleteIndex(null)
+        }
+    }
+
+    return (
+        <section className={styles.hero}>
+            <div className={styles.hero__x}>
+                <X images={data.x_images} currentImageIndex={currentImageIndex} />
+            </div>
+            <div className={styles.container}>
+                <Swiper
+                    onSwiper={(swiper) => {
+                        swiperRef.current = swiper
+                    }}
+                    onSlideChange={handleSlideChange}
+                    slidesPerView={'auto'}
+                    freeMode={false}
+                    allowTouchMove={true}
+                    className={styles.swiper}
+                >
+                    {data.sliders.map((item, index) => (
+                        <SwiperSlide key={index} className={`${styles.container__slide}`}>
+                            <h1 className={styles.container__title}>{item.title}</h1>
+                            <div className={styles.container__subtitle}>
+                                <Square />
+                                {item.subtitle}
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+
+                <div className={styles.pagination} role="navigation" aria-label="slides">
+                    <div className={styles.pagination__track}>
+                        {data.sliders.map((_, index) => {
+
+                            const isCompleted =
+                                index <= currentSlide
+
+                            const isActive = index === currentSlide && !isCompleted
+
+                            return (
+                                <div key={index} className={styles.pagination__item}>
+                                    <button
+                                        type="button"
+                                        className={`${styles.dot} ${isCompleted ? styles.completed : isActive ? styles.active : styles.inactive
+                                            }`}
+                                        onClick={() => handleDotClick(index)}
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
+                                    {index < data.sliders.length - 1 && (
+                                        <div className={styles.lineContainer}>
+                                            <div
+                                                className={`${styles.line} ${index < currentSlide ? styles.completedLine : styles.inactiveLine
+                                                    }`}
+                                            />
+                                            {index === currentSlide && currentSlide < data.sliders.length - 1 && (
+                                                <div
+                                                    className={styles.progressLine}
+                                                    style={{ height: `${progress}%` }}
+                                                    aria-hidden
+                                                />
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+            <HoverText 
+                text={data.button_text}
+                as="a"
+                href="/consultation"
+                className={styles.hero__cta}
+            />
+        </section>
+    )
+}
+
+export default Hero

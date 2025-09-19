@@ -17,6 +17,15 @@ body {
     height: 100%;
     font-family: $font-family-text;
     overflow-x: hidden !important;
+    background-color: $main-white;
+}
+main{
+    overflow: hidden;
+    padding-bottom: 163rem;
+    border-radius: 0rem 0rem 70rem 70rem;
+    position: relative;
+    background-color: inherit;
+    z-index: 1;
 }
 img{
     object-fit: cover;
@@ -30,6 +39,10 @@ img{
         padding: 0 16rem;
     }
 }
+ 
+input, textarea, input::placeholder, textarea::placeholder {
+    font-family: $font-family-text;
+}
 
 .mt{
     margin-top: 100rem;
@@ -38,5 +51,9 @@ img{
     margin-bottom: 100rem;
 }
 .ml{
+    margin-left: 217rem;
+}
+
+.pl{
     margin-left: 217rem;
 }

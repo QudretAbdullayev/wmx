@@ -1,16 +1,28 @@
 const LinkArrow = (props) => {
   return (
     <svg
-      width="16"
-      height="10"
-      viewBox="0 0 16 10"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
-        d="M15.1618 5.39178C15.3781 5.17548 15.3781 4.82478 15.1618 4.60848L11.637 1.08365C11.4207 0.867347 11.07 0.867347 10.8537 1.08365C10.6374 1.29995 10.6374 1.65064 10.8537 1.86694L13.9869 5.00013L10.8537 8.13331C10.6374 8.34962 10.6374 8.70031 10.8537 8.91661C11.07 9.13291 11.4207 9.13291 11.637 8.91661L15.1618 5.39178ZM0.000183105 5.00013V5.554H14.7702V5.00013V4.44626H0.000183105V5.00013Z"
-        fill="currentColor"
+        d="M14.4299 5.93L20.4999 12L14.4299 18.07"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3.5 12L20.33 12"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

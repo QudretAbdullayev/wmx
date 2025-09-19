@@ -1,0 +1,103 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.hoverText {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+
+  .animation {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    
+    &__text {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    
+    &__hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &:hover {
+    .animation {
+      &__text {
+        transform: translateY(-100%);
+      }
+      
+      &__hover {
+        transform: translateY(0%);
+      }
+    }
+  }
+}
+
+// Variant for upward slide animation
+.hoverText--slideUp {
+  .animation {
+    &__hover {
+      transform: translateY(-100%);
+    }
+  }
+
+  &:hover {
+    .animation {
+      &__text {
+        transform: translateY(100%);
+      }
+      
+      &__hover {
+        transform: translateY(0%);
+      }
+    }
+  }
+}
+
+// Variant for left slide animation
+.hoverText--slideLeft {
+  .animation {
+    &__hover {
+      transform: translateX(100%);
+    }
+  }
+
+  &:hover {
+    .animation {
+      &__text {
+        transform: translateX(-100%);
+      }
+      
+      &__hover {
+        transform: translateX(0%);
+      }
+    }
+  }
+}
+
+// Variant for right slide animation
+.hoverText--slideRight {
+  .animation {
+    &__hover {
+      transform: translateX(-100%);
+    }
+  }
+
+  &:hover {
+    .animation {
+      &__text {
+        transform: translateX(100%);
+      }
+      
+      &__hover {
+        transform: translateX(0%);
+      }
+    }
+  }
+}

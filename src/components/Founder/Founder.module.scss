@@ -1,34 +1,44 @@
 @use '@/assets/styles/abstracts/' as *;
 
-.founder{
+.founder {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: max-content;
     height: max-content;
-    .small{
+
+    .small {
         width: 413rem;
         height: 460rem;
         border-radius: 34rem;
 
     }
-    &__image{
+    .medium {
+        width: 630rem;
+        height: 630rem;
+        border-radius: 28rem;
+    }
+
+    &__image {
         position: relative;
         overflow: hidden;
     }
-    &__info{
+
+    &__info {
         position: absolute;
         bottom: 32rem;
-        background: $white-main;
+        background: $main-white;
         padding: 10rem 20rem;
         @include font(16, 500);
         border-radius: 60rem;
-        &__name{
+
+        &__name {
             margin-bottom: 4rem;
             color: $brand-color;
         }
-        &__position{
+
+        &__position {
             color: $secondary-color;
         }
     }

@@ -1,0 +1,43 @@
+@use '@/assets/styles/abstracts' as *;
+
+.reel {
+    position: relative;
+    aspect-ratio: 9/16;
+    margin: 50rem 0;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__img {
+        object-fit: cover;
+    }
+
+    &__play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+
+        img {
+            width: 60rem;
+            height: 60rem;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        margin: 30rem 0;
+
+        &__play {
+            img {
+                width: 50rem;
+                height: 50rem;
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    overflow: hidden;
     .vector {
         position: absolute;
         width: 315rem;
@@ -35,7 +35,7 @@
 
         &__title,
         &__subtitle {
-            color: #FAF9F6;
+            color: $main-white;
             text-align: center;
         }
 
@@ -71,7 +71,7 @@
             width: 220rem;
             height: 16rem;
             @include font(14, 400);
-            color: #FFFFFF;
+            color: $main-white;
             align-self: stretch;
         }
 
@@ -93,16 +93,10 @@
                     background: transparent;
                     border: none;
                     outline: none;
-                    color: #FAF9F6;
-                    font-size: 14rem;
-                    line-height: 16rem;
+                    color: rgba($main-white, 0.6);
+                    @include font(14, 400);
                     height: 100%;
                     width: 100%;
-
-                    &::placeholder {
-                        color: #FAF9F6;
-                        opacity: 0.6;
-                    }
                 }
 
                 :global(.PhoneInputCountry) {
@@ -120,7 +114,7 @@
                 }
 
                 :global(.PhoneInputCountrySelectArrow) {
-                    color: #FAF9F6;
+                    color: $main-white;
                     width: 12rem;
                     height: 12rem;
                     font-size: 0;
@@ -155,7 +149,7 @@
                     background: transparent;
                     border: none;
                     outline: none;
-                    color: #FAF9F6;
+                    color: $main-white;
                     font-size: 14rem;
                     line-height: 16rem;
                     height: 100%;
@@ -178,15 +172,23 @@
                     flex-shrink: 0;
                 }
             }
+            &:focus {
+                border: 1rem solid $main-white;
+            }
         }
 
         &__error {
             color: $foundation;
             @include font(14, 400);
             position: absolute;
-            bottom: -18rem;
+            bottom: -20rem;
             left: 0;
             display: block;
+            transition: bottom 0.2s ease;
+
+            &Focused {
+                bottom: -28rem;
+            }
         }
 
         &__input {
@@ -200,9 +202,18 @@
             font-weight: 400;
             font-size: 14rem;
             line-height: 16rem;
-            color: rgba(#FAF9F6, 0.6);
+            color: rgba($main-white, 0.6);
             font-family: $font-family-text;
             flex-shrink: 0;
+            &::placeholder {
+                color: rgba($main-white, 0.6);
+            }
+            &:focus {
+                border: 1rem solid $main-white;
+            }
+        }
+        &__inputError {
+            border: 1rem solid $foundation;
         }
 
         &__submit {
@@ -210,21 +221,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10rem;
+            padding: 17rem 0;
             gap: 10rem;
             width: 103rem;
             height: 50rem;
             background: $foundation;
             border-radius: 4rem;
             cursor: pointer;
-
+            @include font(14, 450);
+                color: $main-white;
             &:hover {
                 background: $foundation-hover;
-            }
-
-            &__text {
-                @include font(14, 450);
-                color: #FAF9F6;
             }
         }
     }
@@ -272,7 +279,7 @@
                 box-sizing: border-box;
                 width: 12rem;
                 height: 12rem;
-                border: 1rem solid #FAF9F6;
+                border: 1rem solid $main-white;
                 border-radius: 2rem;
                 background: transparent;
                 cursor: pointer;

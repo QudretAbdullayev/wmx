@@ -95,7 +95,7 @@ export default function Header() {
             <HoverText
               text="KNOWLEDGE HUB"
               as="a"
-              href="/knowledge"
+              href="/knowledge-hub"
               className={styles.nav__item}
             />
             <HoverText

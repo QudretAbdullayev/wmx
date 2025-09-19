@@ -89,7 +89,7 @@ export default async function Page({ params }) {
       front_image: "/images/founder.png",
       background_image: "/images/bg-image-4.svg",
       front_image_title: "Vugar Mehdiyev",
-      title: "Ali Huseynov, a leading authority on marketing and brand",
+      title: "Əli Huseynov, a leading authority on marketing and brand",
       description:
         "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a PhD in Marketing from Lancaster University and has been a marketing professor at London Business School, MIT Sloan (visiting), and the University of Minnesota. He has been the recipient of MBA teaching awards at LBS, MIT, Singapore Management University and MBS.\r\n\r\n\r\nMark has been teaching brand management to MBA students at elite business schools and a consulting career working on some of the most successful brands on the planet such as Subaru, De Beers, Ericsson, Sephora, News Corp, Hennessy and Baxter.",
     },
@@ -132,109 +132,71 @@ export default async function Page({ params }) {
       ],
     },
     modules: {
-      course_curriculum: {
-        blocks: [
-          {
-            id: 1,
-            block_name: "Block 1",
-            section: "Core Knowledge",
-            status: "expanded",
-            modules: [
-              {
-                id: 7,
-                title: "Module 7: Personal Leadership & Influence",
-              },
-              {
-                id: 8,
-                title: "Module 8: Team Leadership & Organizational Design",
-              },
-              {
-                id: 8,
-                title: "Module 8: Team Leadership & Organizational Design",
-              },
-              {
-                id: 8,
-                title: "Module 8: Team Leadership & Organizational Design",
-              },
-            ],
-          },
-          {
-            id: 2,
-            block_name: "Block 1",
-            section: "Marketing Technologie & Innovation",
-            status: "collapsed",
-            modules: [],
-          },
-          {
-            id: 3,
-            block_name: "Block 1",
-            section: "Leadership & Management",
-            status: "collapsed",
-            modules: [],
-          },
-          {
-            id: 4,
-            block_name: "Block 1",
-            section: "Mastering C-SUIT",
-            status: "collapsed",
-            modules: [],
-          },
-        ],
-      },
-      ui_indicators: {
-        expanded_icon: "−",
-        collapsed_icon: "+",
-      },
-      summary: {
-        total_blocks: 4,
-        total_visible_modules: 4,
-        sections: [
-          "Core Knowledge",
-          "Marketing Technologie & Innovation",
-          "Leadership & Management",
-          "Mastering C-SUIT",
-        ],
-      },
-    },
-    about: {
-      program: {
-        title: "Emerging CMO",
-        description: "",
-        leadership_info:
-          "Emerging CMO is an advanced learning journey designed for marketing professionals aiming to move from execution to executive. The program builds strategic thinking, leadership presence, and business fluency, shaping tomorrow's marketing leaders.\r\n\r\n\r\nLed by <b>Vugar Mehdiyev</b> and <b>Barış Başaran</b>, the program blends strategic marketing insight with real-world leadership to prepare professionals for executive roles.",
-        leaders: ["Vugar Mehdiyev", "Barış Başaran"],
-      },
-      program_details: {
-        format: {
-          category: "Format",
-          details: ["4-5 hours per week", "On-Campus program", "Group Session"],
-        },
-        time: {
-          category: "Time",
-          schedule: [
+      section_title: "Modules / Curriculum",
+      course_curriculum: [
+        {
+          id: 1,
+          block_name: "Block 1",
+          section: "Core Knowledge",
+          status: "expanded",
+          modules: [
             {
-              day: "Wednesday",
-              time: "7:00-9:30 PM",
+              id: 7,
+              title: "Module 7: Personal Leadership & Influence",
             },
             {
-              day: "Saturday",
-              time: "10:00-12:30 PM",
+              id: 8,
+              title: "Module 8: Team Leadership & Organizational Design",
+            },
+            {
+              id: 8,
+              title: "Module 8: Team Leadership & Organizational Design",
+            },
+            {
+              id: 8,
+              title: "Module 8: Team Leadership & Organizational Design",
             },
           ],
         },
-        framework: {
-          category: "Framework",
-          structure: {
-            blocks: 4,
-            modules: 10,
-            topics: 20,
-          },
+        {
+          id: 2,
+          block_name: "Block 1",
+          section: "Marketing Technologie & Innovation",
+          status: "collapsed",
+          modules: [],
         },
-        language: {
-          category: "Language",
-          type: "AZ / EN (hybrid)",
+        {
+          id: 3,
+          block_name: "Block 1",
+          section: "Leadership & Management",
+          status: "collapsed",
+          modules: [],
         },
-      },
+        {
+          id: 4,
+          block_name: "Block 1",
+          section: "Mastering C-SUIT",
+          status: "collapsed",
+          modules: [],
+        },
+      ],
+    },
+    about: {
+      section_title: "About",
+      content: "<p>Emerging CMO is an advanced learning journey designed for marketing professionals aiming to move from execution to executive. The program builds strategic thinking, leadership presence, and business fluency, shaping tomorrow's marketing leaders.</p><br/><br/><p>Led by <strong>Vugar Mehdiyev</strong> and <strong>Barış Başaran</strong>, the program blends strategic marketing insight with real-world leadership to prepare professionals for executive roles.</p><br/><br/><br/><table><thead><tr><th>Format</th><th>Time</th><th>Framework</th><th>Language</th></tr></thead><tbody><tr><td>4-5 hours per week</td><td>Wednesday: 7:00-9:30 PM</td><td>4 Blocks</td><td>AZ / EN (hybrid)</td></tr><tr><td>On-Campus program</td><td>Saturday: 10:00-12:30 PM</td><td>10 Modules</td><td></td></tr><tr><td>Group Session</td><td></td><td>20 Topics</td><td></td></tr></tbody></table>",
+    },
+    founder_video: {
+      section_title: "Founder Video",
+      title: "Our founder on why this course matters now.",
+      video_url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      video_cover: "/images/video-cover.jpg",
+    },
+    consultation: {
+      section_title: "Consultation",
+      title: "Chief of “I know what I’m doing",
+      description:
+        "The xSchool CMO program is built for those who think beyond KPIs and campaign calendars. It’s where strategic ambition meets real-world marketing leadership, and sparks serious growth.",
+      button: "Submit",
     },
   };
   return <ProgramPage data={data} />;

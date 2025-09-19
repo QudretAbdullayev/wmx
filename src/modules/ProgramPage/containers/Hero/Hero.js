@@ -1,6 +1,7 @@
 import Founder from "@/components/Founder/Founder";
 import styles from "./Hero.module.scss";
 import Ellipse from "@/assets/icons/Ellipse";
+import HoverText from "@/components/HoverText/HoverText";
 
 const Hero = ({data, color}) => {
   
@@ -18,9 +19,7 @@ const Hero = ({data, color}) => {
               </div>
             ))}
           </div>
-          <button className={styles.detail__button}>
-            {data.button}
-          </button>
+          <HoverText text={data.button} className={styles.detail__button} as="button"/>
         </div>
         <Founder
           image={data.image}

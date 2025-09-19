@@ -1,13 +1,12 @@
 import SectionTitle from "@/components/SectiontTitle/SectiontTitle";
-import styles from "./About.module.scss";
+import styles from "./FounderVideo.module.scss";
 
-const About = ({data}) => {
+const FounderVideo = ({data}) => {
   return (
     <section className="g-container mb">
       <SectionTitle title={data.section_title} />
-      <p className={`${styles.content} ml`} dangerouslySetInnerHTML={{ __html: data.content }} />
     </section>
   );
 };
 
-export default About;
+export default FounderVideo;

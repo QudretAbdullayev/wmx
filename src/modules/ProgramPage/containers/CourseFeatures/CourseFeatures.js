@@ -4,7 +4,7 @@ import SectionTitle from '@/components/SectiontTitle/SectiontTitle'
 
 const CourseFeatures = ({ data, color }) => {
   return (
-    <div className='g-container mb'>
+    <section className='g-container mb'>
       <SectionTitle title={data.section_title} />
       <div className={`${styles.features} ml`}>
         <h2 className={styles.features__title}>{data.main_title}</h2>
@@ -15,7 +15,7 @@ const CourseFeatures = ({ data, color }) => {
         ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

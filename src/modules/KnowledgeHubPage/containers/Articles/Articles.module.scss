@@ -1,0 +1,34 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100rem;
+
+    &__articles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56rem 20rem;
+    }
+
+    &__button {
+        width: 196rem;
+        height: 42rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12rem 0;
+        background: $brand-color;
+        border-radius: 4rem;
+        border: none;
+        color: #FAF9F6;
+        @include font(16, 400);
+        cursor: pointer;
+
+        &:hover {
+            background: $foundation-hover;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import SectionTitle from "@/components/SectiontTitle/SectiontTitle";
 import styles from "./KnowledgeHub.module.scss";
-import KnowledgeHubCard from "../../components/KnowledgeHubCard/KnowledgeHubCard";
 import { Swiper, SwiperSlide } from "swiper/react";
+import KnowledgeHubCard from "@/components/KnowledgeHubCard/KnowledgeHubCard";
 
 const KnowledgeHub = ({data}) => {
 

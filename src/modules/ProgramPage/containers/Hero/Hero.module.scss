@@ -42,8 +42,13 @@
             }
         }
         &__button {
+            width: 140rem;
+            height: 36rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-top: 20rem;
-            padding: 14rem 32rem;
+            padding: 10rem 0;
             background: $brand-color;
             border-radius: 4rem;
             color: $main-white;

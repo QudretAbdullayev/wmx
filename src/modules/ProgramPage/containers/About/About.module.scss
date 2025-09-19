@@ -1,0 +1,39 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.content {
+    width: 954rem;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        @include font(24, 400);
+        color: $brand-color;
+    }
+
+    strong {
+        @include font(24, 450);
+        color: $brand-color;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    th {
+        @include font(14, 450);
+        color: $brand-color;
+        padding-bottom: 16rem;
+        text-align: left;
+    }
+
+    td {
+        @include font(14, 450);
+        color: $secondary-color;
+        text-align: left;
+    }
+}

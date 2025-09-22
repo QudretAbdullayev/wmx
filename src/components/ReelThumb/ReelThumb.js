@@ -1,13 +1,41 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import SafeImage from '@/components/SafeImage/SafeImage';
 import styles from './ReelThumb.module.scss';
 
 const ReelThumb = ({ video, img }) => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [hasError, setHasError] = useState(false);
+    const videoRef = useRef(null);
 
     const handlePlay = () => {
+        setIsPlaying(true);
+        setIsLoading(true);
+        setTimeout(() => {
+            if (videoRef.current) {
+                videoRef.current.play().catch(error => {
+                    console.error('Video play failed:', error);
+                    setHasError(true);
+                    setIsPlaying(false);
+                    setIsLoading(false);
+                });
+            }
+        }, 100);
+    };
+
+    const handleVideoError = () => {
+        setHasError(true);
+        setIsPlaying(false);
+        setIsLoading(false);
+    };
+
+    const handleVideoPause = () => {
+        setIsPlaying(false);
+    };
+
+    const handleVideoPlay = () => {
         setIsPlaying(true);
     };
 
@@ -23,7 +51,7 @@ const ReelThumb = ({ video, img }) => {
                     />
                     <button className={styles.reel__play} onClick={handlePlay}>
                         <SafeImage
-                            src="/icons/btn-video.png"
+                            src="/icons/play-button.svg"
                             width={60}
                             height={60}
                             alt="Play button"
@@ -33,13 +61,46 @@ const ReelThumb = ({ video, img }) => {
             )}
 
             {isPlaying && (
-                <iframe
-                    src={`${video}?autoplay=1&rel=0&showinfo=0`}
-                    title="Reel video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                />
+                <div className={styles.videoContainer}>
+                    <video
+                        ref={videoRef}
+                        className={styles.video}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        onError={handleVideoError}
+                        onLoadStart={() => setIsLoading(true)}
+                        onCanPlay={() => setIsLoading(false)}
+                        onPause={handleVideoPause}
+                        onPlay={handleVideoPlay}
+                        onLoadedData={() => {
+                            if (videoRef.current) {
+                                videoRef.current.play();
+                            }
+                        }}
+                    >
+                        <source src={video} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    {isLoading && (
+                        <div className={styles.loading}>
+                            <div className={styles.spinner}></div>
+                        </div>
+                    )}
+                    
+                    {hasError && (
+                        <div className={styles.error}>
+                            <p>Video yüklenemedi</p>
+                            <button onClick={() => {
+                                setHasError(false);
+                                setIsPlaying(false);
+                            }}>
+                                Tekrar Dene
+                            </button>
+                        </div>
+                    )}
+                </div>
             )}
         </div>
     );

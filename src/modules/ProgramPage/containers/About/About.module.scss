@@ -22,18 +22,20 @@
         width: 100%;
         table-layout: fixed;
         border-collapse: collapse;
+        padding-top: 56rem;
     }
 
     th {
-        @include font(14, 450);
+        @include font(16, 450);
         color: $brand-color;
         padding-bottom: 16rem;
         text-align: left;
     }
 
     td {
-        @include font(14, 450);
+        @include font(16, 450);
         color: $secondary-color;
         text-align: left;
+        padding-bottom: 6rem;
     }
 }

@@ -1,68 +1,5 @@
 @use '@/assets/styles/abstracts/' as *;
 
-
-
-.faq {
-    width: 100%;
-    margin-bottom: 200rem;
-
-    &__list {
-        width: 100%;
-
-        .item {
-            width: 100%;
-            border-top: 1rem solid $secondary-color;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 24rem 0;
-            gap: 20rem;
-            cursor: pointer;
-            &:last-child {
-                border-bottom: 1rem solid $secondary-color;
-            }
-            &__question {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                gap: 16rem;
-
-                &__title {
-                    @include font(18, 400, 21);
-                    color: $brand-color;
-                    transition: color 0.2s ease;
-
-                    &.expanded {
-                        color: $foundation;
-                    }
-                }
-            }
-            &__answer {
-                @include font(16, 400, 19);
-                color: $secondary-color;
-                max-width: 560rem;
-            }
-            &__button {
-                width: 24rem;
-                height: 24rem;
-                background: none;
-                border: none;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: $brand-color;
-                transition: color 0.2s ease, transform 0.2s ease;
-                flex-shrink: 0;
-            
-                svg {
-                    width: 24rem;
-                    height: 24rem;
-                }
-            }
-        }
-    }
-}
-
 @keyframes star-movement-bottom {
     0% {
         transform: translate(0%, 0%);
@@ -84,5 +21,89 @@
     100% {
         transform: translate(100%, 0%);
         opacity: 0;
+    }
+}
+
+
+.faq {
+    width: 100%;
+    margin-bottom: 200rem;
+
+    &__list {
+        width: 100%;
+
+        .item {
+            width: 100%;
+            border-top: 1rem solid $secondary-color;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 24rem 0;
+            gap: 20rem;
+            cursor: pointer;
+
+            &:last-child {
+                border-bottom: 1rem solid $secondary-color;
+            }
+
+            &__question {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 16rem;
+
+                &__title {
+                    @include font(18, 400, 21);
+                    color: $brand-color;
+                    transition: color 0.2s ease;
+
+                    &.expanded {
+                        color: $foundation;
+                    }
+                }
+            }
+
+            &__answer {
+                @include font(16, 400, 19);
+                color: $secondary-color;
+                max-width: 560rem;
+            }
+
+            &__button {
+                width: 24rem;
+                height: 24rem;
+                background: none;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $brand-color;
+                transition: color 0.2s ease, transform 0.2s ease;
+                flex-shrink: 0;
+
+                svg {
+                    width: 24rem;
+                    height: 24rem;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        margin-bottom: 100rem;
+
+        &__list {
+            .item {
+                padding: 16rem 0;
+                gap: 10rem;
+                &__question {
+                    gap: 10rem;
+                }
+
+                &__answer {
+                    max-width: 100%;
+                }
+            }
+        }
     }
 }

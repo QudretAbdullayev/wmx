@@ -5,4 +5,10 @@
     .description{
         width: 703rem;
     }
+    @media screen and (max-width: 700px) {
+        .title,
+        .description {
+            width: 335rem;
+        }
+    }
 }

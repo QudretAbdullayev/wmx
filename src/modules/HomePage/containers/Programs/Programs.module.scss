@@ -10,12 +10,17 @@
                 margin-right: 80rem !important;
             }
         }
-        
     }
     .slide {
         width: 413rem !important;
         margin-right: 20rem !important;
-        
-
+    }
+    @media screen and (max-width: 700px) {
+        .slide {
+            width: 302rem !important;
+        }
+        .swiper {
+            margin-left: 20rem !important;
+        }
     }
 }

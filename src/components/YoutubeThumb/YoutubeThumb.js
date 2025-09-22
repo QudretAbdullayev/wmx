@@ -23,7 +23,7 @@ const YoutubeThumb = ({ video, img }) => {
                     />
                     <button className={styles.thumb__play} onClick={handlePlay}>
                         <SafeImage
-                            src="/icons/btn-video.png"
+                            src="/icons/play-button.svg"
                             width={60}
                             height={60}
                             alt="Play button"

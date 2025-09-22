@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const Programs = ({data}) => {
   return (
     <section className={`${styles.programs} mb`}>
-      <div className="g-container mb">
+      <div className="g-container">
         <ComponentTitle title={data.section_title} />
       </div>
       <Swiper slidesPerView={"auto"} freeMode className={styles.swiper}>
@@ -14,7 +14,6 @@ const Programs = ({data}) => {
           <SwiperSlide key={index} className={styles.slide}>
             <ProgramCard
               data={item}
-
             />
           </SwiperSlide>
         ))}

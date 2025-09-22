@@ -3,7 +3,7 @@ import SafeImage from "../../../../components/SafeImage/SafeImage";
 import styles from "./Founder.module.scss";
 import { formatText } from "@/utils/formatText";
 import SectionTitle from "@/components/SectiontTitle/SectiontTitle";
-import BigTitle from "@/components/BigTitle/BigTitle";
+import ComponentTitle from "@/components/ComponentTitle/ComponentTitle";
 import FounderComponent from "@/components/Founder/Founder";
 import Description from "@/components/Description/Description";
 
@@ -15,7 +15,7 @@ const Founder = ({ data }) => {
       <div className="g-container">
         <SectionTitle title={data.section_title} />
         <div className="ml">
-          <BigTitle title={data.title} />
+          <ComponentTitle title={data.title} />
         </div>
       </div>
       <div className="g-container">

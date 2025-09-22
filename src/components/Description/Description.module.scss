@@ -13,4 +13,13 @@
         @include font(16, 400);
         white-space: pre-wrap;
     }
+    @media screen and (max-width: 700px) {
+        .title{
+            font-size: 20rem;
+        }
+        .description{
+            margin-top: 20rem;
+            font-size: 16rem;
+        }
+    }
 }

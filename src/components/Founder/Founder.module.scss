@@ -34,12 +34,25 @@
         border-radius: 60rem;
 
         &__name {
-            margin-bottom: 4rem;
             color: $brand-color;
         }
 
         &__position {
             color: $secondary-color;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .small {
+            width: 335rem;
+            height: 372rem;
+            border-radius: 28rem;
+        }
+        &__info {
+            bottom: 24rem;
+            padding: 8rem 16rem;
+            font-size: 14rem;
+            border-radius: 60rem;
+
         }
     }
 }

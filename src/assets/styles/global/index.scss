@@ -36,7 +36,7 @@ img{
     padding: 0 80rem;
 
     @media only screen and (max-width: 700px) {
-        padding: 0 16rem;
+        padding: 0 20rem;
     }
 }
  
@@ -49,9 +49,15 @@ input, textarea, input::placeholder, textarea::placeholder {
 }
 .mb{
     margin-bottom: 100rem;
+    @media screen and (max-width: 700px) {
+        margin-bottom: 62rem;
+    }
 }
 .ml{
     margin-left: 217rem;
+    @media screen and (max-width: 700px) {
+        margin-left: 0;
+    }
 }
 
 .pl{

@@ -3,7 +3,6 @@
 .thumb {
     position: relative;
     aspect-ratio: 16/9;
-    margin: 50rem 0;
 
     iframe {
         position: absolute;
@@ -31,7 +30,6 @@
     }
 
     @media screen and (max-width: 700px) {
-        margin: 30rem 0;
 
         &__play {
             img {

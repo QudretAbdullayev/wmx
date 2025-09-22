@@ -31,20 +31,16 @@
   }
 }
 
-.brandFrame {
+.activeFrame {
   width: 33rem;
   background: #061D21;
   position: relative;
   overflow: hidden;
 }
 
-.lightFrame {
+.inactiveFrame {
   width: 6rem;
   background: #CCCCCE;
-  
-  &.active {
-    background: #061D21;
-  }
 }
 
 .progress {
@@ -55,8 +51,4 @@
   background: #CCCCCE;
   transition: width 0.1s linear;
   z-index: 1;
-}
-
-.active {
-  background: #061D21 !important;
 }

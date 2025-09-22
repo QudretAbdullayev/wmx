@@ -1,0 +1,16 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.title{
+    @include font(56, 400);
+    leading-trim: NONE;
+    color: $brand-color;
+    line-height: 100%;
+    white-space: pre-wrap;
+    &__star{
+        color: $foundation
+    }
+    @media screen and (max-width: 700px) {
+        font-size: 24rem;
+        margin: 0 0 42rem 41rem; 
+    }
+}

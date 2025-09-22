@@ -152,20 +152,19 @@ const Hero = ({data}) => {
                                 <div key={index} className={styles.pagination__item}>
                                     <button
                                         type="button"
-                                        className={`${styles.dot} ${isCompleted ? styles.completed : isActive ? styles.active : styles.inactive
+                                        className={`${styles.pagination__dot} ${isCompleted ? styles.pagination__completed : isActive ? styles.pagination__active : styles.pagination__inactive
                                             }`}
                                         onClick={() => handleDotClick(index)}
                                         aria-label={`Go to slide ${index + 1}`}
                                     />
                                     {index < data.sliders.length - 1 && (
-                                        <div className={styles.lineContainer}>
+                                        <div className={styles.pagination__container}>
                                             <div
-                                                className={`${styles.line} ${index < currentSlide ? styles.completedLine : styles.inactiveLine
-                                                    }`}
+                                                className={`${styles.pagination__container__line} ${index < currentSlide ? styles.pagination__container__completed : styles.pagination__container__inactive}`}
                                             />
                                             {index === currentSlide && currentSlide < data.sliders.length - 1 && (
                                                 <div
-                                                    className={styles.progressLine}
+                                                    className={styles.pagination__container__progress}
                                                     style={{ height: `${progress}%` }}
                                                     aria-hidden
                                                 />

@@ -40,7 +40,7 @@ export default async function RootLayout({ children, params }) {
       <body>
         <MouseFollower />
         <NextIntlClientProvider>
-          <NotificationBanner/>
+          <NotificationBanner/> 
           <Header />
           <main>
             {children}

@@ -18,7 +18,6 @@
         overflow: hidden;
         border-radius: 34rem 34rem 0 0;
         background-color: #E7E7E7;
-
     }
 
     &__lock {
@@ -48,6 +47,9 @@
                 @include font(20, 500);
                 leading-trim: NONE;
             }
+            &__program_title{
+                color: #FAF9F6;
+            }
 
             &__icon {
                 width: 40rem;
@@ -65,6 +67,26 @@
                     height: 24rem;
                 }
             }
+            &__lock_icon {
+                width: 40rem;
+                height: 40rem;
+                background: $brand-color;
+                border-radius: 5rem;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.4;
+
+                svg {
+                    color: #FAF9F6;
+                    width: 20rem;
+                    height: 20rem;
+                }
+            }
+        }
+        .program_lock{
+            border-color: #D5D5D5;
         }
 
         .content {
@@ -80,6 +102,12 @@
                 @include font(16, 400);
                 color: $secondary-color;
             }
+            &__lock_title {
+                color: #FAF9F6;
+            }
+            &__lock_desc {
+                color: #E7E7E7;
+            }
         }
     }
 
@@ -89,6 +117,78 @@
 
         img {
             height: 62rem;
+        }
+    }
+    &__coming {
+        @include font(16, 500);
+        color: #E7E7E7;
+        background: $foundation;
+        border-radius: 60rem;
+        width: 122rem;
+        padding: 10rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    @media screen and (max-width: 700px) {
+        height: 302rem;
+        border-radius: 22rem;
+
+        &__container {
+            height: 241rem;
+            border-radius: 22rem;
+        }
+
+        &__detail {
+            padding: 21rem 21rem 8rem;
+
+            .program {
+                margin-top: 54rem;
+                padding-bottom: 9rem;
+                &__title {
+                    font-size: 16rem;
+                }
+
+                &__icon {
+                    width: 26rem;
+                    height: 26rem;
+                    border-radius: 3rem;
+                    svg {
+                        width: 16rem;
+                        height: 16rem;
+                    }
+                }
+                &__lock_icon{
+                    width: 26rem;
+                    height: 26rem;
+                    border-radius: 3rem;
+                    svg {
+                        width: 13rem;
+                        height: 13rem;
+                    }
+                }
+            }
+
+            .content {
+                margin-top: 8rem;
+
+                &__title {
+                    font-size: 16rem;
+                    margin-bottom: 6rem
+                }
+
+                &__desc {
+                    font-size: 14rem;
+                }
+            }
+        }
+
+        &__small {
+            img {
+                height: 40rem;
+            }
         }
     }
 }

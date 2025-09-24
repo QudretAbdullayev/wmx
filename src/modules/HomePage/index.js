@@ -22,7 +22,7 @@ const HomePage = ({data}) => {
       <Programs data={data.programs}/>
       <KnowledgeHub data={data.knowledge_hub}/>
       <Explain />
-      <TellUs />
+      <TellUs data={data.tell_us}/>
       <FAQ data={data.faq}/>
     </>
   );

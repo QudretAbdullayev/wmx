@@ -7,7 +7,6 @@ import Minus from "@/assets/icons/Minus";
 import { useState } from "react";
 
 const Modules = ({ data }) => {
-  // Initialize expanded blocks based on data status
   const [expandedBlocks, setExpandedBlocks] = useState(() => {
     const initial = {};
     data.course_curriculum.forEach(course => {
@@ -46,10 +45,10 @@ const Modules = ({ data }) => {
             </h2>
 
             {expandedBlocks[course.id] && course.modules.length > 0 && (
-              <div className={styles.modulesContainer}>
+              <div className={styles.modules__container}>
                 {course.modules.map((module, index) => (
-                  <div key={index} className={styles.moduleItem}>
-                    <span className={styles.moduleText}>{module.title}</span>
+                  <div key={index} className={styles.modules__item}>
+                    <span className={styles.modules__text}>{module.title}</span>
                   </div>
                 ))}
               </div>

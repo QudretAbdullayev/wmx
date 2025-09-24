@@ -1,1 +1,18 @@
 @use '@/assets/styles/abstracts/' as *;
+
+.hero{
+    margin-top: 158rem;
+    width: 879rem;
+    &__title{
+        @include font(42, 400);
+        color: $brand-color;
+
+    }
+    @media screen and (max-width: 700px) {
+        margin-top: 42rem;
+        width: 335rem;
+        &__title{
+            font-size: 20rem;
+        }
+    }
+}

@@ -1,1 +1,15 @@
 @use '@/assets/styles/abstracts/' as *;
+
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16rem;
+    padding-top: 100rem;
+    h1{
+        @include font(52, 450);
+        color: $brand-color;
+        white-space: pre-wrap;
+        text-align: center;
+    }
+}

@@ -10,7 +10,6 @@
     padding: 235rem 0 26rem;
 
     &__container {
-        position: relative;
         z-index: 1;
         height: 100%;
         display: flex;
@@ -21,15 +20,21 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            padding-bottom: 63rem;
 
             &__left {
                 .logo {
                     width: 182rem;
                     height: 95rem;
                     position: relative;
+
+                    img {
+                        object-fit: contain;
+                    }
                 }
 
                 .description {
+                    position: relative;
                     width: 305rem;
                     @include font(14, 400);
                     leading-trim: NONE;
@@ -52,31 +57,38 @@
 
             &__right {
                 display: flex;
-                gap: 110rem;
+                gap: 120rem;
 
-                .list {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 12rem;
+                .lists {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    gap: 110rem;
 
-                    &__title {
-                        @include font(14, 400);
-                        leading-trim: NONE;
-                        color: $brand-color;
-                    }
-
-                    &__items {
+                    .list {
                         display: flex;
                         flex-direction: column;
-                        gap: 6rem;
-                    }
+                        position: relative;
+                        gap: 12rem;
 
-                    &__item {
-                        &__link {
+                        &__title {
                             @include font(14, 400);
                             leading-trim: NONE;
-                            color: $main-white;
-                            cursor: pointer;
+                            color: $brand-color;
+                        }
+
+                        &__items {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 6rem;
+                        }
+
+                        &__item {
+                            &__link {
+                                @include font(14, 400);
+                                leading-trim: NONE;
+                                color: $main-white;
+                                cursor: pointer;
+                            }
                         }
                     }
                 }
@@ -92,52 +104,67 @@
                     gap: 10rem;
                     border-radius: 4rem;
                     @include font(14, 400);
+                    position: relative;
+
+                    &__select {
+                        background: transparent;
+                        border: none;
+                        color: $main-white;
+                        @include font(14, 400);
+                        outline: none;
+                        cursor: pointer;
+                        appearance: none;
+                        padding-right: 20rem;
+                        width: 100%;
+                        text-align: center;
+
+                        // option {
+                        //     background: #333;
+                        //     color: $main-white;
+                        // }
+                    }
 
                     svg {
                         width: 20rem;
                         height: 20rem;
                         color: $main-white;
+                        position: absolute;
+                        right: 8rem;
+                        pointer-events: none;
                     }
                 }
             }
         }
 
         .middle {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 28rem 0 26rem;
+            @include font(14, 500);
+            leading-trim: NONE;
+            color: $main-white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: all 0.5s cubic-bezier(1.8, 0, 0.2, 1);
+            position: absolute;
+            overflow: hidden;
+            border-radius: 4rem;
+            bottom: 95rem;
+            right: 80rem;
+            &__container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 4rem;
 
-            &__text {
-                @include font(14, 500);
-                leading-trim: NONE;
-                color: $main-white;
-                cursor: pointer;
-                background: none;
-                border: none;
-                transition: all 0.5s cubic-bezier(1.8, 0, 0.2, 1);
-                position: relative;
-                overflow: hidden;
-                border-radius: 4rem;
-
-                &__container {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 4rem;
-
-                    svg {
-                        color: $main-white;
-                        transition: all 0.5s cubic-bezier(1.8, 0, 0.2, 1);
-                        width: 18rem;
-                        height: 18rem;
-                    }
+                svg {
+                    color: $main-white;
+                    transition: all 0.5s cubic-bezier(1.8, 0, 0.2, 1);
+                    width: 18rem;
+                    height: 18rem;
                 }
+            }
 
-                &:active {
-                    transform: translateY(0);
-                }
-
+            &:active {
+                transform: translateY(0);
             }
 
         }
@@ -148,6 +175,7 @@
             align-items: center;
             border-top: 1rem solid $main-white;
             padding-top: 26rem;
+            position: relative;
 
             &__copyright,
             &__location {
@@ -159,4 +187,78 @@
         }
     }
 
+    @media screen and (max-width: 700px) {
+        margin-top: -69rem;
+        padding: 32rem 0;
+
+        &__container {
+
+            .top {
+                padding: 67rem 0 32rem;
+                flex-direction: column;
+                gap: 56rem;
+
+                &__left {
+                    .logo {
+                        width: 158rem;
+                        height: 83rem;
+                    }
+
+                    .button {
+                        border-radius: 8rem;
+                        background-color: $foundation;
+                        width: 103rem;
+                        height: 44rem;
+                    }
+                }
+
+                &__right {
+
+                    width: 100%;
+                    flex-direction: column;
+                    gap: 10rem;
+
+                    .lists {
+                        grid-template-columns: 1fr 1fr;
+                        gap: 24rem;
+
+                        .list {
+                            gap: 12rem;
+
+                            &__title {
+                                font-weight: 400;
+                            }
+
+                            &__items {
+                                gap: 11rem;
+                            }
+                        }
+                    }
+
+                    .lang {
+                        position: absolute;
+                        top: 101rem;
+                        right: 20rem;
+                    }
+                }
+            }
+
+            .middle {
+                bottom: 145rem;
+                right: 20rem;
+
+            }
+
+            .bottom {
+                display: flex;
+                flex-direction: column;
+                padding-top: 32rem;
+                gap: 16rem;
+
+                &__location {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
 }

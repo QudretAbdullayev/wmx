@@ -9,4 +9,16 @@
     &__title{
         width: 488rem;
     }
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+        gap: 33rem;
+    }
+    @media screen and (max-width: 700px) {
+        &__description{
+            width: 335rem;
+        }
+        &__title{
+            width: 335rem;
+        }
+    }
 }

@@ -8,10 +8,10 @@ import styles from './ContactForm.module.scss';
 import SafeLink from '../SafeLink/SafeLink';
 import HoverText from '../HoverText/HoverText';
 
-const ContactForm = () => {
+const ContactForm = ({ data }) => {
     const [promotionalEmails, setPromotionalEmails] = useState(false);
     const [isLegalEntity, setIsLegalEntity] = useState(false);
-    
+
     const {
         register,
         handleSubmit,
@@ -36,18 +36,18 @@ const ContactForm = () => {
         <div className={styles.contact}>
             <div className={styles.vector}></div>
             <div className={styles.header}>
-                <h4 className={styles.header__title}>Let's get in touch!</h4>
+                <h4 className={styles.header__title}>{data.form.title}</h4>
                 <p className={styles.header__subtitle}>
-                    Some sessions are live, while others are available as pre-recorded videos you can watch anytime.
+                    {data.form.description}
                 </p>
             </div>
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.form__field}>
-                    <label className={styles.form__label}>Full name</label>
+                    <label className={styles.form__label}>{data.form.full_name.label}</label>
                     <input
                         type="text"
                         className={`${styles.form__input} ${errors.fullName ? styles.form__inputError : ''}`}
-                        placeholder="Full name"
+                        placeholder={data.form.full_name.placeholder}
                         {...register('fullName', {
                             required: 'Full name is required',
                             minLength: {
@@ -61,7 +61,7 @@ const ContactForm = () => {
                     )}
                 </div>
                 <div className={styles.form__field}>
-                    <label className={styles.form__label}>Number</label>
+                    <label className={styles.form__label}>{data.form.phone.label}</label>
                     <Controller
                         name="phoneNumber"
                         control={control}
@@ -89,7 +89,7 @@ const ContactForm = () => {
                         render={({ field }) => (
                             <div className={`${styles.form__phone} ${errors.phoneNumber ? styles.form__inputError : ''}`}>
                                 <PhoneInput
-                                    placeholder="Enter phone number"
+                                    placeholder={data.form.phone.placeholder}
                                     value={field.value}
                                     onChange={field.onChange}
                                     defaultCountry="AZ"
@@ -106,11 +106,11 @@ const ContactForm = () => {
                     )}
                 </div>
                 <div className={styles.form__field}>
-                    <label className={styles.form__label}>E-mail</label>
+                    <label className={styles.form__label}>{data.form.email.label}</label>
                     <input
                         type="email"
                         className={`${styles.form__input} ${errors.email ? styles.form__inputError : ''}`}
-                        placeholder="E-mail"
+                        placeholder={data.form.email.placeholder}
                         {...register('email', {
                             required: 'Email is required',
                             pattern: {
@@ -124,9 +124,10 @@ const ContactForm = () => {
                     )}
                 </div>
                 <div className={styles.form__field}>
-                    <label className={styles.form__label}>Ex!</label>
+                    <label className={styles.form__label}>{data.form.extra_field.label}</label>
                     <input
                         type="text"
+                        placeholder={data.form.extra_field.placeholder}
                         className={`${styles.form__input} ${errors.extraField ? styles.form__inputError : ''}`}
                         {...register('extraField', {
                             required: 'This field is required'
@@ -136,14 +137,23 @@ const ContactForm = () => {
                         <span className={styles.form__error}>{errors.extraField.message}</span>
                     )}
                 </div>
-                <HoverText 
-                        text="Submit"
-                        className={styles.form__submit}
-                    />
+                <HoverText
+                    text={data.form.submit}
+                    className={styles.form__submit}
+                />
             </form>
             <div className={styles.footer}>
                 <p className={styles.footer__privacy}>
-                    By clicking, I agree to the <SafeLink className={styles.footer__privacy__link} href="/privacy-policy">Privacy Policy</SafeLink> and <SafeLink className={styles.footer__privacy__link} href="/terms-of-service">Terms</SafeLink>.
+                    {(() => {
+                        const template = data.form.agreement.message_template;
+                        const parts = template.split(/(\{privacy\}|\{terms\})/);
+                        
+                        return parts.map((part, index) => {
+                                    <SafeLink key={index} className={styles.footer__privacy__link} href={data.form.agreement.links[0].link}>
+                                        {data.form.agreement.links[0].name}
+                                    </SafeLink>
+                        });
+                    })()}
                 </p>
                 <div className={styles.footer__checkboxes}>
                     <div className={styles.footer__checkbox}>
@@ -154,7 +164,7 @@ const ContactForm = () => {
                             checked={promotionalEmails}
                             onChange={(e) => setPromotionalEmails(e.target.checked)}
                         />
-                        <label className={styles.footer__checkbox__label}>I agree to receive promotional emails.</label>
+                        <label className={styles.footer__checkbox__label}>{data.form.checkboxes.agree}</label>
                     </div>
                     <div className={styles.footer__checkbox}>
                         <input
@@ -164,7 +174,7 @@ const ContactForm = () => {
                             checked={isLegalEntity}
                             onChange={(e) => setIsLegalEntity(e.target.checked)}
                         />
-                        <label className={styles.footer__checkbox__label}>I am a legal entity.</label>
+                        <label className={styles.footer__checkbox__label}>{data.form.checkboxes.entity}</label>
                     </div>
                 </div>
             </div>

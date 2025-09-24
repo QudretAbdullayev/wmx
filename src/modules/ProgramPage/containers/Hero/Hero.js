@@ -6,7 +6,7 @@ import HoverText from "@/components/HoverText/HoverText";
 const Hero = ({data, color}) => {
   
   return (
-    <section className="g-container mb mt">
+    <section className="g-container mb">
       <div className={styles.hero}>
         <div className={styles.detail} style={{ backgroundColor: `${color}`}}>
           <h2 className={styles.detail__title}>{data.title}</h2>

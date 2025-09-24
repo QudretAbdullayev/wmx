@@ -35,17 +35,26 @@ import { fetchData } from "@/utils/httpService";
 export default async function Page({ params }) {
   const { locale } = await params;
   const data = {
-    hero: {},
+    hero: {
+      title: "DON’T WORRY\r\nWE ANSWER FASTER THAN\r\nYOU EXPECT",
+    },
     contact_form: {
       section_title: "Contact Form",
     },
     contact_us: {
       section_title: "Direct Contact Information",
-      address: "1234 Street Name, City Name, United States",
-      phone: "+1 (123) 456-7890",
-      email: "",
+      image: "/images/direct-contact-information.png",
+      address_name: "Address",
+      address_value: "1455 Ocean View Drive, Los Angeles, CA 90049 United States of America",
+      phone_name: "Phone",
+      phone_value: "+ 994 50 791 32 79",
+      contact_name: "Contact",
+      contact_value: "info@xschool.com",
+      hours_name: "xSchool Hours",
+      hours_value: "Mon - Fri, 11 am - 7 pm",
     },
     map: {
+      section_title: "Map",
       latitude: 40.712776,
       longitude: -74.005974,
       zoom: 12,

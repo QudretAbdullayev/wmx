@@ -1,7 +1,6 @@
 @use '@/assets/styles/abstracts/' as *;
 
 .card {
-    height: 500rem;
     background: #F0F0F0;
     border: 1rem solid #E5E5E5;
     border-radius: 32rem;
@@ -12,8 +11,8 @@
     &__image {
         border-radius: 32rem;
         position: relative;
-        width: 522rem;
-        height: 300rem;
+        aspect-ratio: 87/50;
+        width: 100%;
         overflow: hidden;
     }
 
@@ -54,13 +53,6 @@
     }
 
     @media screen and (max-width: 700px) {
-        height: 334rem;
-
-        &__image {
-            width: 300rem;
-            height: 200rem;
-        }
-
         &__date {
             font-size: 14rem;
         }

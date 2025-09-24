@@ -35,12 +35,16 @@ import { fetchData } from "@/utils/httpService";
 export default async function Page({ params }) {
   const { locale } = await params;
   const data = {
-    hero: {},
+    hero: {
+      title: "Swedish design duo niklas rosén  gustav  nordebrink who specialize in creating design experiences for renowned and.",
+      banner: "/images/articles-hero.png",
+      hover_image: "/images/hover-image.png",
+    },
     most_readed: {
       section_title: "Most Readed",},
     articles: {
       count: 6,
-      section_title: "(Articles for You)",
+      section_title: "Articles for You",
       articles: [
         {
           id: 1,

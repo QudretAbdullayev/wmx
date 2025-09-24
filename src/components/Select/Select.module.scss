@@ -1,0 +1,141 @@
+@use '@/assets/styles/abstracts' as *;
+
+.wrapper {
+    width: 413rem;
+    position: relative;
+
+    .container {
+        display: flex;
+        align-items: center;
+        padding: 10rem 0;
+        gap: 10rem;
+        position: relative;
+        width: 100%;
+        height: 39rem;
+        border-bottom: 1rem solid #AAAAAA;
+        cursor: pointer;
+
+        &.error {
+            border-color: $foundation !important;
+        }
+
+        .placeholder {
+            @include font(16, 400, 19);
+            color: #AAAAAA;
+
+            &.selected {
+                color: $brand-color;
+            }
+
+            &.error {
+                color: $foundation;
+            }
+        }
+
+        .arrow {
+            position: absolute;
+            right: 0;
+            width: 18rem;
+            height: 18rem;
+            transition: transform 0.3s ease;
+
+            svg {
+                color: #AAAAAA;
+                width: 18rem;
+                height: 18rem;
+            }
+
+            &.open {
+                transform: rotate(-180deg);
+                transition: transform 0.3s ease;
+            }
+        }
+    }
+
+    .dropdown {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12rem;
+        gap: 6rem;
+
+        position: absolute;
+        top: 42rem;
+        left: 0;
+        width: 100%;
+        background: #FFFFFF;
+
+        border: 1rem solid #AAAAAA;
+        border-radius: 4rem;
+        z-index: 10;
+
+        opacity: 1;
+        transform: translateY(0);
+        animation: dropdownOpen 0.3s ease;
+
+        &.closing {
+            animation: dropdownClose 0.3s ease forwards;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 4rem 8rem;
+            width: 100%;
+            height: 27rem;
+            border-radius: 2rem;
+            @include font(16, 400, 19);
+            color: #AAAAAA;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+
+            &:hover {
+                background: rgba($brand-color, 0.6);
+                color: #FFFFFF;
+            }
+
+            &.active {
+                background: $brand-color;
+                color: $white;
+            }
+        }
+    }
+
+    @media screen and (max-width: 700rem) {
+        width: 100%;
+
+        .dropdown {
+            .option {
+                &:hover {
+                    background-color: inherit;
+                }
+            }
+        }
+    }
+}
+
+
+
+@keyframes dropdownOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-10rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropdownClose {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-10rem);
+    }
+}

@@ -1,10 +1,5 @@
 @use '@/assets/styles/abstracts/' as *;
-$bg-secondary: #FAF9F6;
-$bg-tertiary: #EFEFEF;
-$text-primary: #061D21;
-$secondary-color: #545455;
-$brand-red: #FF3C2A;
-$icon-color: #292D32;
+
 
 .modules {
     display: flex;
@@ -31,7 +26,7 @@ $icon-color: #292D32;
         justify-content: center;
         align-items: center;
         padding: 10rem;
-        background: $bg-secondary;
+        background: #FAF9F6;
         border-radius: 180rem;
         min-width: 73rem;
         height: 30rem;
@@ -48,48 +43,48 @@ $icon-color: #292D32;
         width: 26rem;
         height: 26rem;
         background-color: #FAF9F6;
-        svg{
+
+        svg {
             width: 20rem;
             height: 20rem;
             color: $brand-color;
         }
     }
 
-&__title {
-    @include font(20, 400);
-    margin: 16rem 20rem 20rem;
-}
-}
-
-
-.modulesContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10rem;
-    padding: 0 20rem 20rem;
-}
-
-.moduleItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10rem 16rem;
-    background: $bg-secondary;
-    border-radius: 8rem;
-    box-sizing: border-box;
-    min-height: 39rem;
-
-    &:nth-child(2) {
-        min-height: 44rem;
+    &__title {
+        @include font(20, 400);
+        margin: 16rem 20rem 20rem;
     }
-}
 
-.moduleText {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 10rem;
+        padding: 0 20rem 16rem;
+    }
 
-    @include font(20, 400);
-    font-weight: 400;
-    font-size: 16rem;
-    line-height: 19rem;
-    color: $secondary-color;
-    flex: 1;
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10rem 16rem;
+        background: #FAF9F6;
+        border-radius: 8rem;
+        box-sizing: border-box;
+        min-height: 39rem;
+
+        &:nth-child(2) {
+            min-height: 44rem;
+        }
+    }
+
+    &__text {
+        @include font(16, 400);
+        color: $secondary-color;
+        flex: 1;
+    }
+
+    @media screen and (max-width: 700px) {
+        gap: 10rem;
+    }
 }

@@ -31,4 +31,15 @@
             background: $foundation-hover;
         }
     }
+    @media screen and (max-width: 700px) {
+        gap: 62rem;
+        &__articles {
+            grid-template-columns: 1fr;
+            gap: 32rem;
+            width: 100%;
+        }
+        &__button {
+            width: 100%;
+        }
+    }
 }

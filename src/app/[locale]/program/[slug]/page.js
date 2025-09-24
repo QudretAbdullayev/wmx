@@ -183,7 +183,13 @@ export default async function Page({ params }) {
     },
     about: {
       section_title: "About",
-      content: "<p>Emerging CMO is an advanced learning journey designed for marketing professionals aiming to move from execution to executive. The program builds strategic thinking, leadership presence, and business fluency, shaping tomorrow's marketing leaders.</p><br/><br/><p>Led by <strong>Vugar Mehdiyev</strong> and <strong>Barış Başaran</strong>, the program blends strategic marketing insight with real-world leadership to prepare professionals for executive roles.</p><br/><br/><br/><table><thead><tr><th>Format</th><th>Time</th><th>Framework</th><th>Language</th></tr></thead><tbody><tr><td>4-5 hours per week</td><td>Wednesday: 7:00-9:30 PM</td><td>4 Blocks</td><td>AZ / EN (hybrid)</td></tr><tr><td>On-Campus program</td><td>Saturday: 10:00-12:30 PM</td><td>10 Modules</td><td></td></tr><tr><td>Group Session</td><td></td><td>20 Topics</td><td></td></tr></tbody></table>",
+      content: "<p>Emerging CMO is an advanced learning journey designed for marketing professionals aiming to move from execution to executive. The program builds strategic thinking, leadership presence, and business fluency, shaping tomorrow's marketing leaders.</p><p>&nbsp;</p><p>Led by <strong>Vugar Mehdiyev</strong> and <strong>Barış Başaran</strong>, the program blends strategic marketing insight with real-world leadership to prepare professionals for executive roles.</p>",
+      table: [
+        {title: "Format", values: ["4-5 hours per week", "On-Campus program", "Group Session"]},
+        {title: "Time", values: ["Wednesday: 7:00-9:30 PM", "Saturday: 10:00-12:30 PM"]},
+        {title: "Framework", values: ["4 Blocks", "10 Modules", "20 Topics"]},
+        {title: "Language", values: ["AZ / EN (hybrid)"]},
+      ],
     },
     founder_video: {
       section_title: "Founder Video",

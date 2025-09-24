@@ -19,7 +19,21 @@
     &__cards {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 69.5rem;
-        gap: 78rem;
+        gap: 78rem 69.5rem;
+    }
+    @media screen and (max-width: 700px) {
+        &__title {
+            font-size: 20rem;
+            width: 272rem;
+        }
+    
+        &__description {
+            width: 335rem;
+            padding: 16rem 0 34rem;
+        }
+        &__cards {
+            grid-template-columns: 1fr;
+            gap: 10rem;
+        }
     }
 }

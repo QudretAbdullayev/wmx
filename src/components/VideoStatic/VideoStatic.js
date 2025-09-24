@@ -96,4 +96,6 @@ const VideoStatic = forwardRef(({
     );
 });
 
+VideoStatic.displayName = 'VideoStatic';
+
 export default VideoStatic;

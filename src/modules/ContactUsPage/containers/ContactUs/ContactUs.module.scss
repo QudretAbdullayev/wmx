@@ -1,1 +1,44 @@
 @use '@/assets/styles/abstracts/' as *;
+
+.contact {
+    &__items {
+        display: grid;
+        grid-template-columns: repeat(2, 398rem);
+        gap: 88rem 252rem;
+        padding-top: 56rem;
+    }
+    &__image{
+        width: 1063rem;
+        height: 400rem;
+        position: relative;
+        border-radius: 32rem;
+        overflow: hidden;
+    }
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 24rem;
+        &__title {
+            @include font(16, 400);
+            color: $secondary-color;
+        }
+        &__description {
+            @include font(16, 400);
+            color: $brand-color;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        &__items {
+            grid-template-columns: 180rem;
+            gap: 42rem;
+            padding-top: 32rem;
+        }
+        &__item{
+            gap: 12rem;
+        }
+        &__image {
+            width: 335rem;
+            height: 200rem;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.founder {
+    &__title {
+        @include font(24, 400);
+        color: $brand-color;
+        width: 377rem;
+        padding-bottom: 56rem;
+    }
+    &__thumb {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16/9;
+        position: relative;
+        border-radius: 32rem;
+        overflow: hidden;
+    }
+    @media screen and (max-width: 700px) {
+        &__title {
+            font-size: 20rem;
+            width: 219rem;
+            padding-bottom: 32rem;
+        }
+        &__thumb {
+            border-radius: 11rem;
+        }
+    }
+}

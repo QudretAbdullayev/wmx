@@ -214,6 +214,50 @@ export default async function Page({ params }) {
         },
       ],
     },
+    tell_us: {
+      section_title: "Tell us what you think",
+      form: {
+        title: "Let's get in touch!",
+        description: "Some sessions are live, while others are available as pre-recorded videos you can watch anytime.",
+        full_name: {
+          label: "Full name",
+          placeholder: "Your name",
+        },
+        phone: {
+          label: "Phone number",
+          placeholder: "Phone number",
+        },
+        email: {
+          label: "Email",
+          placeholder: "Email",
+        },
+        extra_field: {
+          label: "Ex!",
+          placeholder: "",
+        },
+        privacy: {
+          title: "By submitting this form, you {} agree to our",
+          privacy_policy: "Privacy Policy",
+          terms_of_service: "Terms of Service",
+        },
+        agreement:
+        {
+          "message_template": "By clicking, I agree to the {privacy} and {terms}.",
+          "links": [{
+            "name": "Privacy Policy",
+            "link": "https://example.com/privacy"
+          }, {
+            "name": "Terms",
+            "link": "https://example.com/terms"
+          }]
+        },
+        checkboxes: {
+          agree: "I agree to receive promotional emails.",
+          entity: "I am a legal entity.",
+        },
+        submit: "Submit",
+      },
+    },
   };
 
   // const [

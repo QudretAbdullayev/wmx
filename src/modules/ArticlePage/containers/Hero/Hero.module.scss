@@ -1,0 +1,46 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.hero{
+    &__info{
+        padding: 140rem 0;
+        display: flex;
+        gap: 86rem;
+        &__item{
+            display: flex;
+            flex-direction: column;
+            gap: 12rem;
+            &__title{
+                @include font(14, 400);
+                color: $brand-color;
+                display: flex;
+                align-items: center;
+                gap: 10rem;
+                svg{
+                    width: 6rem;
+                    height: 6rem;
+                    color: $foundation;
+                }
+            }
+            &__value{
+                @include font(16, 400);
+                color: $secondary-color;
+                margin-left: 16rem;
+            }
+        }
+    }
+    @media screen and (max-width: 700px) {
+        padding: 42rem 0 62rem;
+        &__info{
+            flex-direction: column;
+            gap: 20rem;
+            &__item{
+                flex-direction: row;
+                gap: 4rem;
+                &__value{
+                    margin-left: 0;
+                    font-size: 14rem;
+                }
+            }
+        }
+    }
+}

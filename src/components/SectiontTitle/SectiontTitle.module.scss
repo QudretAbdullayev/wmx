@@ -9,7 +9,7 @@
         align-items: center;
         gap: 10rem;
         @include font(16, 400);
-        color: $brand-color;
+        color: $secondary-color;
 
         svg {
             width: 6rem;

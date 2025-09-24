@@ -3,8 +3,11 @@ import styles from './ContactForm.module.scss'
 
 const ContactForm = ({data}) => {
   return (
-    <section>
+    <section className="g-container mb">
       <SectionTitle title={data.section_title} />
+      <div className="ml">
+      
+      </div>
     </section>
   )
 }

@@ -2,6 +2,7 @@
 
 .content {
     width: 954rem;
+
     h1,
     h2,
     h3,
@@ -18,24 +19,87 @@
         color: $brand-color;
     }
 
-    table {
-        width: 100%;
-        table-layout: fixed;
-        border-collapse: collapse;
-        padding-top: 56rem;
+    @media screen and (max-width: 700px) {
+        width: 335rem;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+            font-size: 20rem;
+        }
+
+        strong {
+            font-size: 20rem;
+        }
+
+        th {
+            font-size: 14rem;
+        }
+
+        td {
+            font-size: 14rem;
+        }
+    }
+}
+
+.table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100rem;
+    margin-top: 56rem;
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 16rem;
+
+        &__title {
+            @include font(16, 450);
+            color: $brand-color;
+        }
+
+        &__values {
+            display: flex;
+            flex-direction: column;
+            gap: 6rem;
+        }
+
+        &__value {
+            @include font(16, 450);
+            color: $secondary-color;
+        }
     }
 
-    th {
-        @include font(16, 450);
-        color: $brand-color;
-        padding-bottom: 16rem;
-        text-align: left;
-    }
+    @media screen and (max-width: 700px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32rem 20rem;
+        margin-top: 32rem;
 
-    td {
-        @include font(16, 450);
-        color: $secondary-color;
-        text-align: left;
-        padding-bottom: 6rem;
+        &__item {
+            display: flex;
+            flex-direction: column;
+            gap: 16rem;
+
+            &__title {
+                @include font(16, 450);
+                color: $brand-color;
+            }
+
+            &__values {
+                display: flex;
+                flex-direction: column;
+                gap: 6rem;
+            }
+
+            &__value {
+                @include font(16, 450);
+                color: $secondary-color;
+            }
+        }
     }
 }

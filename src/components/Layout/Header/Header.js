@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <nav className={`${styles.nav} g-container`}>
-        <div className={styles.nav__menu}>
+        <div className={styles.nav__left}>
           <div className={styles.nav__items}>
             <HoverText
               text="FEED"
@@ -105,6 +105,7 @@ export default function Header() {
               className={styles.nav__item}
             />
           </div>
+          <button className={styles.nav__menu}>Menu</button>
           <SafeLink className={styles.nav__logo} href="/">
             <SafeImage src="/icons/WM xSchool.svg" alt="WM xSchool" fill />
           </SafeLink>

@@ -22,8 +22,8 @@ const Footer = () => {
       setCurrentTime(bakuTime);
     };
 
-    updateTime(); 
-    const interval = setInterval(updateTime, 1000); 
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -57,135 +57,138 @@ const Footer = () => {
                 The next-level potential within you, shaped through executive
                 education built for marketing leadership.
               </div>
-              <HoverText 
-                text="Consultation" 
+              <HoverText
+                text="Consultation"
                 as="a"
                 href="/"
                 className={styles.button}
               />
             </div>
             <div className={styles.top__right}>
-              <div className={styles.list}>
-                <span className={styles.list__title}>INDIVIDUALS</span>
-                <ul className={styles.list__items}>
-                  <li className={styles.list__item}>
-                    <HoverText
-                      text="Program"
-                      as="a"
-                      href="/program"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                  <li className={styles.list__item}>
-                    <HoverText
-                      text="Shortcast"
-                      as="a"
-                      href="/shortcast"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.list}>
-                <span className={styles.list__title}>COMPANY</span>
-                <ul className={styles.list__items}>
-                  <li className={styles.list__item}>
-                    <HoverText 
-                      text="About"
-                      as="a"
-                      href="/"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                  <li className={styles.list__item}>
-                    <HoverText 
-                      text="Knowledge Hub"
-                      as="a"
-                      href="/about"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                  <li className={styles.list__item}>
-                    <HoverText 
-                      text="FAQ"
-                      as="a"
-                      href="/faq"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                  <li className={styles.list__item}>
-                    <HoverText
-                      text="Privacy"
-                      as="a"
-                      href="/privacy"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.list}>
-                <span className={styles.list__title}>COMMUNITY</span>
-                <ul className={styles.list__items}>
-                  <li className={styles.list__item}>
-                    <HoverText
-                      text="Alumni"
-                      as="a"
-                      href="/alumni"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                  <li className={styles.list__item}>
-                    <HoverText
-                      text="LinkedIn"
-                      as="a"
-                      href="/linkedin"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                  <li className={styles.list__item}>
-                    <HoverText
-                      text="Instagram"
-                      as="a"
-                      href="/instagram"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                  <li className={styles.list__item}>
-                    <HoverText
-                      text="YouTube"
-                      as="a"
-                      href="/youtube"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                  <li className={styles.list__item}>
-                    <HoverText
-                      text="TikTok"
-                      as="a"
-                      href="/tiktok"
-                      className={styles.list__item__link}
-                    />
-                  </li>
-                </ul>
+              <div className={styles.lists}>
+                <div className={styles.list}>
+                  <span className={styles.list__title}>INDIVIDUALS</span>
+                  <ul className={styles.list__items}>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="Program"
+                        as="a"
+                        href="/program"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="Shortcast"
+                        as="a"
+                        href="/shortcast"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                  </ul>
+                </div>
+                <div className={styles.list}>
+                  <span className={styles.list__title}>COMPANY</span>
+                  <ul className={styles.list__items}>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="About"
+                        as="a"
+                        href="/"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="Knowledge Hub"
+                        as="a"
+                        href="/about"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="FAQ"
+                        as="a"
+                        href="/faq"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="Privacy"
+                        as="a"
+                        href="/privacy"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                  </ul>
+                </div>
+                <div className={styles.list}>
+                  <span className={styles.list__title}>COMMUNITY</span>
+                  <ul className={styles.list__items}>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="Alumni"
+                        as="a"
+                        href="/alumni"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="LinkedIn"
+                        as="a"
+                        href="/linkedin"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="Instagram"
+                        as="a"
+                        href="/instagram"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="YouTube"
+                        as="a"
+                        href="/youtube"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                    <li className={styles.list__item}>
+                      <HoverText
+                        text="TikTok"
+                        as="a"
+                        href="/tiktok"
+                        className={styles.list__item__link}
+                      />
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div className={styles.lang}>
-                EN
-                <ArrowDown/>
+                <select className={styles.lang__select}>
+                  <option value="en">EN</option>
+                  <option value="az">AZ</option>
+                </select>
+                <ArrowDown />
               </div>
             </div>
           </div>
-          <div className={styles.middle}>
-            <button className={styles.middle__text} onClick={scrollToTop}>
-                <HoverText 
-                  text={
-                    <div className={styles.middle__text__container}>
-                      Back to the top
-                      <Top/>
-                    </div>
-                  } 
-                />
-            </button>
-          </div>
+          <button className={styles.middle} onClick={scrollToTop}>
+            <HoverText
+              text={
+                <div className={styles.middle__container}>
+                  Back to the top
+                  <Top />
+                </div>
+              }
+            />
+          </button>
           <div className={styles.bottom}>
             <span className={styles.bottom__location}>
               Baku, Azerbaijan {currentTime}

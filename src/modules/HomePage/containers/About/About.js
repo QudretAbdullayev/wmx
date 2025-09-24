@@ -2,10 +2,10 @@ import styles from "./About.module.scss";
 import SectionTitle from "@/components/SectiontTitle/SectiontTitle";
 import Description from "@/components/Description/Description";
 
-const About = ({data}) => {
+const About = ({ data }) => {
 
   return (
-    <section className="mb">
+    <section className="g-container mb">
       <SectionTitle title={data.section_title} />
       <div className={`ml ${styles.container}`}>
         <Description

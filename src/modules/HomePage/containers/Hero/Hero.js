@@ -7,7 +7,7 @@ import HoverText from '@/components/HoverText/HoverText'
 
 const slideDuration = 3000
 
-const Hero = ({data}) => {
+const Hero = ({ data }) => {
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const [currentSlide, setCurrentSlide] = useState(0)
@@ -113,76 +113,79 @@ const Hero = ({data}) => {
     }
 
     return (
-        <section className={styles.hero}>
-            <div className={styles.hero__x}>
-                <X images={data.x_images} currentImageIndex={currentImageIndex} />
-            </div>
-            <div className={styles.container}>
-                <Swiper
-                    onSwiper={(swiper) => {
-                        swiperRef.current = swiper
-                    }}
-                    onSlideChange={handleSlideChange}
-                    slidesPerView={'auto'}
-                    freeMode={false}
-                    allowTouchMove={true}
-                    className={styles.swiper}
-                >
-                    {data.sliders.map((item, index) => (
-                        <SwiperSlide key={index} className={`${styles.container__slide}`}>
-                            <h1 className={styles.container__title}>{item.title}</h1>
-                            <div className={styles.container__subtitle}>
-                                <Square />
-                                {item.subtitle}
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-
-                <div className={styles.pagination} role="navigation" aria-label="slides">
-                    <div className={styles.pagination__track}>
-                        {data.sliders.map((_, index) => {
-
-                            const isCompleted =
-                                index <= currentSlide
-
-                            const isActive = index === currentSlide && !isCompleted
-
-                            return (
-                                <div key={index} className={styles.pagination__item}>
-                                    <button
-                                        type="button"
-                                        className={`${styles.pagination__dot} ${isCompleted ? styles.pagination__completed : isActive ? styles.pagination__active : styles.pagination__inactive
-                                            }`}
-                                        onClick={() => handleDotClick(index)}
-                                        aria-label={`Go to slide ${index + 1}`}
-                                    />
-                                    {index < data.sliders.length - 1 && (
-                                        <div className={styles.pagination__container}>
-                                            <div
-                                                className={`${styles.pagination__container__line} ${index < currentSlide ? styles.pagination__container__completed : styles.pagination__container__inactive}`}
-                                            />
-                                            {index === currentSlide && currentSlide < data.sliders.length - 1 && (
-                                                <div
-                                                    className={styles.pagination__container__progress}
-                                                    style={{ height: `${progress}%` }}
-                                                    aria-hidden
-                                                />
-                                            )}
-                                        </div>
-                                    )}
+        <section className="g-container">
+            <div className={styles.hero}>
+                <div className={styles.hero__x}>
+                    <X images={data.x_images} currentImageIndex={currentImageIndex} />
+                </div>
+                <div className={styles.container}>
+                    <Swiper
+                        onSwiper={(swiper) => {
+                            swiperRef.current = swiper
+                        }}
+                        onSlideChange={handleSlideChange}
+                        slidesPerView={'auto'}
+                        freeMode={false}
+                        allowTouchMove={true}
+                        className={styles.swiper}
+                    >
+                        {data.sliders.map((item, index) => (
+                            <SwiperSlide key={index} className={`${styles.container__slide}`}>
+                                <h1 className={styles.container__title}>{item.title}</h1>
+                                <div className={styles.container__subtitle}>
+                                    <Square />
+                                    {item.subtitle}
                                 </div>
-                            )
-                        })}
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+
+                    <div className={styles.pagination} role="navigation" aria-label="slides">
+                        <div className={styles.pagination__track}>
+                            {data.sliders.map((_, index) => {
+
+                                const isCompleted =
+                                    index <= currentSlide
+
+                                const isActive = index === currentSlide && !isCompleted
+
+                                return (
+                                    <div key={index} className={styles.pagination__item}>
+                                        <button
+                                            type="button"
+                                            className={`${styles.pagination__dot} ${isCompleted ? styles.pagination__completed : isActive ? styles.pagination__active : styles.pagination__inactive
+                                                }`}
+                                            onClick={() => handleDotClick(index)}
+                                            aria-label={`Go to slide ${index + 1}`}
+                                        />
+                                        {index < data.sliders.length - 1 && (
+                                            <div className={styles.pagination__container}>
+                                                <div
+                                                    className={`${styles.pagination__container__line} ${index < currentSlide ? styles.pagination__container__completed : styles.pagination__container__inactive}`}
+                                                />
+                                                {index === currentSlide && currentSlide < data.sliders.length - 1 && (
+                                                    <div
+                                                        className={styles.pagination__container__progress}
+                                                        style={{ height: `${progress}%` }}
+                                                        aria-hidden
+                                                    />
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
+                <HoverText
+                    text={data.button_text}
+                    as="a"
+                    href="/consultation"
+                    className={styles.hero__cta}
+                />
             </div>
-            <HoverText 
-                text={data.button_text}
-                as="a"
-                href="/consultation"
-                className={styles.hero__cta}
-            />
+
         </section>
     )
 }

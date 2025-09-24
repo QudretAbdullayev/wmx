@@ -12,13 +12,13 @@ const Founder = ({ data }) => {
 
   return (
     <section className={`${styles.hero} mb`}>
-      <div>
+      <div className="g-container">
         <SectionTitle title={data.section_title} />
         <div className="ml">
           <ComponentTitle title={data.title} />
         </div>
       </div>
-      <div>
+      <div className="g-container">
         <div className="ml">
           <div className={styles.hero__detail}>
             <FounderComponent

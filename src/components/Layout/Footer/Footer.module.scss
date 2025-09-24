@@ -15,6 +15,7 @@
         display: flex;
         flex-direction: column;
         align-items: space-between;
+        position: relative;
 
         .top {
             display: flex;
@@ -148,7 +149,7 @@
             overflow: hidden;
             border-radius: 4rem;
             bottom: 95rem;
-            right: 80rem;
+            right: 0;
             &__container {
                 display: flex;
                 align-items: center;
@@ -237,14 +238,13 @@
                     .lang {
                         position: absolute;
                         top: 101rem;
-                        right: 20rem;
+                        right: 0;
                     }
                 }
             }
 
             .middle {
                 bottom: 145rem;
-                right: 20rem;
 
             }
 

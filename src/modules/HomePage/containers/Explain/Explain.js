@@ -37,7 +37,7 @@ const Explain = ({data}) => {
 
   return (
     <section className={styles.explain}>
-      <div className='g-container mb'>
+      <div className='mb'>
         <SectionTitle title={data.section_title} />
         <h4 className={`${styles.title} ml`}>{data.title}</h4>
       </div>

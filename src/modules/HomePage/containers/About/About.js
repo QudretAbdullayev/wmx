@@ -5,7 +5,7 @@ import Description from "@/components/Description/Description";
 const About = ({data}) => {
 
   return (
-    <div className="g-container mb">
+    <section className="mb">
       <SectionTitle title={data.section_title} />
       <div className={`ml ${styles.container}`}>
         <Description
@@ -15,7 +15,7 @@ const About = ({data}) => {
           description={data.description}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

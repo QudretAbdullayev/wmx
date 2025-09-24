@@ -52,7 +52,7 @@ export default async function RootLayout({ children, params }) {
         <NextIntlClientProvider>
           <NotificationBanner data={data.notification_banner}/> 
           <Header data={data.header}/>
-          <main>
+          <main className='g-container'>
             {children}
           </main>
           <Footer data={data.footer}/>

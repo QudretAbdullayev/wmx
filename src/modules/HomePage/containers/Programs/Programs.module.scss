@@ -1,6 +1,7 @@
 @use '@/assets/styles/abstracts/' as *;
 
 .programs {
+    margin: 0 -80rem;
     .swiper {
         overflow: initial !important;
         margin-left: 297rem;
@@ -16,6 +17,7 @@
         margin-right: 20rem !important;
     }
     @media screen and (max-width: 700px) {
+        margin: 0;
         .slide {
             width: 302rem !important;
         }

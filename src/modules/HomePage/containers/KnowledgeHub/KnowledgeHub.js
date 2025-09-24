@@ -3,20 +3,20 @@ import styles from "./KnowledgeHub.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import KnowledgeHubCard from "@/components/KnowledgeHubCard/KnowledgeHubCard";
 
-const KnowledgeHub = ({data}) => {
+const KnowledgeHub = ({ data }) => {
 
   return (
-    <section className={`${styles.knowledge} mb`}>
-      <div className="g-container mb">
-        <SectionTitle title={data.section_title} slug={data.slug} slug_name={data.slug_name} />
+    <section className="mb">
+      <SectionTitle title={data.section_title} slug={data.slug} slug_name={data.slug_name} />
+      <div className={`${styles.knowledge} mb`}>
+        <Swiper slidesPerView={"auto"} freeMode className={styles.swiper}>
+          {data.articles.map((item, index) => (
+            <SwiperSlide key={index} className={styles.slide}>
+              <KnowledgeHubCard article={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-      <Swiper slidesPerView={"auto"} freeMode className={styles.swiper}>
-        {data.articles.map((item, index) => (
-          <SwiperSlide key={index} className={styles.slide}>
-            <KnowledgeHubCard article={item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
     </section>
   );
 };

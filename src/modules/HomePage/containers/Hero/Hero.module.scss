@@ -4,6 +4,7 @@
   position: relative;
   padding: 100rem 0;
   height: 641rem;
+  margin: 0 -80rem;
 
   &__x {
     position: absolute;
@@ -188,6 +189,7 @@
   @media screen and (max-width: 700px) {
     height: 303rem;
     padding: 40rem 0 0rem;
+    margin: 0;
     overflow: hidden;
 
     &__x {

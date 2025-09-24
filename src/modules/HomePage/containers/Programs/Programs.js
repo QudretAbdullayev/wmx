@@ -5,10 +5,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 const Programs = ({data}) => {
   return (
-    <section className={`${styles.programs} mb`}>
-      <div className="g-container">
+    <section className="mb">
         <ComponentTitle title={data.section_title} />
-      </div>
+      <div className={styles.programs}>
       <Swiper slidesPerView={"auto"} freeMode className={styles.swiper}>
         {data.programs_list.map((item, index) => (
           <SwiperSlide key={index} className={styles.slide}>
@@ -18,6 +17,7 @@ const Programs = ({data}) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
     </section>
   );
 };

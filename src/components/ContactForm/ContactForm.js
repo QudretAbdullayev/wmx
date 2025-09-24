@@ -141,43 +141,47 @@ const ContactForm = ({ data }) => {
                     text={data.form.submit}
                     className={styles.form__submit}
                 />
-            </form>
-            <div className={styles.footer}>
-                <p className={styles.footer__privacy}>
+                <p className={styles.form__privacy}>
                     {(() => {
                         const template = data.form.agreement.message_template;
                         const parts = template.split(/(\{privacy\}|\{terms\})/);
                         
                         return parts.map((part, index) => {
-                                    <SafeLink key={index} className={styles.footer__privacy__link} href={data.form.agreement.links[0].link}>
-                                        {data.form.agreement.links[0].name}
+                            if (part === '{privacy}' || part === '{terms}') {
+                                const linkIndex = part === '{privacy}' ? 0 : 1;
+                                return (
+                                    <SafeLink key={index} className={styles.form__privacy__link} href={data.form.agreement.links[linkIndex].link}>
+                                        {data.form.agreement.links[linkIndex].name}
                                     </SafeLink>
+                                );
+                            }
+                            return part;
                         });
                     })()}
                 </p>
-                <div className={styles.footer__checkboxes}>
-                    <div className={styles.footer__checkbox}>
+                <div className={styles.form__checkboxes}>
+                    <div className={styles.form__checkbox}>
                         <input
                             type="checkbox"
                             id="promotionalEmails"
-                            className={styles.footer__checkbox__input}
+                            className={styles.form__checkbox__input}
                             checked={promotionalEmails}
                             onChange={(e) => setPromotionalEmails(e.target.checked)}
                         />
-                        <label className={styles.footer__checkbox__label}>{data.form.checkboxes.agree}</label>
+                        <label className={styles.form__checkbox__label}>{data.form.checkboxes.agree}</label>
                     </div>
-                    <div className={styles.footer__checkbox}>
+                    <div className={styles.form__checkbox}>
                         <input
                             type="checkbox"
                             id="isLegalEntity"
-                            className={styles.footer__checkbox__input}
+                            className={styles.form__checkbox__input}
                             checked={isLegalEntity}
                             onChange={(e) => setIsLegalEntity(e.target.checked)}
                         />
-                        <label className={styles.footer__checkbox__label}>{data.form.checkboxes.entity}</label>
+                        <label className={styles.form__checkbox__label}>{data.form.checkboxes.entity}</label>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };

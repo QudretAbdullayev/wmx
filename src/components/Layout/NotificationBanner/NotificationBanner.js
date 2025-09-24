@@ -4,15 +4,11 @@ import styles from "./NotificationBanner.module.scss";
 import Close from "@/assets/icons/Close";
 import SafeLink from "@/components/SafeLink/SafeLink";
 
-const NotificationBanner = ({
-  message = "SECURE YOUR SPOT IN OUR UPCOMING CLASS – REGISTRATION IS NOW OPEN!",
-  countdownTime = "04:13:12:48",
-  showCountdown = true,
-}) => {
-  const [timeLeft, setTimeLeft] = useState(countdownTime);
+const NotificationBanner = ({data}) => {
+  const [timeLeft, setTimeLeft] = useState(data.countdown_time);
 
   useEffect(() => {
-    if (!showCountdown) return;
+    if (!data.show_countdown) return;
 
     const parseTime = (timeString) => {
       const parts = timeString.split(':').map(Number);
@@ -24,11 +20,11 @@ const NotificationBanner = ({
       const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
       const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
       const seconds = totalSeconds % 60;
-      
+
       return `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    let totalSeconds = parseTime(countdownTime);
+    let totalSeconds = parseTime(data.countdown_time);
 
     const timer = setInterval(() => {
       if (totalSeconds > 0) {
@@ -40,31 +36,24 @@ const NotificationBanner = ({
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [countdownTime, showCountdown]);
+  }, [data.countdown_time, data.show_countdown]);
 
-  // Split message at the dash
-  const messageParts = message.split(" – ");
-  const firstPart = messageParts[0];
-  const secondPart = messageParts[1];
-
-  return showCountdown ? (
+  return data.show_countdown ? (
     <div className={styles.banner}>
       <div className="g-container">
         <div className={styles.wrapper}>
           <div className={styles.message}>
             <span className={styles.message__text}>
-              {firstPart}&nbsp;–&nbsp;
+              {data.first_message}&nbsp;–&nbsp;
             </span>
             <SafeLink href="/" className={styles.message__register}>
-              {secondPart}
+              {data.second_message}
             </SafeLink>
           </div>
 
-          <div className={styles.countdownContainer}>
-            <span className={styles.countdown}>{timeLeft}</span>
-          </div>
+          <div className={styles.countdown}>{timeLeft}</div>
           <button
-            className={styles.banner__close}
+            className={styles.close}
             aria-label="Close notification"
           >
             <Close />

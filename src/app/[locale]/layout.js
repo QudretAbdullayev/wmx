@@ -25,8 +25,18 @@ export default async function RootLayout({ children, params }) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-
   setRequestLocale(locale);
+
+  const data = {
+    notification_banner: {
+      first_message: "SECURE YOUR SPOT IN OUR UPCOMING CLASS",
+      second_message: "REGISTRATION IS NOW OPEN!",
+      countdown_time: "04:13:12:48",
+      show_countdown: true,
+    },
+    header: {},
+    footer: {},
+  }
 
 //   const [layoutResult] = await Promise.allSettled([
 //     fetchData("home/header-and-footer", locale),
@@ -40,12 +50,12 @@ export default async function RootLayout({ children, params }) {
       <body>
         <MouseFollower />
         <NextIntlClientProvider>
-          <NotificationBanner/> 
-          <Header />
+          <NotificationBanner data={data.notification_banner}/> 
+          <Header data={data.header}/>
           <main>
             {children}
           </main>
-          <Footer/>
+          <Footer data={data.footer}/>
         </NextIntlClientProvider>
       </body>
     </html>

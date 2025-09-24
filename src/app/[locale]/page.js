@@ -258,6 +258,16 @@ export default async function Page({ params }) {
         submit: "Submit",
       },
     },
+    explain: {
+      section_title: "Explain",
+      title: "x School is a Los Angeles-based branding and design agency where artistry meets innovation, crafting unforgettable experiences through meticulous craftsmanship and cutting-edge technology.",
+      videos: [
+        { thumbnail: '/images/video-cover.jpg', reel: false, url: 'https://www.youtube.com/embed/PjafEosCklE' },
+        { thumbnail: '/images/video-cover.jpg', reel: true, url: '/videos/thumbnail-reel-1.mp4' },
+        { thumbnail: '/images/video-cover.jpg', reel: true, url: '/videos/thumbnail-reel-2.mp4' },
+        { thumbnail: '/images/video-cover.jpg', reel: false, url: 'https://www.youtube.com/embed/PjafEosCklE' },
+      ]
+    }
   };
 
   // const [

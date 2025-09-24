@@ -3,7 +3,6 @@
 .contact {
     position: relative;
     width: 1063rem;
-    height: 337rem;
     padding: 32rem 28rem 20rem;
     background: linear-gradient(90deg, #596974 0%, #595A5A 33.05%, #2D4351 100%);
     box-shadow: inset 0rem 0rem 193.5rem 2rem rgba(250, 249, 246, 0.25);
@@ -13,6 +12,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+
     .vector {
         position: absolute;
         width: 315rem;
@@ -53,9 +53,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 6rem;
-        border-bottom: 1rem solid #748088;
-        padding-bottom: 24rem;
+        flex-wrap: wrap;
+        gap: 0 6rem;
+
 
         &__field {
             display: flex;
@@ -69,7 +69,6 @@
 
         &__label {
             width: 220rem;
-            height: 16rem;
             @include font(14, 400);
             color: $main-white;
             align-self: stretch;
@@ -150,8 +149,7 @@
                     border: none;
                     outline: none;
                     color: $main-white;
-                    font-size: 14rem;
-                    line-height: 16rem;
+                    @include font(14, 400);
                     height: 100%;
                     display: flex;
                     align-items: center;
@@ -172,6 +170,7 @@
                     flex-shrink: 0;
                 }
             }
+
             &:focus {
                 border: 1rem solid $main-white;
             }
@@ -205,13 +204,16 @@
             color: rgba($main-white, 0.6);
             font-family: $font-family-text;
             flex-shrink: 0;
+
             &::placeholder {
                 color: rgba($main-white, 0.6);
             }
+
             &:focus {
                 border: 1rem solid $main-white;
             }
         }
+
         &__inputError {
             border: 1rem solid $foundation;
         }
@@ -229,30 +231,21 @@
             border-radius: 4rem;
             cursor: pointer;
             @include font(14, 450);
-                color: $main-white;
+            color: $main-white;
+
             &:hover {
                 background: $foundation-hover;
             }
         }
-    }
-
-    .footer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 20rem;
-        gap: 10rem;
 
         &__privacy {
-            width: 452rem;
-            height: 16rem;
-            font-weight: 400;
-            font-size: 14rem;
-            line-height: 16rem;
+            margin-top: 20rem;
+            padding-top: 24rem;
+            border-top: 1rem solid #748088;
+            width: 100%;
+            @include font(14, 400);
             text-align: center;
             color: #D5D5D5;
-            align-self: stretch;
-            margin: 0;
 
             &__link {
                 color: #D5D5D5;
@@ -264,16 +257,16 @@
         &__checkboxes {
             display: flex;
             align-items: center;
+            justify-content: center;
+            padding-top: 10rem;
             gap: 56rem;
-            width: 452rem;
-            height: 16rem;
+            width: 100%;
         }
 
         &__checkbox {
             display: flex;
             align-items: center;
             gap: 8rem;
-            height: 16rem;
 
             &__input {
                 box-sizing: border-box;
@@ -310,6 +303,150 @@
                 text-align: center;
                 color: #D5D5D5;
             }
+        }
+    }
+
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+        padding: 32rem 12rem;
+        border-radius: 16rem;
+        gap: 32rem;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        .vector {}
+
+        .header {
+            gap: 12rem;
+            width: 100%;
+            margin-bottom: 0;
+
+
+            &__title {
+                font-size: 20rem;
+            }
+        }
+
+        .form {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 6rem;
+            width: 100%;
+            padding-bottom: 0;
+
+            &__field {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6rem;
+                width: 100%;
+                height: max-content;
+                position: relative;
+            }
+
+            &__label {
+                width: 100%;
+            }
+
+            &__phone {
+                width: 100%;
+                height: 44rem;
+                border-radius: 9rem;
+                padding: 0 10rem;
+                gap: 8rem;
+
+                &__input {
+                    width: 100%;
+                    height: 44rem;
+                    gap: 8rem;
+
+                    :global(.PhoneInputCountry) {
+                        gap: 4rem;
+                    }
+
+                    :global(.PhoneInputCountrySelect) {
+                        gap: 4rem;
+                    }
+
+
+                    :global(.PhoneInputCountryIcon) {
+                        width: 24rem;
+                        height: 18rem;
+                    }
+                }
+            }
+
+            &__error {
+                color: $foundation;
+                @include font(14, 400);
+                position: absolute;
+                bottom: -20rem;
+                left: 0;
+                display: block;
+                transition: bottom 0.2s ease;
+
+                &Focused {
+                    bottom: -28rem;
+                }
+            }
+
+            &__input {
+                width: 100%;
+                height: 44rem;
+                border-radius: 9rem;
+                font-size: 14rem;
+            }
+
+            &__submit {
+                
+                align-self: flex-start;
+                width: 100%;
+                padding: 14rem 0;
+                height: 44rem;
+                border-radius: 8rem;
+                font-size: 14rem;
+                color: $main-white;
+                margin: 10rem 0;
+                order: 6;
+                &:hover {
+                    background: $foundation-hover;
+                }
+            }
+
+            &__checkboxes {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 15rem;
+                width: 100%;
+                order: 5;
+            }
+
+            &__field {
+                &:nth-child(1) {
+                    order: 1;
+                }
+                &:nth-child(2) {
+                    order: 2;
+                }
+                &:nth-child(3) {
+                    order: 3;
+                }
+                &:nth-child(4) {
+                    order: 4;
+                }
+            }
+
+
+            &__privacy {
+                order: 7;
+                margin-top: 0rem;
+                padding-top: 0rem;
+                border-top: none;
+            }
+
         }
     }
 }

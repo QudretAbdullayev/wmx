@@ -44,7 +44,7 @@
 
                 .button {
                     border-radius: 4rem;
-                    background-color: $brand-color;
+                    background-color: $foundation;
                     @include font(14, 400);
                     color: $main-white;
                     display: flex;
@@ -206,7 +206,6 @@
 
                     .button {
                         border-radius: 8rem;
-                        background-color: $foundation;
                         width: 103rem;
                         height: 44rem;
                     }

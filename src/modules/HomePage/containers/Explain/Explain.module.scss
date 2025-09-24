@@ -49,4 +49,37 @@
             }
         }
     }
+    @media screen and (max-width: 700px) {
+        .title{
+            width: 335rem;
+            font-size: 20rem;
+        }
+
+        .slider {
+            margin-bottom: 60rem;
+        }
+
+        .swiper {
+            margin-left: 0 !important;
+            padding: 0 20rem;
+        }
+
+        .slide {
+            width: 100% !important;
+            height: 200rem !important;
+            margin-right: 0 !important;
+        }
+
+        .slideReel {
+            width: 100% !important;
+            height: 200rem !important;
+            margin-right: 0 !important;
+        }
+
+        :global(.swiper-slide) {
+            &:last-child {
+                margin-right: 0 !important;
+            }
+        }
+    }
 }

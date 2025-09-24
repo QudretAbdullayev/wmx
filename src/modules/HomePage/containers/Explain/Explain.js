@@ -7,16 +7,22 @@ import { useState, useRef, useEffect } from 'react'
 import YoutubeThumb from '@/components/YoutubeThumb/YoutubeThumb'
 import ReelThumb from '@/components/ReelThumb/ReelThumb'
 
-const Explain = () => {
+const Explain = ({data}) => {
   const swiperRef = useRef(null)
   const [activeSlide, setActiveSlide] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
-  const data = [
-    { thumbnail: '/images/video-cover.jpg', type: 'video', url: 'https://www.youtube.com/embed/PjafEosCklE' },
-    { thumbnail: '/images/video-cover.jpg', type: 'reel', url: '/videos/thumbnail-reel-1.mp4' },
-    { thumbnail: '/images/video-cover.jpg', type: 'reel', url: '/videos/thumbnail-reel-2.mp4' },
-    { thumbnail: '/images/video-cover.jpg', type: 'video', url: 'https://www.youtube.com/embed/PjafEosCklE' },
-  ]
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 700)
+    }
+    
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
 
   const handlePaginationClick = (index) => {
     setActiveSlide(index)
@@ -32,21 +38,22 @@ const Explain = () => {
   return (
     <section className={styles.explain}>
       <div className='g-container mb'>
-        <SectionTitle title="Explain" />
-        <h4 className={`${styles.title} ml`}>x School is a Los Angeles-based branding and design agency where artistry meets innovation, crafting unforgettable experiences through meticulous craftsmanship and cutting-edge technology.</h4>
+        <SectionTitle title={data.section_title} />
+        <h4 className={`${styles.title} ml`}>{data.title}</h4>
       </div>
       <div className={styles.slider}>
         <Swiper
           ref={swiperRef}
-          slidesPerView={"auto"}
-          freeMode
+          slidesPerView={isMobile ? 1 : "auto"}
+          freeMode={!isMobile}
           modules={[Pagination]}
           pagination={{ clickable: true }}
           className={styles.swiper}
           onSlideChange={handleSlideChange}
+          spaceBetween={isMobile ? 20 : 0}
         >
-          {data.map((item, index) => (
-            item.type === 'video' ? (
+          {data.videos.map((item, index) => (
+            item.reel === false ? (
               <SwiperSlide key={index} className={styles.slide}>
                 <div className={styles.video}>
                   <YoutubeThumb video={item.url} img={item.thumbnail} />

@@ -21,7 +21,7 @@ const HomePage = ({data}) => {
       <About data={data.about}/>
       <Programs data={data.programs}/>
       <KnowledgeHub data={data.knowledge_hub}/>
-      <Explain />
+      <Explain data={data.explain}/>
       <TellUs data={data.tell_us}/>
       <FAQ data={data.faq}/>
     </>

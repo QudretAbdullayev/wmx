@@ -1,17 +1,16 @@
-import styles from './Hero.module.scss'
-import Banner from '@/components/Banner/Banner'
+import styles from "./Hero.module.scss";
+import Banner from "@/components/Banner/Banner";
+import HoverTitle from "@/components/HoverTitle/HoverTitle";
 
-const Hero = ({data}) => {
+const Hero = ({ data }) => {
   return (
-    <>
-        <section className={styles.hero}>
-          <div className="g-container">
-          <h1 className={`${styles.hero__title} ml`}>{data.title}</h1>
-          </div>
-        </section>
-        <Banner src={data.banner} />
-    </>
-  )
-}
+    <section className="g-container mb">
+      <div className={`${styles.hero} ml mb`}>
+        <HoverTitle title={data.title} image={data.hover_image} />
+      </div>
+      <Banner src={data.banner} />
+    </section>
+  );
+};
 
-export default Hero 
+export default Hero;

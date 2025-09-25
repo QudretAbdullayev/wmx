@@ -1,0 +1,25 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.mouse{
+    width: 70rem;
+    height: 70rem;
+    border-radius: 50%;
+    background-color: $foundation;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(12, 600);
+    position: absolute;
+    z-index: 99999999999;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.hidden {
+    opacity: 0;
+}

@@ -1,0 +1,52 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.hover {
+    position: relative;
+    display: inline-block;
+    
+    &__title {
+        @include font(42, 400);
+        color: $brand-color;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    
+    &__container {
+        position: fixed;
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%, -50%) scale(0.8);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        
+        &_visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+    
+    &__image {
+        position: relative;
+        width: 207rem;
+        height: 117rem;
+        border-radius: 8rem;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    @media screen and (max-width: 700px) {
+        &__title {
+            font-size: 20rem;
+        }
+        
+        &__image {
+            width: 150rem;
+            height: 85rem;
+        }
+    }
+}

@@ -7,23 +7,30 @@ import { useState, useRef, useEffect } from 'react'
 import YoutubeThumb from '@/components/YoutubeThumb/YoutubeThumb'
 import ReelThumb from '@/components/ReelThumb/ReelThumb'
 
-const Explain = ({ data }) => {
+const Explain = ({data}) => {
   const swiperRef = useRef(null)
+  const youtubeSwiperRef = useRef(null)
+  const reelsSwiperRef = useRef(null)
   const [activeSlide, setActiveSlide] = useState(0)
+  const [activeYoutubeSlide, setActiveYoutubeSlide] = useState(0)
+  const [activeReelsSlide, setActiveReelsSlide] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+
+  const youtubeVideos = data.videos.filter(item => item.reel === false)
+  const reelVideos = data.videos.filter(item => item.reel === true)
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 700)
+      setIsMobile(window.innerWidth <= 700)
     }
 
     checkScreenSize()
+
     window.addEventListener('resize', checkScreenSize)
 
     return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
-
-
+  
   const handlePaginationClick = (index) => {
     setActiveSlide(index)
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -35,23 +42,73 @@ const Explain = ({ data }) => {
     setActiveSlide(swiper.activeIndex)
   }
 
+  const handleYoutubeSlideChange = (swiper) => {
+    setActiveYoutubeSlide(swiper.activeIndex)
+  }
+
+  const handleReelsSlideChange = (swiper) => {
+    setActiveReelsSlide(swiper.activeIndex)
+  }
+
   return (
-    <section className="g-container">
-      <div className={styles.explain}>
-        <div className='mb'>
-          <SectionTitle title={data.section_title} />
-          <h4 className={`${styles.title} ml`}>{data.title}</h4>
+    <section className={styles.explain}>
+      <div className='g-container mb'>
+        <SectionTitle title={data.section_title} />
+        <h4 className={`${styles.title} ml`}>{data.title}</h4>
+      </div>
+
+      {isMobile ? (
+        <div className='g-container'>
+          {youtubeVideos.length > 0 && (
+            <div className={styles.youtube}>
+              <Swiper
+                ref={youtubeSwiperRef}
+                slidesPerView={1}
+                spaceBetween={20}
+                className={styles.youtube__swiper}
+                onSlideChange={handleYoutubeSlideChange}
+              >
+                {youtubeVideos.map((item, index) => (
+                  <SwiperSlide key={index} className={styles.youtube__slide}>
+                    <div className={styles.youtube__video}>
+                      <YoutubeThumb video={item.url} img={item.thumbnail} />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          )}
+
+          {reelVideos.length > 0 && (
+            <div className={styles.reel}>
+              <Swiper
+                ref={reelsSwiperRef}
+                slidesPerView={1}
+                spaceBetween={20}
+                className={styles.reel__swiper}
+                onSlideChange={handleReelsSlideChange}
+              >
+                {reelVideos.map((item, index) => (
+                  <SwiperSlide key={index} className={styles.reel__slide}>
+                    <div className={styles.video}>
+                      <ReelThumb video={item.url} img={item.thumbnail} />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          )}
         </div>
+      ) : (
         <div className={styles.slider}>
           <Swiper
             ref={swiperRef}
-            slidesPerView={isMobile ? 1 : "auto"}
-            freeMode={!isMobile}
+            slidesPerView={"auto"}
+            freeMode
             modules={[Pagination]}
             pagination={{ clickable: true }}
             className={styles.swiper}
             onSlideChange={handleSlideChange}
-            spaceBetween={isMobile ? 20 : 0}
           >
             {data.videos.map((item, index) => (
               item.reel === false ? (
@@ -75,11 +132,9 @@ const Explain = ({ data }) => {
             onSlideChange={handlePaginationClick}
           />
         </div>
-      </div>
+      )}
     </section >
   )
 }
 
 export default Explain;
-
-

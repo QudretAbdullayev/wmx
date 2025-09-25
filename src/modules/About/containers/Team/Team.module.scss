@@ -1,0 +1,30 @@
+@use '@/assets/styles/abstracts' as *;
+
+.team {
+    &__container {
+        display: flex;
+        gap: 217rem;
+    }
+
+    &__subtitle {
+        @include font(24, 400);
+        leading-trim: NONE;
+        color: $brand-color;
+
+    }
+    &__text{
+        width: 631rem;
+        &__title{
+            @include font(22, 400);
+            leading-trim: NONE;
+            color: $brand-color;
+            padding-bottom: 36rem;
+        }
+        &__description{
+            @include font(18, 400);
+            leading-trim: NONE;
+            color: $secondary-color;
+            white-space: pre-wrap;
+        }
+    }
+}

@@ -2,6 +2,7 @@
 
 .explain {
     position: relative;
+
     .title {
         @include font(32, 400);
         color: $brand-color;
@@ -49,36 +50,50 @@
             }
         }
     }
+
     @media screen and (max-width: 700px) {
-        .title{
+        .title {
             width: 335rem;
             font-size: 20rem;
         }
 
-        .slider {
-            margin: 0 0 60rem;
-        }
+        .youtube {
+            margin-bottom: 33rem;
+            &__swiper {
+                :global(.swiper-slide) {
+                    &:last-child {
+                        margin-right: 20rem !important;
+                    }
+                }
 
-        .swiper {
-            margin-left: 0 !important;
-            padding: 0 20rem;
+            }
+            &__slide {
+                aspect-ratio: 16/9;
+                width: 335rem !important;
+                border-radius: 12rem;
+                overflow: hidden;
+                margin-right: 8rem !important;
+                &:last-child {
+                    margin-right: 0 !important;
+                }
+            }
         }
+        .reel{
+            margin-bottom: 0;
+            &__swiper {
+                padding: 0 20rem;
 
-        .slide {
-            width: 100% !important;
-            height: 200rem !important;
-            margin-right: 0 !important;
-        }
-
-        .slideReel {
-            width: 100% !important;
-            height: 200rem !important;
-            margin-right: 0 !important;
-        }
-
-        :global(.swiper-slide) {
-            &:last-child {
-                margin-right: 0 !important;
+            }
+            &__slide {
+                aspect-ratio: 9/16;
+                width: 245rem !important;
+                height: auto;
+                border-radius: 24rem;
+                overflow: hidden;
+                margin-right: 8rem !important;
+                &:last-child {
+                    margin-right: 0 !important;
+                }
             }
         }
     }

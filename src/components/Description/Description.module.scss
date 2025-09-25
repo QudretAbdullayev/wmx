@@ -11,6 +11,7 @@
         margin-top: 32rem;
         color: $secondary-color;
         @include font(16, 400);
+        letter-spacing: 0.3rem;
         white-space: pre-wrap;
     }
     @media screen and (max-width: 700px) {

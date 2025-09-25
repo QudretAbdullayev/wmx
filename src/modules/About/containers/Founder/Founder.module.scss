@@ -1,0 +1,22 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.hero {
+    &__detail {
+        display: flex;
+        justify-content: space-between;
+        .title,
+        .description {
+            width: 522rem;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        &__detail {
+            flex-direction: column;
+            gap: 43rem;
+        }
+        .title,
+        .description {
+            width: 335rem;
+        }
+    }
+}

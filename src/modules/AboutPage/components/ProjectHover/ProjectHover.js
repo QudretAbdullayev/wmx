@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useRef, useState } from 'react';
 import styles from './ProjectHover.module.scss';
+import SafeImage from '@/components/SafeImage/SafeImage';
 
 export default function ProjectHover() {
   const projectsRef = useRef(null);
@@ -8,20 +9,12 @@ export default function ProjectHover() {
   const previewImgRef = useRef(null);
   const isInsideRef = useRef(false);
 
-  const bgPositions = {
-    p1: "0 0",
-    p2: "0 25%",
-    p3: "0 50%",
-    p4: "0 75%",
-    p5: "0 100%",
-  };
-
   const projectsData = [
-    { id: 'p1', client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/test-1.png' },
-    { id: 'p2', client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/test-2.png' },
-    { id: 'p3', client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/test-3.png' },
-    { id: 'p4', client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/test-4.png' },
-    { id: 'p5', client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/test-5.png' },
+    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-1.png' },
+    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-2.png' },
+    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-3.png' },
+    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-4.png' },
+    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-5.png' },
   ];
 
   const isMouseInsideContainer = (e) => {
@@ -53,16 +46,15 @@ export default function ProjectHover() {
   const moveProject = (e) => {
     if (!previewRef.current) return;
     const previewRect = previewRef.current.getBoundingClientRect();
-    const offsetX = previewRect.width / 2;
     const offsetY = previewRect.height / 2;
-    previewRef.current.style.left = e.clientX - offsetX + "px";
     previewRef.current.style.top = e.clientY - offsetY + "px";
   };
 
-  const moveProjectImg = (projectId) => {
+  const moveProjectImg = (projectIndex) => {
     if (!previewImgRef.current) return;
-    previewImgRef.current.style.backgroundPosition = bgPositions[projectId] || "0 0";
-    previewImgRef.current.style.transition = 'background-position 0.4s';
+    const translateY = projectIndex * -220;
+    previewImgRef.current.style.transform = `translateY(${translateY}rem)`;
+    previewImgRef.current.style.transition = 'transform 0.4s ease';
   };
 
   useEffect(() => {
@@ -73,19 +65,31 @@ export default function ProjectHover() {
   }, []);
 
   return (
-    <section className={styles.projectHover}>
+    <section className={styles.container}>
       <div className={styles.preview} ref={previewRef}>
-        <div className={styles.previewImg} ref={previewImgRef}></div>
+        <div className={styles.preview__image}>
+          <div className={styles.preview__image__container} ref={previewImgRef}>
+            {projectsData.map((project, index) => (
+              <div key={index} className={styles.preview__image__single}>
+              <SafeImage
+                src={project.image}
+                alt={project.client}
+                fill
+              />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className={styles.container}>
+      <div className={styles.wrapper}>
         <div className={styles.projects} ref={projectsRef}>
-          {projectsData.map((project) => (
+          {projectsData.map((project, index) => (
             <div
-              key={project.id}
+              key={index}
               className={styles.project}
               onMouseMove={(e) => {
                 moveProject(e);
-                moveProjectImg(project.id);
+                moveProjectImg(index);
               }}
             >
               <div className={styles.client}>

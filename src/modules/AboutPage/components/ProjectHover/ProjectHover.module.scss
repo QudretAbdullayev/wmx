@@ -1,31 +1,47 @@
 @use "@/assets/styles/abstracts/" as *;
 
-.projectHover {
+.container {
     position: relative;
     width: 100%;
     overflow: hidden;
+
+    .preview {
+        position: fixed;
+        left: 340rem;
+        width: 391rem;
+        height: 220rem;
+        overflow: hidden;
+        pointer-events: none;
+        transform-origin: center;
+        transform: scale(0);
+        z-index: 999999;
+        transition: transform 0.3s ease;
+        border-radius: 16rem;
+
+        &__image {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            position: relative;
+            overflow: hidden;
+
+            &__container {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                transition: transform 0.4s ease;
+            }
+
+            &__single {
+                width: 100%;
+                height: 220rem;
+                position: relative;
+            }
+        }
+    }
 }
 
-.preview {
-    position: fixed;
-    width: 250rem;
-    height: 250rem;
-    overflow: hidden;
-    pointer-events: none;
-    transform-origin: center;
-    transform: scale(0);
-    z-index: 999999;
-    transition: transform 0.3s ease;
-}
-
-.previewImg {
-    width: 100%;
-    height: 100%;
-    background: url(/sprite.png) no-repeat;
-    background-size: cover;
-    background-position: 0 0;
-    pointer-events: none;
-}
 
 .client,
 .location,
@@ -33,7 +49,11 @@
     @include font(18, 400);
 }
 
-.container {
+.client {
+    padding-left: 80rem;
+}
+
+.wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -44,21 +64,23 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    &:first-child{
-        border-top: 1rem solid $secondary-color;
+    &:last-child {
+        border-bottom: 1rem solid $secondary-color;
     }
 }
 
 .project {
     width: 100%;
-    padding: 13rem 0 13rem 80rem;
+    padding: 13rem 0;
     display: flex;
     align-items: center;
-    border-bottom: 1rem solid $secondary-color;
     cursor: pointer;
     color: $secondary-color;
+    border-top: 1rem solid $secondary-color;
+
     &:hover {
         color: $foundation;
+        border-top: 1rem solid $brand-color;
     }
 
     >div {

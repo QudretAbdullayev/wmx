@@ -3,8 +3,11 @@
     height: 480rem;
     position: relative;
     margin: 0 -80rem;
+    cursor: none;
     @media screen and (max-width: 700px) {
+        margin: 0 -20rem;
         width: 375rem;
         height: 188rem;
+        cursor: pointer;
     }
 }

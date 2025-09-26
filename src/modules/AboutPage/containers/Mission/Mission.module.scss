@@ -1,0 +1,50 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.mission{
+    &__item {
+        padding: 32rem 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 955rem;
+        border-top: 1rem solid $secondary-color;
+        &:last-child {
+            border-bottom: 1rem solid $secondary-color;
+        }
+    }
+    &__icon {
+        svg{
+            width: 10rem;
+            height: 11rem;
+            color: $secondary-color;
+        }
+    }
+    &__title {
+        @include font(18, 400);
+        color: $foundation;
+        width: 227rem;
+    }
+    &__description {
+        @include font(14, 400);
+        color: $secondary-color;
+        width: 304rem;
+    }
+    @media screen and (max-width: 700px) {
+        &__item {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            padding: 16rem 0;
+            gap: 16rem;
+        }
+        &__title {
+            width: 100%;
+            font-size: 16rem;
+        }
+        &__description {
+            width: 100%;
+            font-size: 14rem;
+        }
+        
+    }
+}

@@ -1,34 +1,62 @@
 "use client"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './Mouse.module.scss'
 
 const Mouse = ({ text }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
+  const bannerRef = useRef(null)
 
   useEffect(() => {
-    let timeoutId
+    let currentMouseX = 0;
+    let currentMouseY = 0;
 
-    const handleMouseMove = (event) => {
-      setMousePosition({ x: event.clientX, y: event.clientY })
-      setIsVisible(true)
-      
-      // Clear existing timeout
-      clearTimeout(timeoutId)
-      
-      // Set new timeout to hide after 6 seconds of no movement
-      timeoutId = setTimeout(() => {
-        setIsVisible(false)
-      }, 6000)
+    const checkBannerHover = (clientX, clientY) => {
+      if (bannerRef.current) {
+        const bannerRect = bannerRef.current.getBoundingClientRect()
+        const isOverBanner = (
+          clientX >= bannerRect.left &&
+          clientX <= bannerRect.right &&
+          clientY >= bannerRect.top &&
+          clientY <= bannerRect.bottom
+        )
+        setIsVisible(isOverBanner)
+      }
     }
 
-    // Add event listener
-    document.addEventListener('mousemove', handleMouseMove)
+    const handleMouseMove = (event) => {
+      currentMouseX = event.clientX;
+      currentMouseY = event.clientY;
+      setMousePosition({ x: currentMouseX, y: currentMouseY })
+      checkBannerHover(currentMouseX, currentMouseY)
+    }
 
-    // Cleanup function
+    const handleScroll = () => {
+      // Recheck banner hover with current mouse position
+      checkBannerHover(currentMouseX, currentMouseY)
+    }
+
+    const handleResize = () => {
+      // Recheck banner hover with current mouse position
+      checkBannerHover(currentMouseX, currentMouseY)
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('scroll', handleScroll, true) // true for capture phase
+    window.addEventListener('resize', handleResize)
+
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
-      clearTimeout(timeoutId)
+      window.removeEventListener('scroll', handleScroll, true)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  // Function to set the banner ref from parent component
+  useEffect(() => {
+    const bannerElement = document.querySelector('[data-banner]')
+    if (bannerElement) {
+      bannerRef.current = bannerElement
     }
   }, [])
 
@@ -36,9 +64,8 @@ const Mouse = ({ text }) => {
     <div 
       className={`${styles.mouse} ${isVisible ? styles.visible : styles.hidden}`}
       style={{
-        left: mousePosition.x,
-        top: mousePosition.y,
-        transform: 'translate(-50%, -50%)'
+        left: mousePosition.x - 35,
+        top: mousePosition.y - 35,
       }}
     >
       {text}

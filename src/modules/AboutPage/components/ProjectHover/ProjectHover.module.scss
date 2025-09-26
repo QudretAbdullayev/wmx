@@ -1,0 +1,71 @@
+@use "@/assets/styles/abstracts/" as *;
+
+.projectHover {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.preview {
+    position: fixed;
+    width: 250rem;
+    height: 250rem;
+    overflow: hidden;
+    pointer-events: none;
+    transform-origin: center;
+    transform: scale(0);
+    z-index: 999999;
+    transition: transform 0.3s ease;
+}
+
+.previewImg {
+    width: 100%;
+    height: 100%;
+    background: url(/sprite.png) no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    pointer-events: none;
+}
+
+.client,
+.location,
+.service {
+    @include font(18, 400);
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.projects {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    &:first-child{
+        border-top: 1rem solid $secondary-color;
+    }
+}
+
+.project {
+    width: 100%;
+    padding: 13rem 0 13rem 80rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1rem solid $secondary-color;
+    cursor: pointer;
+    color: $secondary-color;
+    &:hover {
+        color: $foundation;
+    }
+
+    >div {
+        flex: 1;
+    }
+
+    div:first-child {
+        flex: 2;
+    }
+}

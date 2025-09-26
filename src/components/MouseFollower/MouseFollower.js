@@ -14,6 +14,7 @@ const FollowCursor = ({ color = '#FF3C2A' }) => {
     let lastMouseMoveTime = Date.now();
     let hideTimeout;
     let isHoveringInteractive = false;
+    let isHoveringBanner = false;
     let targetSize = 1;
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
@@ -45,7 +46,8 @@ const FollowCursor = ({ color = '#FF3C2A' }) => {
           this.scale = Math.min(1, this.scale + 0.1); 
         }
         
-        if (this.scale > 0) {
+        // Only draw the dot if not hovering over banner
+        if (this.scale > 0 && !isHoveringBanner) {
           context.fillStyle = color;
           context.beginPath();
           const currentWidth = this.width * this.sizeMultiplier;
@@ -84,7 +86,14 @@ const FollowCursor = ({ color = '#FF3C2A' }) => {
         window.getComputedStyle(elementUnderMouse).cursor === 'pointer'
       );
       
+      // Check if hovering over banner
+      const isOverBanner = elementUnderMouse && (
+        elementUnderMouse.hasAttribute('data-banner') ||
+        elementUnderMouse.closest('[data-banner]')
+      );
+      
       isHoveringInteractive = isOverInteractive;
+      isHoveringBanner = isOverBanner;
       targetSize = isOverInteractive ? 2.5 : 1;
     };
     

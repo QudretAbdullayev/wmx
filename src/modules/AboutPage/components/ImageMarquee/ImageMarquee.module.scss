@@ -1,0 +1,31 @@
+.marquee {
+  width: 100%;
+  margin: 40rem 0 140rem;
+  display: flex;
+  align-items: center;
+
+  &__rail {
+    display: flex;
+    gap: 21rem;
+  }
+
+  &__card {
+    flex-shrink: 0;
+    width: 196rem;
+    height: 196rem;
+    border-radius: 8rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media screen and (max-width: 700px) {
+    margin: 24rem 0 62rem;
+    &__rail {
+      gap: 8rem;
+    }
+    &__card {
+      width: 140rem;
+      height: 140rem;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.hero{
+    margin-top: 158rem;
+    width: 879rem;
+
+    @media screen and (max-width: 700px) {
+        margin-top: 42rem;
+        width: 335rem;
+    }
+}

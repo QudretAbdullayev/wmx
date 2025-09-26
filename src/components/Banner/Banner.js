@@ -4,7 +4,7 @@ import Mouse from '../Mouse/Mouse'
 
 const Banner = ({src}) => {
   return (
-    <div className={styles.banner}>
+    <div className={styles.banner} data-banner>
         <SafeImage src={src} alt="banner" fill/>
         <Mouse text="UH.HUH"/>
     </div>

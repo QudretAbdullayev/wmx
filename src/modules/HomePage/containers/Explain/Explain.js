@@ -63,8 +63,7 @@ const Explain = ({data}) => {
             <div className={styles.youtube}>
               <Swiper
                 ref={youtubeSwiperRef}
-                slidesPerView={1}
-                spaceBetween={20}
+                slidesPerView={"auto"}
                 className={styles.youtube__swiper}
                 onSlideChange={handleYoutubeSlideChange}
               >
@@ -83,8 +82,7 @@ const Explain = ({data}) => {
             <div className={styles.reel}>
               <Swiper
                 ref={reelsSwiperRef}
-                slidesPerView={1}
-                spaceBetween={20}
+                slidesPerView={"auto"}
                 className={styles.reel__swiper}
                 onSlideChange={handleReelsSlideChange}
               >

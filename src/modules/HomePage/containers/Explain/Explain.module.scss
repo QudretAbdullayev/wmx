@@ -38,8 +38,6 @@
         margin-left: 297rem !important;
         overflow: initial !important;
 
-
-        // Hide default pagination
         :global(.swiper-pagination) {
             display: none !important;
         }
@@ -58,8 +56,12 @@
         }
 
         .youtube {
-            margin-bottom: 33rem;
+            margin: 0 -20rem 33rem;
+
             &__swiper {
+                overflow: visible !important;
+                margin-left: 20rem !important;
+
                 :global(.swiper-slide) {
                     &:last-child {
                         margin-right: 20rem !important;
@@ -67,23 +69,31 @@
                 }
 
             }
+
             &__slide {
                 aspect-ratio: 16/9;
                 width: 335rem !important;
                 border-radius: 12rem;
                 overflow: hidden;
                 margin-right: 8rem !important;
-                &:last-child {
-                    margin-right: 0 !important;
-                }
             }
         }
-        .reel{
-            margin-bottom: 0;
-            &__swiper {
-                padding: 0 20rem;
 
+        .reel {
+            margin: 0 -20rem 62rem;
+
+            &__swiper {
+                padding: 0;
+                overflow: visible !important;
+                margin-left: 20rem !important;
+
+                :global(.swiper-slide) {
+                    &:last-child {
+                        margin-right: 20rem !important;
+                    }
+                }
             }
+
             &__slide {
                 aspect-ratio: 9/16;
                 width: 245rem !important;
@@ -91,9 +101,6 @@
                 border-radius: 24rem;
                 overflow: hidden;
                 margin-right: 8rem !important;
-                &:last-child {
-                    margin-right: 0 !important;
-                }
             }
         }
     }

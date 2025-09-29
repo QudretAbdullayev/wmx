@@ -23,6 +23,11 @@
         }
         .swiper {
             margin-left: 20rem !important;
+            :global(.swiper-slide) {
+                &:last-child {
+                    margin-right: 20rem !important;
+                }
+            }
         }
     }
 }

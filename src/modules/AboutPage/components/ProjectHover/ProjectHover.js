@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./ProjectHover.module.scss";
 import SafeImage from "@/components/SafeImage/SafeImage";
 
@@ -53,7 +53,7 @@ export default function ProjectHover() {
     );
   };
 
-  const moveStuff = (e) => {
+  const moveStuff = useCallback((e) => {
     const mouseInside = isMouseInsideContainer(e);
 
     if (mouseInside !== isInsideRef.current) {
@@ -66,7 +66,7 @@ export default function ProjectHover() {
         }
       }
     }
-  };
+  }, []);
 
   const moveProject = (e) => {
     if (!previewRef.current) return;
@@ -87,7 +87,7 @@ export default function ProjectHover() {
     return () => {
       window.removeEventListener("mousemove", moveStuff);
     };
-  }, []);
+  }, [moveStuff]);
 
   return (
     <section className={styles.container}>

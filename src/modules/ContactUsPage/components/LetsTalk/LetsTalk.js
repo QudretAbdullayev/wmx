@@ -54,7 +54,7 @@ export default function LetsTalk() {
           className={styles.item}
           onMouseEnter={shuffleAnimation}
         >
-          <div className={`${styles.item__word} ${styles.item__word1}`}>Let's</div>
+          <div className={`${styles.item__word} ${styles.item__word1}`}>Let&apos;s</div>
           <div className={styles.item__image}>
             <SafeImage
               src="/images/khcard-1.png"

@@ -12,7 +12,7 @@ const Hero = ({data}) => {
             <Parenthes/>
           </span>
         </div>
-        <LetsTalk/>
+        <LetsTalk effect={data.effect} />
     </section>
   )
 }

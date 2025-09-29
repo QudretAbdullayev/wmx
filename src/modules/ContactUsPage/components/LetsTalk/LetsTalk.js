@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { useState } from 'react';
 import styles from './LetsTalk.module.scss';
 import SafeImage from '@/components/SafeImage/SafeImage';
 
-export default function LetsTalk() {
+export default function LetsTalk({ effect }) {
   const [animating, setAnimating] = useState(false);
 
   function getRandomCharacter() {
@@ -54,15 +53,15 @@ export default function LetsTalk() {
           className={styles.item}
           onMouseEnter={shuffleAnimation}
         >
-          <div className={`${styles.item__word} ${styles.item__word1}`}>Let&apos;s</div>
+          <div className={`${styles.item__word} ${styles.item__word1}`}>{effect.text_left}</div>
           <div className={styles.item__image}>
             <SafeImage
-              src="/images/khcard-1.png"
-              alt="Let's Talk"
+              src={effect.image}
+              alt={`${effect.text_left}${" "}${effect.text_right}`}
               fill
             />
           </div>
-          <div className={`${styles.item__word} ${styles.item__word2}`}>Talk</div>
+          <div className={`${styles.item__word} ${styles.item__word2}`}>{effect.text_right}</div>
         </div>
       </div>
     </>

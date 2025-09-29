@@ -37,6 +37,11 @@ export default async function Page({ params }) {
   const data = {
     hero: {
       title: "DON’T WORRY\r\nWE ANSWER FASTER THAN\r\nYOU EXPECT",
+      effect: {
+        text_left: "Let’s",
+        text_right: "TALK",
+        image: "/images/khcard-1.png",
+      }
     },
     contact_form: {
       section_title: "Contact Form",

@@ -13,6 +13,7 @@ const ContactUsPage = ({data}) => {
       <ContactUs data={data.contact_us} />
       <Map data={data.map} />
       <FAQ data={data.faq} />
+      
     </>
   )
 }

@@ -1,0 +1,48 @@
+@use "@/assets/styles/abstracts/" as *;
+
+
+.container {
+    width: 100%;
+    padding-top: 43rem;
+}
+
+.item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &__image {
+        width: 121rem;
+        height: 68rem;
+        border-radius: 4rem;
+        transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        overflow: hidden;
+        position: relative;
+        flex: 0 1 0%;
+    }
+    &__word {
+        @include font(20, 450);
+        color: $foundation;
+        transition: all 0.3s ease-in-out;
+        text-transform: uppercase;
+        flex: 2.5 1 0%;
+    }
+    &__word1 {
+        text-align: right;
+    }
+    &__word2 {
+        text-align: left;
+    }
+
+    &:hover {
+        gap: 14rem;
+
+        .item__image {
+            flex: 0.5 1 0%;
+        }
+    }
+}

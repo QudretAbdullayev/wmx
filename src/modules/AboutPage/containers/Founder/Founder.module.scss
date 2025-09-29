@@ -4,6 +4,20 @@
     &__detail {
         display: flex;
         justify-content: space-between;
+        
+        // Initial animation states
+        .founderContainer {
+            transform: translateX(-100px);
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+        
+        .descriptionContainer {
+            transform: translateX(100px);
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+        
         .title,
         .description {
             width: 522rem;

@@ -40,12 +40,55 @@ export default async function Page({ params }) {
     },
     contact_form: {
       section_title: "Contact Form",
+      form: {
+        subject: {
+          label: "Subject",
+          placeholder: "Enter your subject",
+          options: [
+            { id: 1, name: "General Inquiry" },
+            { id: 2, name: "Support" },
+            { id: 3, name: "Feedback" },
+            { id: 4, name: "Partnership" },
+            { id: 5, name: "Careers" },
+          ],
+        },
+        full_name: {
+          label: "Full Name",
+          placeholder: "Enter your full name",
+        },
+        email: {
+          label: "Email",
+          placeholder: "Enter your email",
+        },
+        message: {
+          label: "Message",
+          placeholder: "Enter your message",
+        },
+        agreement: {
+          message_template:
+            "You accept the {2} and {1} by submitting your request.",
+          links: [
+            {
+              id: 1,
+              name: "Privacy Policy",
+              slug: "privacy",
+            },
+            {
+              id: 2,
+              name: "Terms & Conditions",
+              slug: "terms",
+            },
+          ],
+        },
+        button: "Send",
+      },
     },
     contact_us: {
       section_title: "Direct Contact Information",
       image: "/images/direct-contact-information.png",
       address_name: "Address",
-      address_value: "1455 Ocean View Drive, Los Angeles, CA 90049 United States of America",
+      address_value:
+        "1455 Ocean View Drive, Los Angeles, CA 90049 United States of America",
       phone_name: "Phone",
       phone_value: "+ 994 50 791 32 79",
       contact_name: "Contact",

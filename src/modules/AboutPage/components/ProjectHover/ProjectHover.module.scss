@@ -43,16 +43,6 @@
 }
 
 
-.client,
-.location,
-.service {
-    @include font(18, 400);
-}
-
-.client {
-    padding-left: 80rem;
-}
-
 .wrapper {
     width: 100%;
     display: flex;
@@ -64,6 +54,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+
     &:last-child {
         border-bottom: 1rem solid $secondary-color;
     }
@@ -78,9 +69,51 @@
     color: $secondary-color;
     border-top: 1rem solid $secondary-color;
 
+    &__text {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        overflow: hidden;
+        @include font(18, 400);
+
+        &:first-child {
+            padding-left: 80rem;
+        }
+
+        .animation {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+
+            &__text {
+                display: inline-block;
+                transition: transform 0.3s ease;
+            }
+
+            &__hover {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+            }
+        }
+    }
     &:hover {
         color: $foundation;
         border-top: 1rem solid $brand-color;
+        .project__text{
+            .animation {
+                &__text {
+                    transform: translateY(-100%);
+                }
+
+                &__hover {
+                    transform: translateY(0%);
+                }
+            }
+        }
     }
 
     >div {

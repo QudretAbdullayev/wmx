@@ -183,12 +183,19 @@ export default async function Page({ params }) {
     },
     about: {
       section_title: "About",
-      content: "<p>Emerging CMO is an advanced learning journey designed for marketing professionals aiming to move from execution to executive. The program builds strategic thinking, leadership presence, and business fluency, shaping tomorrow's marketing leaders.</p><p>&nbsp;</p><p>Led by <strong>Vugar Mehdiyev</strong> and <strong>Barış Başaran</strong>, the program blends strategic marketing insight with real-world leadership to prepare professionals for executive roles.</p>",
+      content:
+        "<p>Emerging CMO is an advanced learning journey designed for marketing professionals aiming to move from execution to executive. The program builds strategic thinking, leadership presence, and business fluency, shaping tomorrow's marketing leaders.</p><p>&nbsp;</p><p>Led by <strong>Vugar Mehdiyev</strong> and <strong>Barış Başaran</strong>, the program blends strategic marketing insight with real-world leadership to prepare professionals for executive roles.</p>",
       table: [
-        {title: "Format", values: ["4-5 hours per week", "On-Campus program", "Group Session"]},
-        {title: "Time", values: ["Wednesday: 7:00-9:30 PM", "Saturday: 10:00-12:30 PM"]},
-        {title: "Framework", values: ["4 Blocks", "10 Modules", "20 Topics"]},
-        {title: "Language", values: ["AZ / EN (hybrid)"]},
+        {
+          title: "Format",
+          values: ["4-5 hours per week", "On-Campus program", "Group Session"],
+        },
+        {
+          title: "Time",
+          values: ["Wednesday: 7:00-9:30 PM", "Saturday: 10:00-12:30 PM"],
+        },
+        { title: "Framework", values: ["4 Blocks", "10 Modules", "20 Topics"] },
+        { title: "Language", values: ["AZ / EN (hybrid)"] },
       ],
     },
     founder_video: {
@@ -202,6 +209,54 @@ export default async function Page({ params }) {
       title: "Chief of “I know what I’m doing",
       description:
         "The xSchool CMO program is built for those who think beyond KPIs and campaign calendars. It’s where strategic ambition meets real-world marketing leadership, and sparks serious growth.",
+      form: {
+        full_name: {
+          label: "Full Name",
+          placeholder: "Your full name",
+        },
+        email: {
+          label: "Email Address",
+          placeholder: "Your email",
+        },
+        company: {
+          label: "Company Name",
+          placeholder: "Your company name",
+        },
+        industry: {
+          label: "Industry",
+          placeholder: "Your industry",
+          options: [
+            { id: 1, name: "Industry 1" },
+            { id: 2, name: "Industry 2" },
+            { id: 3, name: "Industry 3" },
+          ],
+        },
+        seniority: {
+          label: "Seniority",
+          placeholder: "Your seniority level",
+          options: [
+            { id: 1, name: "Seniority 1" },
+            { id: 2, name: "Seniority 2" },
+            { id: 3, name: "Seniority 3" },
+          ],
+        },
+        agreement: {
+          message_template:
+            "By submitting this form, you agree to our {2} and {1}. You may unsubscribe from Xschool communications at any time.",
+          links: [
+            {
+              id: 1,
+              name: "Privacy Policy",
+              slug: "privacy",
+            },
+            {
+              id: 2,
+              name: "Terms of Service",
+              slug: "terms",
+            },
+          ],
+        },
+      },
       button: "Submit",
     },
   };

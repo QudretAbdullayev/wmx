@@ -55,10 +55,10 @@ const Consultation = ({ data }) => {
           </div>
           <form className={styles.form}>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>Full name</label>
+              <label className={styles.form__label}>{data.form.full_name.label}</label>
               <input
                 type="text"
-                placeholder="[Your name]"
+                placeholder={data.form.full_name.placeholder}
                 name="name"
                 className={`${styles.form__input} ${focusedFields.name ? styles.form__filled : ""
                   } ${errors.name ? styles.form__errorline : ""}`}
@@ -79,10 +79,10 @@ const Consultation = ({ data }) => {
               )}
             </div>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>Email</label>
+              <label className={styles.form__label}>{data.form.email.label}</label>
               <input
                 type="email"
-                placeholder={!focusedFields.email ? "[Email Address]" : ""}
+                placeholder={!focusedFields.email ? data.form.email.placeholder : ""}
                 name="email"
                 className={`${styles.form__input} ${focusedFields.email ? styles.form__filled : ""
                   } ${errors.email ? styles.form__errorline : ""}`}
@@ -103,10 +103,10 @@ const Consultation = ({ data }) => {
               )}
             </div>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>Full name</label>
+              <label className={styles.form__label}>{data.form.company.label}</label>
               <input
                 type="text"
-                placeholder="[Company]"
+                placeholder={data.form.company.placeholder}
                 name="company"
                 className={`${styles.form__input} ${focusedFields.company ? styles.form__filled : ""
                   } ${errors.company ? styles.form__errorline : ""}`}
@@ -127,43 +127,72 @@ const Consultation = ({ data }) => {
               )}
             </div>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>Industry</label>
+              <label className={styles.form__label}>{data.form.industry.label}</label>
               <Select
                 options={
-                  data?.industries || [
-                    { id: 1, name: "Industry 1" },
-                    { id: 2, name: "Industry 2" },
-                    { id: 3, name: "Industry 3" },
-                  ]
+                  data?.form?.industry?.options
                 }
                 onSelectionChange={handleIndustrySelection}
                 error={errors.program}
-                placeholder="[Industry]"
+                placeholder={data.form.industry.placeholder}
               />
             </div>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>Seniority</label>
+              <label className={styles.form__label}>{data.form.seniority.label}</label>
               <Select
                 options={
-                  data?.seniorities || [
-                    { id: 1, name: "Seniority 1" },
-                    { id: 2, name: "Seniority 2" },
-                    { id: 3, name: "Seniority 3" },
-                  ]
+                  data?.form?.seniority?.options
                 }
                 onSelectionChange={handleSenioritySelection}
                 error={errors.program}
-                placeholder="[Seniority]"
+                placeholder={data.form.seniority.placeholder}
               />
 
             </div>
             <div className={styles.form__privacy}>
               <p className={styles.form__privacy__text}>
-                By submitting this form, you agree to our <SafeLink href="/privacy-policy">Privacy Policy</SafeLink> and <SafeLink href="/terms-of-service">Terms of Service</SafeLink>.
+                {(() => {
+                  let text = data.form.agreement.message_template;
+                  const parts = [];
+                  let lastIndex = 0;
+                  
+                  const placeholderRegex = /\{(\d+)\}/g;
+                  let match;
+                  
+                  while ((match = placeholderRegex.exec(text)) !== null) {
+                    if (match.index > lastIndex) {
+                      parts.push(text.substring(lastIndex, match.index));
+                    }
+                    
+                    const linkId = parseInt(match[1]);
+                    const linkData = data.form.agreement.links.find(link => link.id === linkId);
+                    
+                    if (linkData) {
+                      parts.push(
+                        <SafeLink
+                          key={`link-${linkId}-${match.index}`}
+                          href={linkData.slug}
+                          className={styles.form__privacy__link}
+                        >
+                          {linkData.name}
+                        </SafeLink>
+                      );
+                    }
+                    
+                    lastIndex = match.index + match[0].length;
+                  }
+                  
+                  // Add remaining text after the last placeholder
+                  if (lastIndex < text.length) {
+                    parts.push(text.substring(lastIndex));
+                  }
+                  
+                  return parts;
+                })()}
               </p>
             </div>
             <HoverText
-              text="Submit"
+              text={data.button}
               className={styles.form__submit}
             />
           </form>

@@ -1,7 +1,7 @@
-"use client"
-import { useEffect, useRef, useState } from 'react';
-import styles from './ProjectHover.module.scss';
-import SafeImage from '@/components/SafeImage/SafeImage';
+"use client";
+import { useEffect, useRef, useState } from "react";
+import styles from "./ProjectHover.module.scss";
+import SafeImage from "@/components/SafeImage/SafeImage";
 
 export default function ProjectHover() {
   const projectsRef = useRef(null);
@@ -10,11 +10,36 @@ export default function ProjectHover() {
   const isInsideRef = useRef(false);
 
   const projectsData = [
-    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-1.png' },
-    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-2.png' },
-    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-3.png' },
-    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-4.png' },
-    { client: 'Design Thinking in Action', location: 'Creative Bootcamp', service: 'UX Design, Prototyping, Research', image: '/images/team-5.png' },
+    {
+      client: "Design Thinking in Action",
+      location: "Creative Bootcamp",
+      service: "UX Design, Prototyping, Research",
+      image: "/images/team-1.png",
+    },
+    {
+      client: "Design Thinking in Action",
+      location: "Creative Bootcamp",
+      service: "UX Design, Prototyping, Research",
+      image: "/images/team-2.png",
+    },
+    {
+      client: "Design Thinking in Action",
+      location: "Creative Bootcamp",
+      service: "UX Design, Prototyping, Research",
+      image: "/images/team-3.png",
+    },
+    {
+      client: "Design Thinking in Action",
+      location: "Creative Bootcamp",
+      service: "UX Design, Prototyping, Research",
+      image: "/images/team-4.png",
+    },
+    {
+      client: "Design Thinking in Action",
+      location: "Creative Bootcamp",
+      service: "UX Design, Prototyping, Research",
+      image: "/images/team-5.png",
+    },
   ];
 
   const isMouseInsideContainer = (e) => {
@@ -35,9 +60,9 @@ export default function ProjectHover() {
       isInsideRef.current = mouseInside;
       if (previewRef.current) {
         if (isInsideRef.current) {
-          previewRef.current.style.transform = 'scale(1)';
+          previewRef.current.style.transform = "scale(1)";
         } else {
-          previewRef.current.style.transform = 'scale(0)';
+          previewRef.current.style.transform = "scale(0)";
         }
       }
     }
@@ -54,7 +79,7 @@ export default function ProjectHover() {
     if (!previewImgRef.current) return;
     const translateY = projectIndex * -220;
     previewImgRef.current.style.transform = `translateY(${translateY}rem)`;
-    previewImgRef.current.style.transition = 'transform 0.4s ease';
+    previewImgRef.current.style.transition = "transform 0.4s ease";
   };
 
   useEffect(() => {
@@ -71,11 +96,7 @@ export default function ProjectHover() {
           <div className={styles.preview__image__container} ref={previewImgRef}>
             {projectsData.map((project, index) => (
               <div key={index} className={styles.preview__image__single}>
-              <SafeImage
-                src={project.image}
-                alt={project.client}
-                fill
-              />
+                <SafeImage src={project.image} alt={project.client} fill />
               </div>
             ))}
           </div>
@@ -92,14 +113,35 @@ export default function ProjectHover() {
                 moveProjectImg(index);
               }}
             >
-              <div className={styles.client}>
-                {project.client}
+              <div className={styles.project__text}>
+                <div className={styles.animation}>
+                  <span className={styles.animation__text}>
+                    {project.client}
+                  </span>
+                  <span className={styles.animation__hover}>
+                    {project.client}
+                  </span>
+                </div>
               </div>
-              <div className={styles.location}>
-                {project.location}
+              <div className={styles.project__text}>
+                <div className={styles.animation}>
+                  <span className={styles.animation__text}>
+                    {project.client}
+                  </span>
+                  <span className={styles.animation__hover}>
+                    {project.client}
+                  </span>
+                </div>
               </div>
-              <div className={styles.service}>
-                {project.service}
+              <div className={styles.project__text}>
+                <div className={styles.animation}>
+                  <span className={styles.animation__text}>
+                    {project.service}
+                  </span>
+                  <span className={styles.animation__hover}>
+                    {project.service}
+                  </span>
+                </div>
               </div>
             </div>
           ))}

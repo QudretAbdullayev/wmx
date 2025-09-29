@@ -6,10 +6,25 @@
     justify-content: space-between;
     gap: 16rem;
     padding-top: 100rem;
+    &__left, &__right{
+        svg{
+            color: $brand-color;
+        }
+    }
+    &__right{
+        transform: rotate(180deg);
+    }
     h1{
         @include font(52, 450);
         color: $brand-color;
         white-space: pre-wrap;
         text-align: center;
+    }
+    @media screen and (max-width: 700px) {
+        gap: 20rem;
+        padding-top: 42rem;
+        h1{
+            @include font(20, 400);
+        }
     }
 }

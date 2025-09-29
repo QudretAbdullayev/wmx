@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import styles from './MouseFollower.module.scss';
 
-const FollowCursor = ({ color = '#FF3C2A' }) => {
+const FollowCursor = ({ color = '#6ef7fb' }) => {
   useEffect(() => {
     let canvas;
     let context;

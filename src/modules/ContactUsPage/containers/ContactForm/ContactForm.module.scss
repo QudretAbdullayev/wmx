@@ -61,12 +61,12 @@
     &__privacy {
         @include font(14, 400);
         color:  $brand-color;
+        margin: 10rem 0 32rem;
         a {
             text-decoration: underline;
             cursor: pointer;
             color:  $foundation;
             display: inline-block;
-            margin: 10rem 0 32rem;
         }
     }
     @media screen and (max-width: 700px) {

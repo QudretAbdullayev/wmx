@@ -3,7 +3,7 @@
     height: 460rem;
     position: relative;
     overflow: hidden;
-    border-radius: 34rem;
+    border-radius: 32rem;
     z-index: 0;
     &__container{
         position: absolute;
@@ -12,7 +12,7 @@
         width: 413rem;
         height: 366rem;
         overflow: hidden;
-        border-radius: 34rem;
+        border-radius: 32rem;
     }
     @media screen and (max-width: 700px) {
         width: 335rem;

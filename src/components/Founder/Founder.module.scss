@@ -10,14 +10,14 @@
 
     .small {
         width: 413rem;
-        height: 460rem;
-        border-radius: 34rem;
+        height: 413rem;
+        border-radius: 32rem;
 
     }
     .medium {
         width: 630rem;
         height: 630rem;
-        border-radius: 28rem;
+        border-radius: 32rem;
     }
 
     &__image {
@@ -44,7 +44,7 @@
     @media screen and (max-width: 700px) {
         .small {
             width: 335rem;
-            height: 372rem;
+            height: 335rem;
             border-radius: 28rem;
         }
         &__info {

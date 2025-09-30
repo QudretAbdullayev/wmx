@@ -1,0 +1,34 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.knowledge {
+    margin: 0 -80rem;
+    .swiper {
+        overflow: initial !important;
+        margin-left: 297rem;
+
+        :global(.swiper-slide) {
+            &:last-child {
+                margin-right: 80rem !important;
+            }
+        }
+        
+    }
+    .slide {
+        width: 522rem !important;
+        margin-right: 20rem !important;
+    }
+    @media screen and (max-width: 700px) {
+        margin: 0 -20rem;
+        .slide {
+            width: 300rem !important;
+        }
+        .swiper {
+            margin-left: 20rem !important;
+            :global(.swiper-slide) {
+                &:last-child {
+                    margin-right: 20rem !important;
+                }
+            }
+        }
+    }
+}

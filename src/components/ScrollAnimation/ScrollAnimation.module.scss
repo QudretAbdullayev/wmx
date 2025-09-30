@@ -1,0 +1,76 @@
+@use '@/assets/styles/abstracts/' as *;
+
+
+.container{
+  
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__title {
+    @include font(42, 400);
+    color: $brand-color;
+    padding: 100rem 0 140rem 217rem;
+  }
+}
+
+
+.videoContainerDesktop {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  will-change: transform, opacity;
+  width: 320rem;
+  height: 180rem;
+  opacity: 0;
+  z-index: 222222;
+  bottom: 40rem;
+  overflow: hidden;
+  border-radius: 8rem;
+}
+.video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.videoContainerMobile {
+  display: none;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.videoPreview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  background-color: #b9b9b3;
+  overflow: hidden;
+}
+
+.videoWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  pointer-events: none;
+}

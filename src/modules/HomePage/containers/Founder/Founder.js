@@ -5,8 +5,6 @@ import FounderComponent from "@/components/Founder/Founder";
 import Description from "@/components/Description/Description";
 
 const Founder = ({ data }) => {
-  
-
   return (
     <section className={`${styles.hero} mb`}>
       <div className="g-container">
@@ -15,7 +13,12 @@ const Founder = ({ data }) => {
           <ComponentTitle title={data.title} />
         </div>
       </div>
-      <div className="g-container">
+      <div
+        className="g-container"
+        data-aos="fade-up"
+        data-aos-duration={300}
+        data-aos-easing="ease"
+      >
         <div className="ml">
           <div className={styles.hero__detail}>
             <FounderComponent

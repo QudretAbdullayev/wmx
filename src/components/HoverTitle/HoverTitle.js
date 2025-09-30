@@ -25,31 +25,7 @@ const HoverTitle = ({ title, image }) => {
 
   return (
     <div className={styles.hover}>
-      <h1
-        ref={titleRef}
-        className={styles.hover__title}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove}
-      >
-        {title}
-      </h1>
-      {image && (
-        <div
-          className={`${styles.hover__container} ${
-            isHovered ? styles.hover__container_visible : ""
-          }`}
-          style={{
-            left: `${mousePosition.x}px`,
-            top: `${mousePosition.y}px`,
-            position: "fixed",
-          }}
-        >
-          <div className={styles.hover__image}>
-            <SafeImage src={image} alt="articles hover" fill />
-          </div>
-        </div>
-      )}
+      <h1 className={styles.hover__title}>{title}</h1>
     </div>
   );
 };

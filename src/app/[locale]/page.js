@@ -176,42 +176,42 @@ export default async function Page({ params }) {
           image: "/images/khcard-2.png",
           slug: "MORE",
         },
-        // {
-        //   id: 3,
-        //   date: "January 28, 2025",
-        //   title: "Branding Fundamentals: Core Concepts Every Mark.",
-        //   description:
-        //     "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a.",
-        //   image: "/images/khcard-3.png",
-        //   slug: "MORE",
-        // },
-        // {
-        //   id: 4,
-        //   date: "April 12, 2025",
-        //   title: "Branding Fundamentals: Core Concepts Every Mark.",
-        //   description:
-        //     "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a.",
-        //   image: "/images/khcard-4.png",
-        //   slug: "MORE",
-        // },
-        // {
-        //   id: 5,
-        //   date: "May 26, 2025",
-        //   title: "Branding Fundamentals: Core Concepts Every Mark.",
-        //   description:
-        //     "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a.",
-        //   image: "/images/khcard-5.png",
-        //   slug: "MORE",
-        // },
-        // {
-        //   id: 6,
-        //   date: "August 4, 2025",
-        //   title: "Branding Fundamentals: Core Concepts Every Mark.",
-        //   description:
-        //     "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a.",
-        //   image: "/images/khcard-6.png",
-        //   slug: "MORE",
-        // },
+        {
+          id: 3,
+          date: "January 28, 2025",
+          title: "Branding Fundamentals: Core Concepts Every Mark.",
+          description:
+            "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a.",
+          image: "/images/khcard-3.png",
+          slug: "MORE",
+        },
+        {
+          id: 4,
+          date: "April 12, 2025",
+          title: "Branding Fundamentals: Core Concepts Every Mark.",
+          description:
+            "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a.",
+          image: "/images/khcard-4.png",
+          slug: "MORE",
+        },
+        {
+          id: 5,
+          date: "May 26, 2025",
+          title: "Branding Fundamentals: Core Concepts Every Mark.",
+          description:
+            "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a.",
+          image: "/images/khcard-5.png",
+          slug: "MORE",
+        },
+        {
+          id: 6,
+          date: "August 4, 2025",
+          title: "Branding Fundamentals: Core Concepts Every Mark.",
+          description:
+            "Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a.",
+          image: "/images/khcard-6.png",
+          slug: "MORE",
+        },
       ],
     },
     tell_us: {

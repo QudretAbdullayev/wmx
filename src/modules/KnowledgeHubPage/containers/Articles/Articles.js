@@ -9,7 +9,7 @@ const Articles = ({ data }) => {
       <SectionTitle title={data.section_title} />
       <div className={styles.container}>
         <div className={`${styles.container__articles} ml`}>
-          {data.articles.map((article) => (
+          {data.list.map((article) => (
             <KnowledgeHubCard key={article.id} article={article} />
           ))}
         </div>

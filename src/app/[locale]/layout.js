@@ -8,6 +8,7 @@ import { fetchData } from '@/utils/httpService';
 import Header from '@/components/Layout/Header/Header';
 import Footer from '@/components/Layout/Footer/Footer';
 import NotificationBanner from '@/components/Layout/NotificationBanner/NotificationBanner';
+import AosProvider from '@/components/AosProvider/AosProvider';
 
 // export const viewport = {
 //   initialScale: 1.0,
@@ -48,15 +49,17 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale}>
       
       <body>
-        <MouseFollower />
-        <NextIntlClientProvider>
-          <NotificationBanner data={data.notification_banner}/> 
-          <Header data={data.header}/>
-          <main>
-            {children}
-          </main>
-          <Footer data={data.footer}/>
-        </NextIntlClientProvider>
+        <AosProvider>
+          <MouseFollower />
+          <NextIntlClientProvider>
+            <NotificationBanner data={data.notification_banner}/> 
+            <Header data={data.header}/>
+            <main>
+              {children}
+            </main>
+            <Footer data={data.footer}/>
+          </NextIntlClientProvider>
+        </AosProvider>
       </body>
     </html>
   );

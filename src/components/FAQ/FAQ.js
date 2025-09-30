@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './FAQ.module.scss';
 import Minus from '@/assets/icons/Minus';
 import Plus from '@/assets/icons/Plus';
 
 const FAQ = ({faqData}) => {
-  const [expandedItems, setExpandedItems] = useState(new Set([0]));
+  const [expandedItems, setExpandedItems] = useState(new Set());
+  const [heights, setHeights] = useState({});
+  const answerRefs = useRef({});
+
+  useEffect(() => {
+    const newHeights = {};
+    Object.keys(answerRefs.current).forEach(key => {
+      if (answerRefs.current[key]) {
+        newHeights[key] = answerRefs.current[key].scrollHeight;
+      }
+    });
+    setHeights(newHeights);
+  }, [faqData]);
 
   const toggleItem = (index) => {
     const newExpandedItems = new Set(expandedItems);
@@ -30,11 +42,19 @@ const FAQ = ({faqData}) => {
                   {item.question}
                 </h5>
 
-                {isExpanded && (
-                  <p className={styles.item__answer}>
+                <div 
+                  className={styles.item__answer__wrapper}
+                  style={{
+                    maxHeight: isExpanded ? `${heights[index]}px` : '0px',
+                  }}
+                >
+                  <p 
+                    ref={el => answerRefs.current[index] = el}
+                    className={styles.item__answer}
+                  >
                     {item.answer}
                   </p>
-                )}
+                </div>
               </div>
 
               <button

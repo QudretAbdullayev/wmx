@@ -140,7 +140,7 @@ const Hero = ({ data }) => {
                         ))}
                     </Swiper>
 
-                    <div className={styles.pagination} role="navigation" aria-label="slides">
+                    <div className={styles.pagination} role="navigation">
                         <div className={styles.pagination__track}>
                             {data.sliders.map((_, index) => {
 

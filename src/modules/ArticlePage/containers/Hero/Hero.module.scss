@@ -1,7 +1,9 @@
 @use '@/assets/styles/abstracts/' as *;
 
 .hero{
+    margin: 0 -80rem;
     &__info{
+        width: 100%;
         padding: 140rem 0;
         display: flex;
         gap: 86rem;

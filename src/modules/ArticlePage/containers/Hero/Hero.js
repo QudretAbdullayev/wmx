@@ -4,8 +4,8 @@ import Banner from '@/components/Banner/Banner'
 
 const Hero = ({ data }) => {
     return (
-            <section className={styles.hero}>
-                <div className="g-container">
+            <section className="g-container">
+                <div className={styles.hero}>
                     <div className={`${styles.hero__info} ml`}>
                         {(data.created_title && data.created_date) && <div className={styles.hero__info__item}>
                             <span className={styles.hero__info__item__title}>

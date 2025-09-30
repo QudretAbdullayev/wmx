@@ -6,15 +6,9 @@ import "aos/dist/aos.css";
 
 export default function Providers({ children }) {
   useEffect(() => {
-    setTimeout(() => {
-      AOS.init({ once: true });
-      AOS.refresh();
-    }, 200);
+    AOS.init({ once: true });
+    AOS.refresh();
   }, []);
 
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

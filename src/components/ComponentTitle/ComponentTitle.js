@@ -4,8 +4,8 @@ const ComponentTitle = ({ title }) => {
   return (
     <div
       className={`${styles.title} mb`}
-      data-aos="flip-up"
-      data-aos-duration={300}
+      data-aos="fade-up"
+      data-aos-duration={200}
       data-aos-easing="ease"
     >
       <span className={styles.title__star}>{"*     "}</span>

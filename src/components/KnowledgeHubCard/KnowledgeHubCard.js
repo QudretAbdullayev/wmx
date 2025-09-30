@@ -2,25 +2,23 @@ import SafeLink from "@/components/SafeLink/SafeLink";
 import styles from "./KnowledgeHubCard.module.scss";
 import SafeImage from "@/components/SafeImage/SafeImage";
 
-export default function KnowledgeHubCard({article}) {
+export default function KnowledgeHubCard({ article }) {
   return (
-    <SafeLink href={`/knowledge-hub/${article.slug}`} className={styles.card}>
+    <SafeLink
+      href={`/knowledge-hub/${article.slug}`}
+      className={styles.card}
+      data-aos="fade-up"
+      data-aos-duration={200}
+      data-aos-easing="ease"
+    >
       <div className={styles.card__image}>
-        <SafeImage
-          src={article.image}
-          alt={article.title}
-          fill
-        />
+        <SafeImage src={article.image} alt={article.title} fill />
       </div>
       <div className={styles.card__date}>{article.date}</div>
 
       <div className={styles.card__content}>
-        <h3 className={styles.card__content__title}>
-          {article.title}
-        </h3>
-        <p className={styles.card__content__desc}>
-          {article.description}
-        </p>
+        <h3 className={styles.card__content__title}>{article.title}</h3>
+        <p className={styles.card__content__desc}>{article.description}</p>
       </div>
     </SafeLink>
   );

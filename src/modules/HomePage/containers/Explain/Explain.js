@@ -54,13 +54,25 @@ const Explain = ({ data }) => {
     <section className={styles.explain}>
       <div className="g-container mb">
         <SectionTitle title={data.section_title} />
-        <h4 className={`${styles.title} ml`}>{data.title}</h4>
+        <h4
+          className={`${styles.title} ml`}
+          data-aos="fade-up"
+          data-aos-duration={200}
+          data-aos-easing="ease"
+        >
+          {data.title}
+        </h4>
       </div>
 
       {isMobile ? (
         <div className="g-container">
           {youtubeVideos.length > 0 && (
-            <div className={styles.youtube}>
+            <div
+              className={styles.youtube}
+              data-aos="fade-up"
+              data-aos-duration={200}
+              data-aos-easing="ease"
+            >
               <Swiper
                 ref={youtubeSwiperRef}
                 slidesPerView={"auto"}
@@ -79,7 +91,12 @@ const Explain = ({ data }) => {
           )}
 
           {reelVideos.length > 0 && (
-            <div className={styles.reel}>
+            <div
+              className={styles.reel}
+              data-aos="fade-up"
+              data-aos-duration={200}
+              data-aos-easing="ease"
+            >
               <Swiper
                 ref={reelsSwiperRef}
                 slidesPerView={"auto"}
@@ -99,7 +116,12 @@ const Explain = ({ data }) => {
         </div>
       ) : (
         <div className="g-container">
-          <div className={styles.slider}>
+          <div
+            className={styles.slider}
+            data-aos="fade-up"
+            data-aos-duration={200}
+            data-aos-easing="ease"
+          >
             <Swiper
               ref={swiperRef}
               slidesPerView={"auto"}

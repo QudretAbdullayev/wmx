@@ -11,7 +11,7 @@ import { useGSAP } from "@gsap/react";
 
 const menuLinks = [
   { path: "/", label: "Feed" },
-  { path: "/work", label: "Program" },
+  { path: "/program", label: "Program" },
   { path: "/about", label: "About" },
   { path: "/knowledge-hub", label: "Knowledge Hub" },
   { path: "/contact", label: "Contact" },

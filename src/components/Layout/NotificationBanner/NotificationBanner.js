@@ -6,6 +6,7 @@ import SafeLink from "@/components/SafeLink/SafeLink";
 
 const NotificationBanner = ({data}) => {
   const [timeLeft, setTimeLeft] = useState(data.countdown_time);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     if (!data.show_countdown) return;
@@ -38,7 +39,11 @@ const NotificationBanner = ({data}) => {
     return () => clearInterval(timer);
   }, [data.countdown_time, data.show_countdown]);
 
-  return data.show_countdown ? (
+  const handleClose = () => {
+    setIsVisible(false);
+  };
+
+  return data.show_countdown && isVisible ? (
     <div className={styles.banner}>
       <div className="g-container">
         <div className={styles.wrapper}>
@@ -55,6 +60,7 @@ const NotificationBanner = ({data}) => {
           <button
             className={styles.close}
             aria-label="Close notification"
+            onClick={handleClose}
           >
             <Close />
           </button>

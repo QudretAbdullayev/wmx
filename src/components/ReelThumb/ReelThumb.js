@@ -9,13 +9,25 @@ const ReelThumb = ({ video, img }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [hasError, setHasError] = useState(false);
     const videoRef = useRef(null);
+    const playPromiseRef = useRef(null);
 
-    const handlePlay = () => {
+    const handlePlay = async () => {
         setIsPlaying(true);
         setIsLoading(true);
-        setTimeout(() => {
-            if (videoRef.current) {
-                videoRef.current.play().catch(error => {
+        
+        // Small delay to ensure video element is ready
+        setTimeout(async () => {
+            if (videoRef.current && videoRef.current.paused) {
+                // Wait for any pending play operation
+                if (playPromiseRef.current) {
+                    try {
+                        await playPromiseRef.current;
+                    } catch (error) {
+                        // Previous play was interrupted
+                    }
+                }
+                
+                playPromiseRef.current = videoRef.current.play().catch(error => {
                     console.error('Video play failed:', error);
                     setHasError(true);
                     setIsPlaying(false);
@@ -73,9 +85,20 @@ const ReelThumb = ({ video, img }) => {
                         onCanPlay={() => setIsLoading(false)}
                         onPause={handleVideoPause}
                         onPlay={handleVideoPlay}
-                        onLoadedData={() => {
-                            if (videoRef.current) {
-                                videoRef.current.play();
+                        onLoadedData={async () => {
+                            if (videoRef.current && videoRef.current.paused) {
+                                // Wait for any pending play operation
+                                if (playPromiseRef.current) {
+                                    try {
+                                        await playPromiseRef.current;
+                                    } catch (error) {
+                                        // Previous play was interrupted
+                                    }
+                                }
+                                
+                                playPromiseRef.current = videoRef.current.play().catch(error => {
+                                    console.error('Video autoplay failed:', error);
+                                });
                             }
                         }}
                     >

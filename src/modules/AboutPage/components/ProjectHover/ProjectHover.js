@@ -3,44 +3,13 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./ProjectHover.module.scss";
 import SafeImage from "@/components/SafeImage/SafeImage";
 
-export default function ProjectHover() {
+export default function ProjectHover({data}) {
   const projectsRef = useRef(null);
   const previewRef = useRef(null);
   const previewImgRef = useRef(null);
   const isInsideRef = useRef(false);
 
-  const projectsData = [
-    {
-      client: "Design Thinking in Action",
-      location: "Creative Bootcamp",
-      service: "UX Design, Prototyping, Research",
-      image: "/images/team-1.png",
-    },
-    {
-      client: "Design Thinking in Action",
-      location: "Creative Bootcamp",
-      service: "UX Design, Prototyping, Research",
-      image: "/images/team-2.png",
-    },
-    {
-      client: "Design Thinking in Action",
-      location: "Creative Bootcamp",
-      service: "UX Design, Prototyping, Research",
-      image: "/images/team-3.png",
-    },
-    {
-      client: "Design Thinking in Action",
-      location: "Creative Bootcamp",
-      service: "UX Design, Prototyping, Research",
-      image: "/images/team-4.png",
-    },
-    {
-      client: "Design Thinking in Action",
-      location: "Creative Bootcamp",
-      service: "UX Design, Prototyping, Research",
-      image: "/images/team-5.png",
-    },
-  ];
+  
 
   const isMouseInsideContainer = (e) => {
     if (!projectsRef.current) return false;
@@ -94,58 +63,61 @@ export default function ProjectHover() {
       <div className={styles.preview} ref={previewRef}>
         <div className={styles.preview__image}>
           <div className={styles.preview__image__container} ref={previewImgRef}>
-            {projectsData.map((project, index) => (
+            {data.map((project, index) => (
               <div key={index} className={styles.preview__image__single}>
-                <SafeImage src={project.image} alt={project.client} fill />
+                <SafeImage src={project.image_desktop} alt={project.title} fill />
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className={styles.wrapper}>
-        <div className={styles.projects} ref={projectsRef}>
-          {projectsData.map((project, index) => (
-            <div
-              key={index}
-              className={styles.project}
-              onMouseMove={(e) => {
-                moveProject(e);
-                moveProjectImg(index);
-              }}
-            >
+      <div className={styles.projects} ref={projectsRef}>
+        {data.map((project, index) => (
+          <div
+            key={index}
+            className={styles.project}
+            onMouseMove={(e) => {
+              moveProject(e);
+              moveProjectImg(index);
+            }}
+          >
+            <div className={styles.project__texts}>
               <div className={styles.project__text}>
                 <div className={styles.animation}>
                   <span className={styles.animation__text}>
-                    {project.client}
+                    {project.title}
                   </span>
                   <span className={styles.animation__hover}>
-                    {project.client}
+                    {project.title}
                   </span>
                 </div>
               </div>
               <div className={styles.project__text}>
                 <div className={styles.animation}>
                   <span className={styles.animation__text}>
-                    {project.client}
+                    {project.category}
                   </span>
                   <span className={styles.animation__hover}>
-                    {project.client}
+                    {project.category}
                   </span>
                 </div>
               </div>
               <div className={styles.project__text}>
                 <div className={styles.animation}>
                   <span className={styles.animation__text}>
-                    {project.service}
+                    {project.description}
                   </span>
                   <span className={styles.animation__hover}>
-                    {project.service}
+                    {project.description}
                   </span>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+            <div className={styles.project__image}>
+              <SafeImage src={project.image_mobile} alt={project.title} fill />
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

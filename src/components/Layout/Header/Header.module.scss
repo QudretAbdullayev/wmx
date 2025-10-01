@@ -140,6 +140,7 @@
             position: relative;
             width: 192rem;
             height: 86rem;
+
             img {
                 object-fit: contain;
             }
@@ -171,15 +172,52 @@
 
         .nav {
             &__left {
-                gap: 27rem;
+                gap: 23rem;
             }
 
             &__menu {
                 align-self: center;
                 display: block;
-                @include font(14, 400);
-                color: $brand-color;
                 cursor: pointer;
+                position: relative;
+                z-index: 3333333;
+                @include font(14, 400);
+                width: 46rem;
+                height: 16rem;
+                background: none;
+                border: none;
+                overflow: hidden;
+                
+                &__text,
+                &__click {
+                    display: block;
+                    transition: transform 0.3s ease, opacity 0.3s ease;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+                
+                &__text {
+                    color: $brand-color;
+                    transform: translateY(0);
+                }
+                
+                &__click {
+                    color: $main-white;
+                    transform: translateY(100%);
+                }
+                
+                &_active {
+                    .nav__menu__text {
+                        transform: translateY(-100%);
+                    }
+                    
+                    .nav__menu__click {
+                        transform: translateY(0);
+                    }
+                }
             }
 
             &__items {

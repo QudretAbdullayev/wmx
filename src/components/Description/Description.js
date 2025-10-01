@@ -12,15 +12,15 @@ const Description = ({
         className={`${classNameTitle} ${styles.title}`}
         dangerouslySetInnerHTML={{ __html: title }}
         data-aos="fade-up"
-        data-aos-duration={200}
-        data-aos-easing="ease"
+        data-aos-duration={600}
+        data-aos-easing="ease-in-quart"
       />
       <p
         className={`${classNameDescription} ${styles.description}`}
         dangerouslySetInnerHTML={{ __html: description }}
         data-aos="fade-up"
-        data-aos-duration={200}
-        data-aos-easing="ease"
+        data-aos-duration={600}
+        data-aos-easing="ease-in-quart"
       />
     </div>
   );

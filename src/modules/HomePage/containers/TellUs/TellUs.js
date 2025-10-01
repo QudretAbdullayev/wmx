@@ -9,8 +9,8 @@ const TellUs = ({ data }) => {
       <div
         className="ml"
         data-aos="fade-up"
-        data-aos-duration={200}
-        data-aos-easing="ease"
+        data-aos-duration={600}
+        data-aos-easing="ease-in-quart"
       >
         <ContactForm data={data} />
       </div>

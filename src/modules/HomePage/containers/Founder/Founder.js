@@ -16,8 +16,8 @@ const Founder = ({ data }) => {
       <div
         className="g-container"
         data-aos="fade-up"
-        data-aos-duration={300}
-        data-aos-easing="ease"
+        data-aos-duration={600}
+        data-aos-easing="ease-in-quart"
       >
         <div className="ml">
           <div className={styles.hero__detail}>

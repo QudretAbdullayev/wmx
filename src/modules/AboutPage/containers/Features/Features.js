@@ -7,7 +7,7 @@ const Features = ({data}) => {
     <section className='g-container mb'>
       <SectionTitle title={data.section_title}/>
       <div className={styles.features}>
-        <ProjectHover/>
+        <ProjectHover data={data.list} />
       </div>
     </section>
   )

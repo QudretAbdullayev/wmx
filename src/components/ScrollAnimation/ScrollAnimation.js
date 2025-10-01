@@ -9,14 +9,15 @@ const ScrollAnimation = ({ data }) => {
   const heroRef = useRef(null);
   const videoRef = useRef(null);
   const savedTimeRef = useRef(0);
+  const playPromiseRef = useRef(null);
 
   const handleVideoEnded = () => {
-    // Video bitince baştan başlat
-    console.log('Video ended, resetting to 0');
     savedTimeRef.current = 0;
     if (videoRef.current) {
       videoRef.current.seekTo(0);
-      videoRef.current.play();
+      playPromiseRef.current = videoRef.current.play().catch(error => {
+        console.log('Video play interrupted:', error);
+      });
     }
   };
 
@@ -49,31 +50,53 @@ const ScrollAnimation = ({ data }) => {
       }
     };
 
-    const handleMouseEnter = () => {
-      console.log('Mouse entered, starting from:', savedTimeRef.current);
+    const handleMouseEnter = async () => {
       isMouseInHero = true;
       targetOpacity = 1;
+
+      if (playPromiseRef.current) {
+        try {
+          await playPromiseRef.current;
+        } catch (error) {
+        }
+      }
 
       const videoElement = document.querySelector('video');
       if (videoElement) {
         videoElement.currentTime = savedTimeRef.current;
-        videoElement.play();
+        if (videoElement.paused) {
+          playPromiseRef.current = videoElement.play().catch(error => {
+            console.log('Video play interrupted:', error);
+          });
+        }
       } else if (videoRef.current) {
         videoRef.current.seekTo(savedTimeRef.current);
-        videoRef.current.play();
+        playPromiseRef.current = videoRef.current.play().catch(error => {
+          console.log('Video play interrupted:', error);
+        });
       }
     };
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = async () => {
       isMouseInHero = false;
       targetOpacity = 0;
       targetMouseX = 0;
+
+      if (playPromiseRef.current) {
+        try {
+          await playPromiseRef.current;
+        } catch (error) {
+        }
+        playPromiseRef.current = null;
+      }
 
       const videoElement = document.querySelector('video');
       if (videoElement) {
         const currentTime = videoElement.currentTime;
         savedTimeRef.current = currentTime;
-        videoElement.pause();
+        if (!videoElement.paused) {
+          videoElement.pause();
+        }
       } else if (videoRef.current) {
         const currentTime = videoRef.current.currentTime || 0;
         savedTimeRef.current = currentTime;
@@ -116,10 +139,10 @@ const ScrollAnimation = ({ data }) => {
         <div className="g-container">
           <h1 className={styles.hero__title}>{data.title}</h1>
           <div
-            className={`${styles.videoContainer} ${styles.videoContainerDesktop}`}
+            className={styles.hero__wrapper}
             ref={videoContainerRef}
           >
-            <div className={styles.video}>{memoizedVideoStatic}</div>
+            <div className={styles.hero__video}>{memoizedVideoStatic}</div>
           </div>
         </div>
       </div>

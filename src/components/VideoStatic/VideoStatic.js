@@ -14,10 +14,41 @@ const VideoStatic = forwardRef(({
     isActive = false 
 }, ref) => {
     const videoRef = useRef(null);
+    const playPromiseRef = useRef(null);
 
     useImperativeHandle(ref, () => ({
-        play: () => videoRef.current?.play(),
-        pause: () => videoRef.current?.pause(),
+        play: async () => {
+            if (videoRef.current && videoRef.current.paused) {
+                
+                if (playPromiseRef.current) {
+                    try {
+                        await playPromiseRef.current;
+                    } catch (error) {
+                        
+                    }
+                }
+                
+                playPromiseRef.current = videoRef.current.play().catch(error => {
+                    console.log('Video play interrupted:', error);
+                });
+                return playPromiseRef.current;
+            }
+        },
+        pause: async () => {
+            // Wait for any pending play operation before pausing
+            if (playPromiseRef.current) {
+                try {
+                    await playPromiseRef.current;
+                } catch (error) {
+                    // Play was interrupted
+                }
+                playPromiseRef.current = null;
+            }
+            
+            if (videoRef.current && !videoRef.current.paused) {
+                videoRef.current.pause();
+            }
+        },
         currentTime: videoRef.current?.currentTime || 0,
         duration: videoRef.current?.duration || 0,
         seekTo: (time) => {
@@ -34,9 +65,18 @@ const VideoStatic = forwardRef(({
     }, [src]);
 
     useEffect(() => {
-        const playVideo = () => {
-            if (videoRef.current && isActive) {
-                videoRef.current.play().catch(error => {
+        const playVideo = async () => {
+            if (videoRef.current && isActive && videoRef.current.paused) {
+                // Wait for any pending play operation
+                if (playPromiseRef.current) {
+                    try {
+                        await playPromiseRef.current;
+                    } catch (error) {
+                        // Previous play was interrupted
+                    }
+                }
+                
+                playPromiseRef.current = videoRef.current.play().catch(error => {
                     console.log('Video play interrupted:', error);
                 });
             }
@@ -50,13 +90,38 @@ const VideoStatic = forwardRef(({
     }, [isActive]);
 
     useEffect(() => {
-        if (isActive && videoRef.current) {
-            videoRef.current.play().catch(error => {
-                console.log('Video play interrupted:', error);
-            });
-        } else if (!isActive && videoRef.current) {
-            videoRef.current.pause();
-        }
+        const handleActiveChange = async () => {
+            if (isActive && videoRef.current && videoRef.current.paused) {
+                // Wait for any pending play operation
+                if (playPromiseRef.current) {
+                    try {
+                        await playPromiseRef.current;
+                    } catch (error) {
+                        // Previous play was interrupted
+                    }
+                }
+                
+                playPromiseRef.current = videoRef.current.play().catch(error => {
+                    console.log('Video play interrupted:', error);
+                });
+            } else if (!isActive && videoRef.current) {
+                // Wait for any pending play operation before pausing
+                if (playPromiseRef.current) {
+                    try {
+                        await playPromiseRef.current;
+                    } catch (error) {
+                        // Play was interrupted
+                    }
+                    playPromiseRef.current = null;
+                }
+                
+                if (!videoRef.current.paused) {
+                    videoRef.current.pause();
+                }
+            }
+        };
+
+        handleActiveChange();
     }, [isActive]);
 
     const handleTimeUpdate = () => {

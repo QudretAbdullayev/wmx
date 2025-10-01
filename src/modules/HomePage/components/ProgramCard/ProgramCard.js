@@ -9,8 +9,8 @@ const ProgramCard = ({ data }) => {
     <div
       className={styles.card}
       data-aos="fade-up"
-      data-aos-duration={200}
-      data-aos-easing="ease"
+      data-aos-duration={600}
+      data-aos-easing="ease-in-quart"
     >
       {data.background_image && (
         <SafeImage src={data.background_image} alt="Background" fill />

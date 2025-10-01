@@ -57,8 +57,8 @@ const Explain = ({ data }) => {
         <h4
           className={`${styles.title} ml`}
           data-aos="fade-up"
-          data-aos-duration={200}
-          data-aos-easing="ease"
+          data-aos-duration={600}
+          data-aos-easing="ease-in-quart"
         >
           {data.title}
         </h4>
@@ -70,8 +70,8 @@ const Explain = ({ data }) => {
             <div
               className={styles.youtube}
               data-aos="fade-up"
-              data-aos-duration={200}
-              data-aos-easing="ease"
+              data-aos-duration={600}
+              data-aos-easing="ease-in-quart"
             >
               <Swiper
                 ref={youtubeSwiperRef}
@@ -94,8 +94,8 @@ const Explain = ({ data }) => {
             <div
               className={styles.reel}
               data-aos="fade-up"
-              data-aos-duration={200}
-              data-aos-easing="ease"
+              data-aos-duration={600}
+              data-aos-easing="ease-in-quart"
             >
               <Swiper
                 ref={reelsSwiperRef}
@@ -119,8 +119,8 @@ const Explain = ({ data }) => {
           <div
             className={styles.slider}
             data-aos="fade-up"
-            data-aos-duration={200}
-            data-aos-easing="ease"
+            data-aos-duration={600}
+            data-aos-easing="ease-in-quart"
           >
             <Swiper
               ref={swiperRef}

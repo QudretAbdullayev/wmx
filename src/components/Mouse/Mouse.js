@@ -32,17 +32,15 @@ const Mouse = ({ text }) => {
     }
 
     const handleScroll = () => {
-      // Recheck banner hover with current mouse position
       checkBannerHover(currentMouseX, currentMouseY)
     }
 
     const handleResize = () => {
-      // Recheck banner hover with current mouse position
       checkBannerHover(currentMouseX, currentMouseY)
     }
 
     document.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('scroll', handleScroll, true) // true for capture phase
+    window.addEventListener('scroll', handleScroll, true)
     window.addEventListener('resize', handleResize)
 
     return () => {
@@ -52,7 +50,6 @@ const Mouse = ({ text }) => {
     }
   }, [])
 
-  // Function to set the banner ref from parent component
   useEffect(() => {
     const bannerElement = document.querySelector('[data-banner]')
     if (bannerElement) {

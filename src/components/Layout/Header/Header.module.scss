@@ -269,14 +269,40 @@
 
                 &__holder {
                     position: relative;
+                }
 
-                    a {
+                &__name {
+                    @include font(30, 700);
+                    color: $main-white;
+                    text-align: center;
+                    text-transform: uppercase;
+                    transition: color 0.3s ease;
+                    svg{
+                        width: 21rem;
+                        height: 21rem;
+                        transform: rotate(0deg);
+                    }
+                }
+                &__dropdown {
+                    display: none;
+                }
+                &__open {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10rem;
+                    &__item {
                         @include font(30, 700);
-                        color: $main-white;
-                        text-align: center;
-                        text-transform: uppercase;
                         transition: color 0.3s ease;
                     }
+                    &__link {
+                        text-decoration: none;
+                        color: $main-white;
+                        transition: color 0.3s ease;
+                        color: $brand-color;
+                    }
+
                 }
             }
         }

@@ -120,7 +120,6 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const tl = useRef();
-  const dropdownTl = useRef();
   const mobileDropdownTls = useRef({});
   const navArrowRefs = useRef({});
   const mobileArrowRefs = useRef({});
@@ -168,58 +167,9 @@ export default function Header() {
     setIsProgramDropdownOpen(!isProgramDropdownOpen);
   };
 
-    // Ana dropdown animasyonu için GSAP setup
-  useGSAP(() => {
-    // Ana dropdown elements
-    const dropdownItems = `.${styles.nav__select}`;
-    const arrow = `.${styles.nav__arrow}`;
-    
-    // Initial state - CSS transition'ları devre dışı bırak
-    gsap.set(dropdownItems, { 
-      height: 0, 
-      opacity: 0, 
-      overflow: "hidden",
-      transition: "none",
-      visibility: "visible"
-    });
-    gsap.set(arrow, { rotation: 180, transformOrigin: "center center" });
-    
-    // Dropdown'ın gerçek yüksekliğini hesapla
-    const getDropdownHeight = () => {
-      const element = document.querySelector(dropdownItems);
-      if (element) {
-        gsap.set(element, { height: "auto", visibility: "hidden" });
-        const height = element.offsetHeight;
-        gsap.set(element, { height: 0, visibility: "visible" });
-        return height;
-      }
-      return 0;
-    };
-    
-    // Create timeline
-    dropdownTl.current = gsap.timeline({ paused: true })
-      .to(arrow, {
-        rotation: 0,
-        duration: headerData.animations.arrow_duration,
-        ease: headerData.animations.arrow_ease
-      })
-      .to(dropdownItems, {
-        height: () => getDropdownHeight(),
-        opacity: 1,
-        duration: headerData.animations.dropdown_duration,
-        ease: headerData.animations.dropdown_ease
-      }, "-=0.1");
-  }, { scope: container });
 
-  useEffect(() => {
-    if (dropdownTl.current) {
-      if (isProgramDropdownOpen) {
-        dropdownTl.current.play();
-      } else {
-        dropdownTl.current.reverse();
-      }
-    }
-  }, [isProgramDropdownOpen]);
+
+
 
   const handleMobileDropdownClick = (index) => {
     setMobileDropdownStates((prev) => ({
@@ -228,25 +178,19 @@ export default function Header() {
     }));
   };
 
-  // Mobil dropdown animasyonu - GSAP ile setup
+
   useGSAP(() => {
-    // Her mobil dropdown için timeline oluştur
     headerData.navigation.mobile_menu.overlay_links.forEach((link, index) => {
       if (link.type === "dropdown") {
         const dropdownSelector = `[data-mobile-dropdown="${index}"]`;
         const arrowSelector = `[data-mobile-arrow="${index}"]`;
-        
-        // Initial state - CSS transition'ları devre dışı bırak
         gsap.set(dropdownSelector, { 
           height: 0, 
-          opacity: 0, 
           overflow: "hidden",
-          transition: "none",
           visibility: "visible"
         });
         gsap.set(arrowSelector, { rotation: 180, transformOrigin: "center center" });
         
-        // Mobile dropdown'ın gerçek yüksekliğini hesapla
         const getMobileDropdownHeight = () => {
           const element = document.querySelector(dropdownSelector);
           if (element) {
@@ -258,7 +202,6 @@ export default function Header() {
           return 0;
         };
         
-        // Create timeline
         mobileDropdownTls.current[index] = gsap.timeline({ paused: true })
           .to(arrowSelector, {
             rotation: 0,
@@ -267,7 +210,6 @@ export default function Header() {
           })
           .to(dropdownSelector, {
             height: () => getMobileDropdownHeight(),
-            opacity: 1,
             duration: headerData.animations.dropdown_duration,
             ease: headerData.animations.dropdown_ease
           }, "-=0.1");
@@ -275,7 +217,6 @@ export default function Header() {
     });
   }, { scope: container });
 
-  // Mobil dropdown animasyon kontrol fonksiyonu
   const animateMobileDropdown = (index, isOpen) => {
     if (mobileDropdownTls.current[index]) {
       if (isOpen) {
@@ -286,7 +227,6 @@ export default function Header() {
     }
   };
 
-  // Mobil dropdown state değişimi
   useEffect(() => {
     Object.keys(mobileDropdownStates).forEach(index => {
       animateMobileDropdown(parseInt(index), mobileDropdownStates[index]);

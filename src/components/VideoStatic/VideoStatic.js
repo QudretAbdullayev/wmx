@@ -8,8 +8,6 @@ const VideoStatic = forwardRef(({
     props, 
     loop = true, 
     autoPlay = true, 
-    onTimeUpdate, 
-    onDurationChange, 
     onEnded,
     isActive = false 
 }, ref) => {
@@ -19,23 +17,21 @@ const VideoStatic = forwardRef(({
     useImperativeHandle(ref, () => ({
         play: async () => {
             if (videoRef.current && videoRef.current.paused) {
-                
                 if (playPromiseRef.current) {
                     try {
                         await playPromiseRef.current;
                     } catch (error) {
-                        
+                        // Previous play interrupted
                     }
                 }
                 
                 playPromiseRef.current = videoRef.current.play().catch(error => {
-                    console.log('Video play interrupted:', error);
+                    // Video play interrupted
                 });
                 return playPromiseRef.current;
             }
         },
         pause: async () => {
-            // Wait for any pending play operation before pausing
             if (playPromiseRef.current) {
                 try {
                     await playPromiseRef.current;
@@ -48,13 +44,6 @@ const VideoStatic = forwardRef(({
             if (videoRef.current && !videoRef.current.paused) {
                 videoRef.current.pause();
             }
-        },
-        currentTime: videoRef.current?.currentTime || 0,
-        duration: videoRef.current?.duration || 0,
-        seekTo: (time) => {
-            if (videoRef.current) {
-                videoRef.current.currentTime = time;
-            }
         }
     }));
 
@@ -64,30 +53,7 @@ const VideoStatic = forwardRef(({
         }
     }, [src]);
 
-    useEffect(() => {
-        const playVideo = async () => {
-            if (videoRef.current && isActive && videoRef.current.paused) {
-                // Wait for any pending play operation
-                if (playPromiseRef.current) {
-                    try {
-                        await playPromiseRef.current;
-                    } catch (error) {
-                        // Previous play was interrupted
-                    }
-                }
-                
-                playPromiseRef.current = videoRef.current.play().catch(error => {
-                    console.log('Video play interrupted:', error);
-                });
-            }
-        };
 
-        document.addEventListener('click', playVideo);
-
-        return () => {
-            document.removeEventListener('click', playVideo);
-        };
-    }, [isActive]);
 
     useEffect(() => {
         const handleActiveChange = async () => {
@@ -102,7 +68,7 @@ const VideoStatic = forwardRef(({
                 }
                 
                 playPromiseRef.current = videoRef.current.play().catch(error => {
-                    console.log('Video play interrupted:', error);
+                    // Video play interrupted
                 });
             } else if (!isActive && videoRef.current) {
                 // Wait for any pending play operation before pausing
@@ -124,18 +90,6 @@ const VideoStatic = forwardRef(({
         handleActiveChange();
     }, [isActive]);
 
-    const handleTimeUpdate = () => {
-        if (onTimeUpdate && videoRef.current) {
-            onTimeUpdate(videoRef.current.currentTime);
-        }
-    };
-
-    const handleDurationChange = () => {
-        if (onDurationChange && videoRef.current) {
-            onDurationChange(videoRef.current.duration);
-        }
-    };
-
     const handleEnded = () => {
         if (onEnded) {
             onEnded();
@@ -151,8 +105,6 @@ const VideoStatic = forwardRef(({
             playsInline
             ref={videoRef}
             className={styles.video}
-            onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleDurationChange}
             onEnded={handleEnded}
         >
             <source src={src} type="video/mp4" />

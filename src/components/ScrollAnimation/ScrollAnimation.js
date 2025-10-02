@@ -15,9 +15,6 @@ const ScrollAnimation = ({ data }) => {
     savedTimeRef.current = 0;
     if (videoRef.current) {
       videoRef.current.seekTo(0);
-      playPromiseRef.current = videoRef.current.play().catch(error => {
-        console.log('Video play interrupted:', error);
-      });
     }
   };
 
@@ -66,13 +63,13 @@ const ScrollAnimation = ({ data }) => {
         videoElement.currentTime = savedTimeRef.current;
         if (videoElement.paused) {
           playPromiseRef.current = videoElement.play().catch(error => {
-            console.log('Video play interrupted:', error);
+            // Video play interrupted
           });
         }
       } else if (videoRef.current) {
         videoRef.current.seekTo(savedTimeRef.current);
         playPromiseRef.current = videoRef.current.play().catch(error => {
-          console.log('Video play interrupted:', error);
+          // Video play interrupted
         });
       }
     };

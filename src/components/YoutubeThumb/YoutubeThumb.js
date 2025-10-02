@@ -1,38 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import SafeImage from '@/components/SafeImage/SafeImage';
+import Mouse from '@/components/Mouse/Mouse';
 import styles from './YoutubeThumb.module.scss';
 
 const YoutubeThumb = ({ video, img }) => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+    const thumbRef = useRef(null);
 
     const handlePlay = () => {
-        setIsPlaying(true);
+        setIsPlaying(!isPlaying);
+        setIsHovering(false);
+    };
+
+    const handleMouseEnter = () => {
+        setIsHovering(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovering(false);
     };
 
     return (
-        <div className={styles.thumb}>
-            {!isPlaying && (
-                <>
-                    <SafeImage
-                        fill
-                        src={img}
-                        className={styles.thumb__img}
-                        alt="Youtube thumbnail"
-                    />
-                    <button className={styles.thumb__play} onClick={handlePlay}>
-                        <SafeImage
-                            src="/icons/play-button.svg"
-                            width={60}
-                            height={60}
-                            alt="Play button"
-                        />
-                    </button>
-                </>
-            )}
-
-            {isPlaying && (
+        <div 
+            ref={thumbRef}
+            className={styles.thumb} 
+            data-youtube-thumb
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={handlePlay}
+        >
+            {isPlaying ? (
                 <iframe
                     src={`${video}?autoplay=1&rel=0&showinfo=0`}
                     title="YouTube video player"
@@ -40,7 +40,22 @@ const YoutubeThumb = ({ video, img }) => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                 />
+            )
+            : (
+                <SafeImage
+                    fill
+                    src={img}
+                    className={styles.thumb__img}
+                    alt="Youtube thumbnail"
+                />
             )}
+
+            {!isPlaying && !isHovering && (
+                <div className={styles.thumb__playButton}>
+                    PLAY
+                </div>
+            )}
+            {isHovering && <Mouse text={isPlaying ? "PAUSE" : "PLAY"} elementRef={thumbRef} />}
         </div>
     );
 };

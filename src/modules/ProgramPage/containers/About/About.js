@@ -2,7 +2,6 @@ import SectionTitle from "@/components/SectiontTitle/SectiontTitle";
 import styles from "./About.module.scss";
 
 const About = ({data}) => {
-  console.log(data);
   return (
     <section className="g-container mb">
       <SectionTitle title={data.section_title} />

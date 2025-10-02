@@ -86,14 +86,19 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
         window.getComputedStyle(elementUnderMouse).cursor === 'pointer'
       );
       
-      // Check if hovering over banner
+      // Check if hovering over banner or youtube thumb
       const isOverBanner = elementUnderMouse && (
         elementUnderMouse.hasAttribute('data-banner') ||
         elementUnderMouse.closest('[data-banner]')
       );
       
+      const isOverYoutubeThumb = elementUnderMouse && (
+        elementUnderMouse.hasAttribute('data-youtube-thumb') ||
+        elementUnderMouse.closest('[data-youtube-thumb]')
+      );
+      
       isHoveringInteractive = isOverInteractive;
-      isHoveringBanner = isOverBanner;
+      isHoveringBanner = isOverBanner || isOverYoutubeThumb;
       targetSize = isOverInteractive ? 2.5 : 1;
     };
     

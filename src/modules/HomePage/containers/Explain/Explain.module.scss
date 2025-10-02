@@ -2,7 +2,6 @@
 
 .explain {
     position: relative;
-
     .title {
         @include font(32, 400);
         color: $brand-color;

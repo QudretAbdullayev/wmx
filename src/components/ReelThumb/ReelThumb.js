@@ -14,16 +14,13 @@ const ReelThumb = ({ video, img }) => {
     const handlePlay = async () => {
         setIsPlaying(true);
         setIsLoading(true);
-        
-        // Small delay to ensure video element is ready
+
         setTimeout(async () => {
             if (videoRef.current && videoRef.current.paused) {
-                // Wait for any pending play operation
                 if (playPromiseRef.current) {
                     try {
                         await playPromiseRef.current;
                     } catch (error) {
-                        // Previous play was interrupted
                     }
                 }
                 

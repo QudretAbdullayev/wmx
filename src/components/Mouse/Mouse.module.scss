@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     @include font(12, 600);
-    position: fixed;
+    position: absolute;
     z-index: 10000;
     pointer-events: none;
     transition: opacity 0.3s ease;

@@ -28,7 +28,6 @@ const ContactForm = ({ data }) => {
     });
 
     const onSubmit = (data) => {
-        console.log('Form submitted successfully', data);
     };
 
 

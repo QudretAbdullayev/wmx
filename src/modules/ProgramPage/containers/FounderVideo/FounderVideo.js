@@ -1,6 +1,6 @@
 import SectionTitle from "@/components/SectiontTitle/SectiontTitle";
 import styles from "./FounderVideo.module.scss";
-import YoutubeThumb from "@/components/YoutubeThumb/YoutubeThumb";
+import YoutubeThumb from "@/components/YoutubeThumb -/YoutubeThumb";
 
 const FounderVideo = ({ data }) => {
   return (

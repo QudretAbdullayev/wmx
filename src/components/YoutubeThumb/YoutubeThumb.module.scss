@@ -2,9 +2,8 @@
 
 .thumb {
     position: relative;
-    aspect-ratio: 16/9;
     cursor: none;
-
+    
     iframe {
         position: absolute;
         top: 0;
@@ -12,7 +11,6 @@
         width: 100%;
         height: 100%;
         z-index: 1;
-        pointer-events: none;
     }
 
     &__img {
@@ -29,38 +27,118 @@
         justify-content: center;
     }
 
-    &__playButton {
+    &__button {
         width: 70rem;
         height: 70rem;
-        background: $foundation;
+        background: transparent;
+        border: 2rem solid $main-white;
         color: $main-white;
         border-radius: 50%;
         @include font(12, 600);
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s ease;
+        transition: opacity 0.3s ease;
         z-index: 2222222;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-    }
-
-    &__pauseOverlay {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        cursor: none;
-        background: transparent;
+        svg{
+            width: 24rem;
+            height: 24rem;
+            color: $main-white;
+        }
         
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+        &.visible {
+            opacity: 1;
+        }
+        
+        &.hidden {
+            opacity: 0;
         }
     }
+}
+
+.modalOverlay {
+    z-index: 10000 !important;
+    position: initial !important;
+}
+
+.modalContainer{
+    background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.modal {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+}
+
+.modalContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.videoContainer,
+.videoContainerReel {
+    position: relative;
+    overflow: hidden;
+}
+
+.videoContainer {
+    width: 80vw;
+    aspect-ratio: 16/9;
+}
+
+.videoContainerReel {
+    height: 90vh;
+    aspect-ratio: 9/16;
+}
+
+.modalThumbnail {
+    object-fit: cover;
+}
+
+.iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modalPlayButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $foundation;
+    color: $main-white;
+    border: none;
+    border-radius: 50%;
+    width: 80rem;
+    height: 80rem;
+    @include font(14, 600);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+
+    &:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        background: lighten($foundation, 10%);
+    }
+}
+
+.playIcon {
+    font-size: 20rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
 }

@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { useState, useRef, useEffect } from "react";
 import YoutubeThumb from "@/components/YoutubeThumb/YoutubeThumb";
-import ReelThumb from "@/components/ReelThumb/ReelThumb";
 
 const Explain = ({ data }) => {
   const swiperRef = useRef(null);
@@ -82,7 +81,7 @@ const Explain = ({ data }) => {
                 {youtubeVideos.map((item, index) => (
                   <SwiperSlide key={index} className={styles.youtube__slide}>
                     <div className={styles.youtube__video}>
-                      <YoutubeThumb video={item.url} img={item.thumbnail} />
+                      <YoutubeThumb video={item.url} img={item.thumbnail} reel={item.reel} />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -106,7 +105,7 @@ const Explain = ({ data }) => {
                 {reelVideos.map((item, index) => (
                   <SwiperSlide key={index} className={styles.reel__slide}>
                     <div className={styles.video}>
-                      <ReelThumb video={item.url} img={item.thumbnail} />
+                      <YoutubeThumb video={item.url} img={item.thumbnail} reel={item.reel} />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -132,20 +131,13 @@ const Explain = ({ data }) => {
               onSlideChange={handleSlideChange}
             >
               {data.videos.map((item, index) =>
-                item.reel === false ? (
-                  <SwiperSlide key={index} className={styles.slide}>
-                    <div className={styles.video}>
-                      <YoutubeThumb video={item.url} img={item.thumbnail} />
+
+                  <SwiperSlide key={index} className={`${item.reel ? styles.slideReel : styles.slide}`}>
+                    <div className={styles.video} >
+                      <YoutubeThumb video={item.url} img={item.thumbnail} reel={item.reel} />
                     </div>
                   </SwiperSlide>
-                ) : (
-                  <SwiperSlide key={index} className={styles.slideReel}>
-                    <div className={styles.video}>
-                      <ReelThumb video={item.url} img={item.thumbnail} />
-                    </div>
-                  </SwiperSlide>
-                )
-              )}
+                )}
             </Swiper>
             <CustomPagination
               totalSlides={data.length}

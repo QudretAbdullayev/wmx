@@ -143,7 +143,7 @@ const ScrollAnimation = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="g-container mb">
+      <div className={`g-container mb ${styles.container}`}>
         <Banner src={data.banner} />
       </div>
     </section>

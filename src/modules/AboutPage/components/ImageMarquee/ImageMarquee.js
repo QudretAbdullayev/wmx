@@ -51,12 +51,19 @@ function horizontalLoop(items, config) {
   });
 
   gsap.set(items, { x: 0 });
+  
+  // Get the computed gap from CSS
+  const railElement = items[0]?.parentElement;
+  const computedStyle = railElement ? window.getComputedStyle(railElement) : null;
+  const gap = computedStyle ? parseFloat(computedStyle.gap) || 0 : 0;
+  
   totalWidth =
     items[length - 1].offsetLeft +
     (xPercents[length - 1] / 100) * widths[length - 1] -
     startX +
     items[length - 1].offsetWidth *
       gsap.getProperty(items[length - 1], "scaleX") +
+    gap + 
     (parseFloat(config.paddingRight) || 0);
 
   for (i = 0; i < length; i++) {
@@ -136,7 +143,6 @@ export default function ImageMarquee({ images }) {
 
     const tl = horizontalLoop(scrollingImages, {
       repeat: -1,
-      paddingRight: 30,
     });
 
     const observer = Observer.create({

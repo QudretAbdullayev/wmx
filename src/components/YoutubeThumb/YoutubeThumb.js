@@ -1,63 +1,98 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import SafeImage from '@/components/SafeImage/SafeImage';
-import Mouse from '@/components/Mouse/Mouse';
-import styles from './YoutubeThumb.module.scss';
+import { useState, useRef } from "react";
+import { Modal } from "react-responsive-modal";
+import SafeImage from "@/components/SafeImage/SafeImage";
+import Mouse from "@/components/Mouse/Mouse";
+import styles from "./YoutubeThumb.module.scss";
+import "react-responsive-modal/styles.css";
 
-const YoutubeThumb = ({ video, img }) => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [isHovering, setIsHovering] = useState(false);
-    const thumbRef = useRef(null);
+const YoutubeThumb = ({ video, img, reel = false }) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const thumbRef = useRef(null);
 
-    const handlePlay = () => {
-        setIsPlaying(!isPlaying);
-        setIsHovering(false);
-    };
+  const handleThumbnailClick = () => {
+    setIsPopupOpen(true);
+    setIsHovering(false);
+  };
 
-    const handleMouseEnter = () => {
-        setIsHovering(true);
-    };
+  const handlePlayInPopup = () => {
+    setIsPlaying(true);
+  };
 
-    const handleMouseLeave = () => {
-        setIsHovering(false);
-    };
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+    setIsPlaying(false);
+  };
 
-    return (
-        <div 
-            ref={thumbRef}
-            className={styles.thumb} 
-            data-youtube-thumb
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onClick={handlePlay}
-        >
-            {isPlaying ? (
-                <iframe
-                    src={`${video}?autoplay=1&rel=0&showinfo=0`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                />
-            )
-            : (
-                <SafeImage
-                    fill
-                    src={img}
-                    className={styles.thumb__img}
-                    alt="Youtube thumbnail"
-                />
-            )}
+  const handleMouseEnter = () => {
+    if (!isPopupOpen) {
+      setIsHovering(true);
+    }
+  };
 
-            {!isPlaying && !isHovering && (
-                <div className={styles.thumb__playButton}>
-                    PLAY
-                </div>
-            )}
-            {isHovering && <Mouse text={isPlaying ? "PAUSE" : "PLAY"} elementRef={thumbRef} />}
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  return (
+    <>
+      <div
+        ref={thumbRef}
+        className={styles.thumb}
+        data-youtube-thumb
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleThumbnailClick}
+        style={reel ? { aspectRatio: "9/16" } : { aspectRatio: "16/9" }}
+      >
+        <SafeImage
+          fill
+          src={img}
+          className={styles.thumb__img}
+          alt="Youtube thumbnail"
+        />
+
+        <div className={`${styles.thumb__button} ${isHovering ? styles.hidden : styles.visible}`}>PLAY</div>
+        {isHovering && <Mouse text="PLAY" elementRef={thumbRef} />}
+      </div>
+
+      {/* Modal */}
+      <Modal
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        center
+        classNames={{
+          modal: styles.modal,
+          overlay: styles.modalOverlay,
+          modalContainer: styles.modalContainer,
+        }}
+        closeOnOverlayClick={true}
+        closeOnEsc={true}
+        showCloseIcon={false}
+        closeIconSize={30}
+      >
+        <div className={styles.modalContent}>
+          <div
+            className={`${
+              reel ? styles.videoContainerReel : styles.videoContainer
+            }`}
+          >
+            <iframe
+              src={`${video}?autoplay=1&rel=0&showinfo=0`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className={styles.iframe}
+            />
+          </div>
         </div>
-    );
+      </Modal>
+    </>
+  );
 };
 
 export default YoutubeThumb;

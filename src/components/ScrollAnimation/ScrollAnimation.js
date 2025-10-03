@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useCallback } from "react";
 import styles from "./ScrollAnimation.module.scss";
 import Banner from "../Banner/Banner";
 import VideoStatic from "../VideoStatic/VideoStatic";
@@ -10,13 +10,23 @@ const ScrollAnimation = ({ data }) => {
   const videoRef = useRef(null);
   const savedTimeRef = useRef(0);
   const playPromiseRef = useRef(null);
+  const isMouseInHeroRef = useRef(false);
 
-  const handleVideoEnded = () => {
+  const handleVideoEnded = useCallback(async () => {
     savedTimeRef.current = 0;
     if (videoRef.current) {
       videoRef.current.seekTo(0);
+      
+      // Eğer mouse hala hero alanındaysa videoyu tekrar başlat
+      if (isMouseInHeroRef.current) {
+        try {
+          await videoRef.current.play();
+        } catch (error) {
+          console.error('Video restart error:', error);
+        }
+      }
     }
-  };
+  }, []);
 
   const memoizedVideoStatic = useMemo(
     () => (
@@ -29,7 +39,7 @@ const ScrollAnimation = ({ data }) => {
         onEnded={handleVideoEnded}
       />
     ),
-    []
+    [handleVideoEnded]
   );
 
   useEffect(() => {
@@ -39,65 +49,63 @@ const ScrollAnimation = ({ data }) => {
     let targetMouseX = 0;
     let currentOpacity = 0;
     let targetOpacity = 0;
-    let isMouseInHero = false;
 
     const handleMouseMove = (e) => {
-      if (isMouseInHero) {
+      if (isMouseInHeroRef.current) {
         targetMouseX = (e.clientX / window.innerWidth - 0.5) * 800;
       }
     };
 
     const handleMouseEnter = async () => {
-      isMouseInHero = true;
+      isMouseInHeroRef.current = true;
       targetOpacity = 1;
 
       if (playPromiseRef.current) {
         try {
           await playPromiseRef.current;
-        } catch (error) {
-        }
+        } catch (error) {}
       }
 
-      const videoElement = document.querySelector('video');
-      if (videoElement) {
-        videoElement.currentTime = savedTimeRef.current;
-        if (videoElement.paused) {
-          playPromiseRef.current = videoElement.play().catch(error => {
-            // Video play interrupted
-          });
-        }
-      } else if (videoRef.current) {
+      if (videoRef.current) {
         videoRef.current.seekTo(savedTimeRef.current);
         playPromiseRef.current = videoRef.current.play().catch(error => {
-          // Video play interrupted
+          console.error('Video play error:', error);
         });
       }
     };
 
     const handleMouseLeave = async () => {
-      isMouseInHero = false;
+      isMouseInHeroRef.current = false;
       targetOpacity = 0;
       targetMouseX = 0;
 
       if (playPromiseRef.current) {
         try {
           await playPromiseRef.current;
-        } catch (error) {
-        }
+        } catch (error) {}
         playPromiseRef.current = null;
       }
 
-      const videoElement = document.querySelector('video');
-      if (videoElement) {
-        const currentTime = videoElement.currentTime;
-        savedTimeRef.current = currentTime;
-        if (!videoElement.paused) {
-          videoElement.pause();
-        }
-      } else if (videoRef.current) {
+      if (videoRef.current) {
         const currentTime = videoRef.current.currentTime || 0;
         savedTimeRef.current = currentTime;
-        videoRef.current.pause();
+        await videoRef.current.pause();
+      }
+    };
+
+    const checkInitialHover = (e) => {
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        if (
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom
+        ) {
+          isMouseInHeroRef.current = true;
+          targetMouseX = (e.clientX / window.innerWidth - 0.5) * 800;
+          handleMouseEnter();
+        }
       }
     };
 
@@ -119,6 +127,8 @@ const ScrollAnimation = ({ data }) => {
       heroRef.current.addEventListener("mousemove", handleMouseMove);
     }
 
+    document.addEventListener('mousemove', checkInitialHover, { once: true });
+
     animate();
 
     return () => {
@@ -127,8 +137,9 @@ const ScrollAnimation = ({ data }) => {
         heroRef.current.removeEventListener("mouseleave", handleMouseLeave);
         heroRef.current.removeEventListener("mousemove", handleMouseMove);
       }
+      document.removeEventListener('mousemove', checkInitialHover);
     };
-  }, []);
+  }, [handleVideoEnded]);
 
   return (
     <section>

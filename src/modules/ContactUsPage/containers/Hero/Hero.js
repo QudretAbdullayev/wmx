@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import Parenthes from '@/assets/icons/Parenthes'
 import LetsTalk from '../../components/LetsTalk/LetsTalk'
 import styles from './Hero.module.scss'
@@ -6,10 +6,10 @@ import styles from './Hero.module.scss'
 const Hero = ({data}) => {
   const letsTalkRef = useRef(null)
   const hasTriggeredRef = useRef(false)
+  const containerRef = useRef(null)
 
   const handleHeroHover = () => {
     if (letsTalkRef.current) {
-      // Only trigger shuffle once per hover session
       if (!hasTriggeredRef.current) {
         letsTalkRef.current.triggerShuffle()
         hasTriggeredRef.current = true
@@ -21,12 +21,40 @@ const Hero = ({data}) => {
   const handleHeroLeave = () => {
     if (letsTalkRef.current) {
       letsTalkRef.current.setHover(false)
-      hasTriggeredRef.current = false // Reset for next hover session
+      hasTriggeredRef.current = false
     }
   }
 
+  useEffect(() => {
+    const checkInitialHover = (e) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect()
+        if (
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom
+        ) {
+          handleHeroHover()
+        }
+      }
+    }
+
+    // Sayfa yüklendiğinde mouse pozisyonunu kontrol et
+    document.addEventListener('mousemove', checkInitialHover, { once: true })
+
+    return () => {
+      document.removeEventListener('mousemove', checkInitialHover)
+    }
+  }, [])
+
   return (
-    <section className={`g-container mb ${styles.container}`} onMouseEnter={handleHeroHover} onMouseLeave={handleHeroLeave}>
+    <section 
+      ref={containerRef}
+      className={`g-container mb ${styles.container}`} 
+      onMouseEnter={handleHeroHover} 
+      onMouseLeave={handleHeroLeave}
+    >
         <div className={styles.hero}>
           <span className={styles.hero__left}><Parenthes/></span>
           <h1 className={styles.hero__title}>{data.title}</h1>

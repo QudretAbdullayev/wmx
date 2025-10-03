@@ -38,20 +38,19 @@ const Modules = ({ data }) => {
       <SectionTitle title={data.section_title} />
       <div className={`${styles.modules} ml`}>
         {data.course_curriculum.map((course) => (
-          <div key={course.id} className={styles.modules__block}>
+          <div key={course.id} className={styles.modules__block} onClick={() => toggleBlock(course.id)}>
             <div className={styles.modules__header}>
               <div className={styles.modules__label}>
                 {course.block_name}
               </div>
               <button 
                 className={styles.modules__button}
-                onClick={() => toggleBlock(course.id)}
               >
                 {expandedBlocks[course.id] ? <Minus/> : <Plus/>}
               </button>
             </div>
             <h2
-              className={styles.modules__title}
+              className={`${styles.modules__title} ${expandedBlocks[course.id] ? styles.modules__color : ''}`}
             >
               {course.section}
             </h2>

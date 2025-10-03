@@ -44,6 +44,17 @@ const VideoStatic = forwardRef(({
             if (videoRef.current && !videoRef.current.paused) {
                 videoRef.current.pause();
             }
+        },
+        seekTo: (time) => {
+            if (videoRef.current) {
+                videoRef.current.currentTime = time;
+            }
+        },
+        get currentTime() {
+            return videoRef.current ? videoRef.current.currentTime : 0;
+        },
+        get duration() {
+            return videoRef.current ? videoRef.current.duration : 0;
         }
     }));
 
@@ -52,8 +63,6 @@ const VideoStatic = forwardRef(({
             videoRef.current.load();
         }
     }, [src]);
-
-
 
     useEffect(() => {
         const handleActiveChange = async () => {
@@ -93,6 +102,10 @@ const VideoStatic = forwardRef(({
     const handleEnded = () => {
         if (onEnded) {
             onEnded();
+        }
+        // Video bittiğinde başa sar (loop false ise)
+        if (!loop && videoRef.current) {
+            videoRef.current.currentTime = 0;
         }
     };
 

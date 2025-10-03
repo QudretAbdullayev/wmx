@@ -55,6 +55,9 @@
         @include font(20, 400);
         margin: 16rem 20rem 20rem;
     }
+    &__color {
+        color: $foundation;
+    }
 
     &__container {
         display: flex;

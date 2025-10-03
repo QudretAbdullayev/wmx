@@ -8,8 +8,8 @@ export default function ProjectHover({data}) {
   const previewRef = useRef(null);
   const previewImgRef = useRef(null);
   const isInsideRef = useRef(false);
-
-  
+  const currentMousePos = useRef({ x: 0, y: 0 });
+  const animationFrameRef = useRef(null);
 
   const isMouseInsideContainer = (e) => {
     if (!projectsRef.current) return false;
@@ -23,7 +23,20 @@ export default function ProjectHover({data}) {
   };
 
   const moveStuff = useCallback((e) => {
-    const mouseInside = isMouseInsideContainer(e);
+    let clientX, clientY;
+    
+    if (e.type === 'touchmove' && e.touches && e.touches[0]) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else if (e.clientX !== undefined && e.clientY !== undefined) {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    } else {
+      return;
+    }
+    
+    const eventWithCoords = { clientX, clientY };
+    const mouseInside = isMouseInsideContainer(eventWithCoords);
 
     if (mouseInside !== isInsideRef.current) {
       isInsideRef.current = mouseInside;
@@ -39,9 +52,20 @@ export default function ProjectHover({data}) {
 
   const moveProject = (e) => {
     if (!previewRef.current) return;
+    
+    let clientY;
+    
+    if (e.type === 'touchmove' && e.touches && e.touches[0]) {
+      clientY = e.touches[0].clientY;
+    } else if (e.clientY !== undefined) {
+      clientY = e.clientY;
+    } else {
+      return;
+    }
+    
     const previewRect = previewRef.current.getBoundingClientRect();
     const offsetY = previewRect.height / 2;
-    previewRef.current.style.top = e.clientY - offsetY + "px";
+    previewRef.current.style.top = clientY - offsetY + "px";
   };
 
   const moveProjectImg = (projectIndex) => {
@@ -52,9 +76,56 @@ export default function ProjectHover({data}) {
   };
 
   useEffect(() => {
-    window.addEventListener("mousemove", moveStuff);
+    let isTracking = false;
+
+    const updateMousePosition = (e) => {
+      let clientX, clientY;
+      
+      if (e.type === 'touchmove' && e.touches && e.touches[0]) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if (e.clientX !== undefined && e.clientY !== undefined) {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      } else {
+        return;
+      }
+
+      currentMousePos.current = { x: clientX, y: clientY };
+
+      if (!isTracking) {
+        isTracking = true;
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
+        animationFrameRef.current = requestAnimationFrame(() => {
+          moveStuff({ clientX, clientY, type: e.type });
+          isTracking = false;
+        });
+      }
+    };
+
+    const handleWheel = (e) => {
+      if (e.deltaX !== 0 || e.deltaY !== 0) {
+        const clientX = currentMousePos.current.x;
+        const clientY = currentMousePos.current.y;
+        updateMousePosition({ clientX, clientY, type: 'wheel' });
+      }
+    };
+
+    document.addEventListener("mousemove", updateMousePosition, { passive: true });
+    document.addEventListener("pointermove", updateMousePosition, { passive: true });
+    document.addEventListener("touchmove", updateMousePosition, { passive: true });
+    document.addEventListener("wheel", handleWheel, { passive: true });
+    
     return () => {
-      window.removeEventListener("mousemove", moveStuff);
+      document.removeEventListener("mousemove", updateMousePosition);
+      document.removeEventListener("pointermove", updateMousePosition);
+      document.removeEventListener("touchmove", updateMousePosition);
+      document.removeEventListener("wheel", handleWheel);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
   }, [moveStuff]);
 
@@ -78,6 +149,23 @@ export default function ProjectHover({data}) {
             className={styles.project}
             onMouseMove={(e) => {
               moveProject(e);
+              moveProjectImg(index);
+            }}
+            onPointerMove={(e) => {
+              moveProject(e);
+              moveProjectImg(index);
+            }}
+            onTouchMove={(e) => {
+              moveProject(e);
+              moveProjectImg(index);
+            }}
+            onMouseEnter={() => {
+              const fakeEvent = {
+                clientX: currentMousePos.current.x,
+                clientY: currentMousePos.current.y,
+                type: 'mouseenter'
+              };
+              moveProject(fakeEvent);
               moveProjectImg(index);
             }}
           >

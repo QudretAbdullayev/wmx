@@ -12,9 +12,11 @@ const ProgramCard = ({ data }) => {
       data-aos-duration={600}
       data-aos-easing="ease-in-quart"
     >
-      {data.background_image && (
-        <SafeImage src={data.background_image} alt="Background" fill />
-      )}
+      <div className={styles.card__background}>
+        {data.background_image && (
+          <SafeImage src={data.background_image} alt="Background" fill />
+        )}
+      </div>
       <div
         className={`${styles.card__container} ${
           data.lock ? styles.card__lock : ""

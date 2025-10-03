@@ -67,8 +67,9 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
     const dot = new Dot(width / 2, height / 2, 8, 2);
     
     const onMouseMove = (e) => {
-      cursor.x = e.clientX;
-      cursor.y = e.clientY;
+      // Touch ve pointer event'leri için koordinat almayı normalize et
+      cursor.x = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : cursor.x);
+      cursor.y = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : cursor.y);
       mouseMovedOnce = true;
       lastMouseMoveTime = Date.now();
       
@@ -142,6 +143,8 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
       canvas.height = height;
       document.body.appendChild(canvas);
       window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('pointermove', onMouseMove);
+      window.addEventListener('touchmove', onMouseMove, { passive: true });
       window.addEventListener('resize', onWindowResize);
       loop();
     };
@@ -151,6 +154,8 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
       if (hideTimeout) clearTimeout(hideTimeout);
       cancelAnimationFrame(animationFrame);
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('pointermove', onMouseMove);
+      window.removeEventListener('touchmove', onMouseMove);
       window.removeEventListener('resize', onWindowResize);
       canvas = null;
       context = null;

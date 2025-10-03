@@ -26,8 +26,9 @@ const Mouse = ({ text, elementRef }) => {
     }
 
     const handleMouseMove = (event) => {
-      currentMouseX = event.clientX;
-      currentMouseY = event.clientY;
+      // Touch ve pointer event'leri için koordinat almayı normalize et
+      currentMouseX = event.clientX || (event.touches && event.touches[0] ? event.touches[0].clientX : currentMouseX);
+      currentMouseY = event.clientY || (event.touches && event.touches[0] ? event.touches[0].clientY : currentMouseY);
       
       const targetElement = elementRef?.current || bannerRef.current;
       if (targetElement) {
@@ -51,11 +52,15 @@ const Mouse = ({ text, elementRef }) => {
     }
 
     document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('pointermove', handleMouseMove)
+    document.addEventListener('touchmove', handleMouseMove, { passive: true })
     window.addEventListener('scroll', handleScroll, true)
     window.addEventListener('resize', handleResize)
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('pointermove', handleMouseMove)
+      document.removeEventListener('touchmove', handleMouseMove)
       window.removeEventListener('scroll', handleScroll, true)
       window.removeEventListener('resize', handleResize)
     }

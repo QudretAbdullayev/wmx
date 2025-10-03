@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 const TellUs = ({ data }) => {
   return (
     <div className="g-container mb">
-      <ComponentTitle title="Tell us what you think" />
+      <ComponentTitle title={data.section_title} />
       <div
         className="ml"
         data-aos="fade-up"

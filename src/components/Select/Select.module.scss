@@ -1,7 +1,7 @@
 @use '@/assets/styles/abstracts' as *;
 
 .wrapper {
-    width: 413rem;
+    width: 100%;
     position: relative;
 
     .container {
@@ -24,7 +24,7 @@
             color: #AAAAAA;
 
             &.selected {
-                color: $brand-color;
+                color: #AAAAAA;
             }
 
             &.error {
@@ -101,9 +101,7 @@
         }
     }
 
-    @media screen and (max-width: 700rem) {
-        width: 100%;
-
+    @media screen and (max-width: 700px) {
         .dropdown {
             .option {
                 &:hover {

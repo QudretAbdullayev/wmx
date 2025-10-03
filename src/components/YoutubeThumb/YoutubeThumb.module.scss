@@ -3,7 +3,7 @@
 .thumb {
     position: relative;
     cursor: none;
-    
+
     iframe {
         position: absolute;
         top: 0;
@@ -130,11 +130,6 @@
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
-
-    &:hover {
-        transform: translate(-50%, -50%) scale(1.1);
-        background: lighten($foundation, 10%);
-    }
 }
 
 .playIcon {

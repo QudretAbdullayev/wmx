@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, forwardRef, useImperativeHandle } from 'react';
 import styles from './LetsTalk.module.scss';
 import SafeImage from '@/components/SafeImage/SafeImage';
 
-export default function LetsTalk({ effect }) {
+const LetsTalk = forwardRef(function LetsTalk({ effect }, ref) {
   const [animating, setAnimating] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   function getRandomCharacter() {
     const chars =
@@ -46,12 +47,16 @@ export default function LetsTalk({ effect }) {
     }, intervalDuration);
   }
 
+  useImperativeHandle(ref, () => ({
+    triggerShuffle: shuffleAnimation,
+    setHover: setIsHovered
+  }));
+
   return (
     <>
       <div className={styles.container}>
         <div
-          className={styles.item}
-          onMouseEnter={shuffleAnimation}
+          className={`${styles.item} ${isHovered ? styles.item_hovered : ''}`}
         >
           <div className={`${styles.item__word} ${styles.item__word1}`}>{effect.text_left}</div>
           <div className={styles.item__image}>
@@ -66,4 +71,6 @@ export default function LetsTalk({ effect }) {
       </div>
     </>
   );
-}
+});
+
+export default LetsTalk;

@@ -28,7 +28,7 @@ const ContactForm = ({ data }) => {
     });
 
     const onSubmit = (data) => {
-        
+
     };
 
 
@@ -129,8 +129,9 @@ const ContactForm = ({ data }) => {
                         type="text"
                         placeholder={data.form.extra_field.placeholder}
                         className={`${styles.form__input} ${errors.extraField ? styles.form__inputError : ''}`}
+                        disabled={!isLegalEntity}
                         {...register('extraField', {
-                            required: 'This field is required'
+                            required: isLegalEntity ? 'This field is required' : false
                         })}
                     />
                     {errors.extraField && (

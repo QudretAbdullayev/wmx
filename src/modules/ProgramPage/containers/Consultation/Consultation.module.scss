@@ -31,6 +31,8 @@
         align-items: flex-start;
         gap: 24rem;
         width: 414rem;
+        z-index: 2;
+        position: relative;
 
         &__title,
         &__subtitle {
@@ -39,7 +41,7 @@
 
         &__title {
             @include font(32, 450);
-            width: 207rem;
+            
         }
 
         &__subtitle {
@@ -166,6 +168,7 @@
 
             &__title {
                 @include font(20, 400);
+                width: 209rem;
             }
 
             &__subtitle {

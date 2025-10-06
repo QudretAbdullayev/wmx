@@ -168,9 +168,15 @@ export default function Header() {
   useEffect(() => {
     if (isMenuOpen) {
       tl.current.play();
+      document.body.style.overflow = 'hidden';
     } else {
       tl.current.reverse();
+      document.body.style.overflow = 'unset';
     }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [isMenuOpen]);
 
   const [isProgramDropdownOpen, setIsProgramDropdownOpen] = useState(false);

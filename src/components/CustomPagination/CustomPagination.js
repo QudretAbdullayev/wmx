@@ -14,12 +14,12 @@ const CustomPagination = ({
   };
 
   return (
-    <div className={styles.paginationContainer}>
+    <div className={styles.container}>
       <div className={styles.pagination}>
         {Array.from({ length: totalSlides }, (_, index) => (
           <div
             key={index}
-            className={`${styles.frame} ${activeSlide === index ? styles.activeFrame : styles.inactiveFrame}`}
+            className={`${styles.pagination__frame} ${activeSlide === index ? styles.pagination__active : styles.pagination__inactive}`}
             onClick={() => handlePaginationClick(index)}
           />
         ))}

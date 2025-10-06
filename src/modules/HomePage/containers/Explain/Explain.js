@@ -140,7 +140,7 @@ const Explain = ({ data }) => {
                 )}
             </Swiper>
             <CustomPagination
-              totalSlides={data.length}
+              totalSlides={data.videos.length}
               activeSlide={activeSlide}
               onSlideChange={handlePaginationClick}
             />

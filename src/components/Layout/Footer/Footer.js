@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useLocale } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import SafeImage from "@/components/SafeImage/SafeImage";
 import styles from "./Footer.module.scss";
 import SafeLink from "@/components/SafeLink/SafeLink";
@@ -9,6 +11,9 @@ import HoverText from "@/components/HoverText/HoverText";
 
 const Footer = () => {
   const [currentTime, setCurrentTime] = useState("");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const updateTime = () => {
@@ -17,7 +22,7 @@ const Footer = () => {
         timeZone: "Asia/Baku",
         hour: "2-digit",
         minute: "2-digit",
-        hour12: true
+        hour12: locale !== 'az'
       });
       setCurrentTime(bakuTime);
     };
@@ -26,7 +31,7 @@ const Footer = () => {
     const interval = setInterval(updateTime, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [locale]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -47,6 +52,11 @@ const Footer = () => {
     } else {
       window.location.href = '/#tell-us-section';
     }
+  };
+
+  const handleLanguageChange = (e) => {
+    const newLocale = e.target.value;
+    router.push(pathname, { locale: newLocale });
   };
 
   return (
@@ -187,7 +197,11 @@ const Footer = () => {
                 </div>
               </div>
               <div className={styles.lang}>
-                <select className={styles.lang__select}>
+                <select 
+                  className={styles.lang__select}
+                  value={locale}
+                  onChange={handleLanguageChange}
+                >
                   <option value="en">EN</option>
                   <option value="az">AZ</option>
                 </select>

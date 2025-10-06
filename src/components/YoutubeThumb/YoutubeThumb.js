@@ -66,18 +66,18 @@ const YoutubeThumb = ({ video, img, reel = false }) => {
         center
         classNames={{
           modal: styles.modal,
-          overlay: styles.modalOverlay,
-          modalContainer: styles.modalContainer,
+          overlay: styles.overlay,
+          modalContainer: styles.container,
         }}
         closeOnOverlayClick={true}
         closeOnEsc={true}
         showCloseIcon={false}
         closeIconSize={30}
       >
-        <div className={styles.modalContent}>
+        <div className={styles.content}>
           <div
             className={`${
-              reel ? styles.videoContainerReel : styles.videoContainer
+              reel ? styles.content__reel : styles.content__youtube
             }`}
           >
             <iframe
@@ -86,7 +86,7 @@ const YoutubeThumb = ({ video, img, reel = false }) => {
               frameBorder="0"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-              className={styles.iframe}
+              className={styles.content__iframe}
             />
           </div>
         </div>

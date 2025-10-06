@@ -70,8 +70,15 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
       cursor.y = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : cursor.y);
       mouseMovedOnce = true;
       lastMouseMoveTime = Date.now();
+
+      const clientX = cursor.x;
+      const clientY = cursor.y;
+
+      if (!isFinite(clientX) || !isFinite(clientY)) {
+        return;
+      }
       
-      const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
+      const elementUnderMouse = document.elementFromPoint(clientX, clientY);
       const isOverInteractive = elementUnderMouse && (
         elementUnderMouse.tagName === 'A' || 
         elementUnderMouse.closest('a') ||

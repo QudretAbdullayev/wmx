@@ -36,11 +36,6 @@ const Hero = ({ data }) => {
             rafRef.current = null
         }
 
-        if (currentSlide >= data.sliders.length - 1) {
-            setProgress(100)
-            return
-        }
-
         startRef.current = performance.now()
         setProgress(0)
 
@@ -57,7 +52,8 @@ const Hero = ({ data }) => {
                 }
 
                 if (pct >= 100) {
-                    setCurrentSlide((s) => Math.min(s + 1, data.sliders.length - 1))
+                    // Son slide'daysa başa dön, değilse bir sonrakine geç
+                    setCurrentSlide((s) => s >= data.sliders.length - 1 ? 0 : s + 1)
                     return
                 }
             }
@@ -144,10 +140,9 @@ const Hero = ({ data }) => {
                         <div className={styles.pagination__track}>
                             {data.sliders.map((_, index) => {
 
-                                const isCompleted =
-                                    index <= currentSlide
+                                const isCompleted = index <= currentSlide
 
-                                const isActive = index === currentSlide && !isCompleted
+                                const isActive = index === currentSlide
 
                                 return (
                                     <div key={index} className={styles.pagination__item}>
@@ -163,7 +158,7 @@ const Hero = ({ data }) => {
                                                 <div
                                                     className={`${styles.pagination__container__line} ${index < currentSlide ? styles.pagination__container__completed : styles.pagination__container__inactive}`}
                                                 />
-                                                {index === currentSlide && currentSlide < data.sliders.length - 1 && (
+                                                {index === currentSlide && (
                                                     <div
                                                         className={styles.pagination__container__progress}
                                                         style={{ height: `${progress}%` }}

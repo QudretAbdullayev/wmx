@@ -11,32 +11,19 @@ export default function ProjectHover({data}) {
   const currentMousePos = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef(null);
 
-  const isMouseInsideContainer = (e) => {
+  const isMouseInsideContainer = (x, y) => {
     if (!projectsRef.current) return false;
     const containerRect = projectsRef.current.getBoundingClientRect();
     return (
-      e.clientX >= containerRect.left &&
-      e.clientX <= containerRect.right &&
-      e.clientY >= containerRect.top &&
-      e.clientY <= containerRect.bottom
+      x >= containerRect.left &&
+      x <= containerRect.right &&
+      y >= containerRect.top &&
+      y <= containerRect.bottom
     );
   };
 
-  const moveStuff = useCallback((e) => {
-    let clientX, clientY;
-    
-    if (e.type === 'touchmove' && e.touches && e.touches[0]) {
-      clientX = e.touches[0].clientX;
-      clientY = e.touches[0].clientY;
-    } else if (e.clientX !== undefined && e.clientY !== undefined) {
-      clientX = e.clientX;
-      clientY = e.clientY;
-    } else {
-      return;
-    }
-    
-    const eventWithCoords = { clientX, clientY };
-    const mouseInside = isMouseInsideContainer(eventWithCoords);
+  const moveStuff = useCallback((clientX, clientY) => {
+    const mouseInside = isMouseInsideContainer(clientX, clientY);
 
     if (mouseInside !== isInsideRef.current) {
       isInsideRef.current = mouseInside;
@@ -50,18 +37,8 @@ export default function ProjectHover({data}) {
     }
   }, []);
 
-  const moveProject = (e) => {
+  const moveProject = (clientY) => {
     if (!previewRef.current) return;
-    
-    let clientY;
-    
-    if (e.type === 'touchmove' && e.touches && e.touches[0]) {
-      clientY = e.touches[0].clientY;
-    } else if (e.clientY !== undefined) {
-      clientY = e.clientY;
-    } else {
-      return;
-    }
     
     const previewRect = previewRef.current.getBoundingClientRect();
     const offsetY = previewRect.height / 2;
@@ -81,7 +58,7 @@ export default function ProjectHover({data}) {
     const updateMousePosition = (e) => {
       let clientX, clientY;
       
-      if (e.type === 'touchmove' && e.touches && e.touches[0]) {
+      if (e.touches && e.touches[0]) {
         clientX = e.touches[0].clientX;
         clientY = e.touches[0].clientY;
       } else if (e.clientX !== undefined && e.clientY !== undefined) {
@@ -99,7 +76,7 @@ export default function ProjectHover({data}) {
           cancelAnimationFrame(animationFrameRef.current);
         }
         animationFrameRef.current = requestAnimationFrame(() => {
-          moveStuff({ clientX, clientY, type: e.type });
+          moveStuff(clientX, clientY);
           isTracking = false;
         });
       }
@@ -109,18 +86,16 @@ export default function ProjectHover({data}) {
       if (e.deltaX !== 0 || e.deltaY !== 0) {
         const clientX = currentMousePos.current.x;
         const clientY = currentMousePos.current.y;
-        updateMousePosition({ clientX, clientY, type: 'wheel' });
+        moveStuff(clientX, clientY);
       }
     };
 
     document.addEventListener("mousemove", updateMousePosition, { passive: true });
-    document.addEventListener("pointermove", updateMousePosition, { passive: true });
     document.addEventListener("touchmove", updateMousePosition, { passive: true });
     document.addEventListener("wheel", handleWheel, { passive: true });
     
     return () => {
       document.removeEventListener("mousemove", updateMousePosition);
-      document.removeEventListener("pointermove", updateMousePosition);
       document.removeEventListener("touchmove", updateMousePosition);
       document.removeEventListener("wheel", handleWheel);
       if (animationFrameRef.current) {
@@ -128,6 +103,21 @@ export default function ProjectHover({data}) {
       }
     };
   }, [moveStuff]);
+
+  const handleInteraction = (e, index) => {
+    let clientY;
+    
+    if (e.touches && e.touches[0]) {
+      clientY = e.touches[0].clientY;
+    } else if (e.clientY !== undefined) {
+      clientY = e.clientY;
+    } else {
+      return;
+    }
+    
+    moveProject(clientY);
+    moveProjectImg(index);
+  };
 
   return (
     <section className={styles.container}>
@@ -147,27 +137,13 @@ export default function ProjectHover({data}) {
           <div
             key={index}
             className={styles.project}
-            onMouseMove={(e) => {
-              moveProject(e);
-              moveProjectImg(index);
-            }}
-            onPointerMove={(e) => {
-              moveProject(e);
-              moveProjectImg(index);
-            }}
-            onTouchMove={(e) => {
-              moveProject(e);
-              moveProjectImg(index);
-            }}
+            onMouseMove={(e) => handleInteraction(e, index)}
+            onTouchMove={(e) => handleInteraction(e, index)}
             onMouseEnter={() => {
-              const fakeEvent = {
-                clientX: currentMousePos.current.x,
-                clientY: currentMousePos.current.y,
-                type: 'mouseenter'
-              };
-              moveProject(fakeEvent);
+              moveProject(currentMousePos.current.y);
               moveProjectImg(index);
             }}
+            onTouchStart={(e) => handleInteraction(e, index)}
           >
             <div className={styles.project__texts}>
               <div className={styles.project__text}>

@@ -10,9 +10,22 @@ export default function ProjectHover({data}) {
   const isInsideRef = useRef(false);
   const currentMousePos = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  // Ekran boyutunu kontrol et
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 700);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const isMouseInsideContainer = (x, y) => {
-    if (!projectsRef.current) return false;
+    if (!projectsRef.current || !isDesktop) return false;
     const containerRect = projectsRef.current.getBoundingClientRect();
     return (
       x >= containerRect.left &&
@@ -23,8 +36,7 @@ export default function ProjectHover({data}) {
   };
 
   const moveStuff = useCallback((clientX, clientY) => {
-    // 700px'den küçük ekranlarda çalışmayı durdur
-    if (window.innerWidth < 700) return;
+    if (!isDesktop) return;
     
     const mouseInside = isMouseInsideContainer(clientX, clientY);
 
@@ -38,12 +50,10 @@ export default function ProjectHover({data}) {
         }
       }
     }
-  }, []);
+  }, [isDesktop]);
 
   const moveProject = (clientY) => {
-    // 700px'den küçük ekranlarda çalışmayı durdur
-    if (window.innerWidth < 700) return;
-    if (!previewRef.current) return;
+    if (!isDesktop || !previewRef.current) return;
     
     const previewRect = previewRef.current.getBoundingClientRect();
     const offsetY = previewRect.height / 2;
@@ -51,21 +61,18 @@ export default function ProjectHover({data}) {
   };
 
   const moveProjectImg = (projectIndex) => {
-    // 700px'den küçük ekranlarda çalışmayı durdur
-    if (window.innerWidth < 700) return;
-    if (!previewImgRef.current) return;
+    if (!isDesktop || !previewImgRef.current) return;
     const translateY = projectIndex * -220;
     previewImgRef.current.style.transform = `translateY(${translateY}rem)`;
     previewImgRef.current.style.transition = "transform 0.4s ease";
   };
 
   useEffect(() => {
+    if (!isDesktop) return; // Desktop değilse event listener'ları ekleme
+    
     let isTracking = false;
 
     const updateMousePosition = (e) => {
-      // 700px'den küçük ekranlarda event listener'ları devre dışı bırak
-      if (window.innerWidth < 700) return;
-      
       let clientX, clientY;
       
       if (e.touches && e.touches[0]) {
@@ -93,7 +100,6 @@ export default function ProjectHover({data}) {
     };
 
     const handleWheel = (e) => {
-      if (window.innerWidth < 700) return;
       if (e.deltaX !== 0 || e.deltaY !== 0) {
         const clientX = currentMousePos.current.x;
         const clientY = currentMousePos.current.y;
@@ -113,11 +119,10 @@ export default function ProjectHover({data}) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [moveStuff]);
+  }, [moveStuff, isDesktop]);
 
   const handleInteraction = (e, index) => {
-    // 700px'den küçük ekranlarda çalışmayı durdur
-    if (window.innerWidth < 700) return;
+    if (!isDesktop) return;
     
     let clientY;
     
@@ -135,31 +140,31 @@ export default function ProjectHover({data}) {
 
   return (
     <section className={styles.container}>
-      <div className={styles.preview} ref={previewRef}>
-        <div className={styles.preview__image}>
-          <div className={styles.preview__image__container} ref={previewImgRef}>
-            {data.map((project, index) => (
-              <div key={index} className={styles.preview__image__single}>
-                <SafeImage src={project.image_desktop} alt={project.title} fill />
-              </div>
-            ))}
+      {isDesktop && (
+        <div className={styles.preview} ref={previewRef}>
+          <div className={styles.preview__image}>
+            <div className={styles.preview__image__container} ref={previewImgRef}>
+              {data.map((project, index) => (
+                <div key={index} className={styles.preview__image__single}>
+                  <SafeImage src={project.image_desktop} alt={project.title} fill />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div className={styles.projects} ref={projectsRef}>
         {data.map((project, index) => (
           <div
             key={index}
             className={styles.project}
-            onMouseMove={(e) => handleInteraction(e, index)}
-            onTouchMove={(e) => handleInteraction(e, index)}
-            onMouseEnter={() => {
-              if (window.innerWidth >= 700) {
-                moveProject(currentMousePos.current.y);
-                moveProjectImg(index);
-              }
-            }}
-            onTouchStart={(e) => handleInteraction(e, index)}
+            onMouseMove={isDesktop ? (e) => handleInteraction(e, index) : undefined}
+            onTouchMove={isDesktop ? (e) => handleInteraction(e, index) : undefined}
+            onMouseEnter={isDesktop ? () => {
+              moveProject(currentMousePos.current.y);
+              moveProjectImg(index);
+            } : undefined}
+            onTouchStart={isDesktop ? (e) => handleInteraction(e, index) : undefined}
           >
             <div className={styles.project__texts}>
               <div className={styles.project__text}>

@@ -2,6 +2,7 @@
 
 .explain {
     position: relative;
+
     .title {
         @include font(32, 400);
         color: $brand-color;
@@ -11,26 +12,36 @@
     }
 
     .slider {
-        margin: 0 -80rem 100rem;
+        margin: 0 -80rem 0;
         position: relative;
     }
 
     .slide {
         width: 955rem !important;
         height: 537rem !important;
-        border-radius: 32rem;
-        overflow: hidden;
+        margin-top: 100rem;
+        margin-bottom: 100rem;
         position: relative;
         margin-right: 20rem !important;
+        img {
+            border-radius: 32rem;
+            height: 537rem !important;
+        }
     }
 
     .slideReel {
         width: 336rem !important;
         height: 537rem !important;
-        border-radius: 32rem;
-        overflow: hidden;
+        margin-top: 100rem;
+        margin-bottom: 100rem;
         position: relative;
         margin-right: 20rem !important;
+
+        img {
+            border-radius: 32rem;
+            overflow: hidden;
+            height: 537rem !important;
+        }
     }
 
     .swiper {

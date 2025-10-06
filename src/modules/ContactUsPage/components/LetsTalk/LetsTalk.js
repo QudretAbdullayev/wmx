@@ -17,6 +17,8 @@ const LetsTalk = forwardRef(function LetsTalk({ effect }, ref) {
   function shuffleAnimation() {
     if (animating) return;
 
+    if (window.innerWidth <= 700) return;
+
     setAnimating(true);
 
     const words = document.querySelectorAll(`.${styles.item__word}`);

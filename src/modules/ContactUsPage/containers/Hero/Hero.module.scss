@@ -26,5 +26,11 @@
         h1{
             @include font(20, 400);
         }
+        &__left, &__right{
+        svg{
+            width: 10rem;
+            height: 50rem;
+        }
+    }
     }
 }

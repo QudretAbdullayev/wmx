@@ -23,6 +23,9 @@ export default function ProjectHover({data}) {
   };
 
   const moveStuff = useCallback((clientX, clientY) => {
+    // 700px'den küçük ekranlarda çalışmayı durdur
+    if (window.innerWidth < 700) return;
+    
     const mouseInside = isMouseInsideContainer(clientX, clientY);
 
     if (mouseInside !== isInsideRef.current) {
@@ -38,6 +41,8 @@ export default function ProjectHover({data}) {
   }, []);
 
   const moveProject = (clientY) => {
+    // 700px'den küçük ekranlarda çalışmayı durdur
+    if (window.innerWidth < 700) return;
     if (!previewRef.current) return;
     
     const previewRect = previewRef.current.getBoundingClientRect();
@@ -46,6 +51,8 @@ export default function ProjectHover({data}) {
   };
 
   const moveProjectImg = (projectIndex) => {
+    // 700px'den küçük ekranlarda çalışmayı durdur
+    if (window.innerWidth < 700) return;
     if (!previewImgRef.current) return;
     const translateY = projectIndex * -220;
     previewImgRef.current.style.transform = `translateY(${translateY}rem)`;
@@ -56,6 +63,9 @@ export default function ProjectHover({data}) {
     let isTracking = false;
 
     const updateMousePosition = (e) => {
+      // 700px'den küçük ekranlarda event listener'ları devre dışı bırak
+      if (window.innerWidth < 700) return;
+      
       let clientX, clientY;
       
       if (e.touches && e.touches[0]) {
@@ -83,6 +93,7 @@ export default function ProjectHover({data}) {
     };
 
     const handleWheel = (e) => {
+      if (window.innerWidth < 700) return;
       if (e.deltaX !== 0 || e.deltaY !== 0) {
         const clientX = currentMousePos.current.x;
         const clientY = currentMousePos.current.y;
@@ -105,6 +116,9 @@ export default function ProjectHover({data}) {
   }, [moveStuff]);
 
   const handleInteraction = (e, index) => {
+    // 700px'den küçük ekranlarda çalışmayı durdur
+    if (window.innerWidth < 700) return;
+    
     let clientY;
     
     if (e.touches && e.touches[0]) {
@@ -140,8 +154,10 @@ export default function ProjectHover({data}) {
             onMouseMove={(e) => handleInteraction(e, index)}
             onTouchMove={(e) => handleInteraction(e, index)}
             onMouseEnter={() => {
-              moveProject(currentMousePos.current.y);
-              moveProjectImg(index);
+              if (window.innerWidth >= 700) {
+                moveProject(currentMousePos.current.y);
+                moveProjectImg(index);
+              }
             }}
             onTouchStart={(e) => handleInteraction(e, index)}
           >

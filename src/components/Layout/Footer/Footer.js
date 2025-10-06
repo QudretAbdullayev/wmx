@@ -224,7 +224,7 @@ const Footer = () => {
               Baku, Azerbaijan {currentTime}
             </span>
             <span className={styles.bottom__copyright}>
-              © 2025 XSchool. All rights reserved.
+              Designed & Developed by Wemark
             </span>
           </div>
         </div>

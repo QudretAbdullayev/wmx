@@ -4,7 +4,7 @@ import ContactForm from "@/components/ContactForm/ContactForm";
 
 const TellUs = ({ data }) => {
   return (
-    <div className="g-container mb">
+    <div id="tell-us-section" className="g-container mb">
       <ComponentTitle title={data.section_title} />
       <div
         className="ml"

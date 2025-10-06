@@ -22,7 +22,6 @@ const Founder = ({ data }) => {
 
     if (!founder || !description || !section) return;
 
-    // Create timeline for animations
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -32,14 +31,12 @@ const Founder = ({ data }) => {
       }
     });
 
-    // Animate founder from left
     tl.to(founder, {
       x: 0,
       opacity: 1,
       duration: 0.8,
       ease: "power2.out"
     })
-    // Animate description from right (slightly delayed)
     .to(description, {
       x: 0,
       opacity: 1,

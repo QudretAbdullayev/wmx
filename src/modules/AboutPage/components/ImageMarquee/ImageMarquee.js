@@ -12,7 +12,6 @@ function horizontalLoop(items, config) {
   items = gsap.utils.toArray(items);
   config = config || {};
   
-  // Return empty timeline if no items
   if (!items.length) {
     return gsap.timeline();
   }
@@ -52,7 +51,6 @@ function horizontalLoop(items, config) {
 
   gsap.set(items, { x: 0 });
   
-  // Get the computed gap from CSS
   const railElement = items[0]?.parentElement;
   const computedStyle = railElement ? window.getComputedStyle(railElement) : null;
   const gap = computedStyle ? parseFloat(computedStyle.gap) || 0 : 0;

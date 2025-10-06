@@ -4,8 +4,6 @@
     &__detail {
         display: flex;
         justify-content: space-between;
-        
-        // Initial animation states
         .founderContainer {
             transform: translateX(-100px);
             opacity: 0;

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,6 +15,20 @@ import FAQ from "./containers/FAQ/FAQ";
 import Hero from "./containers/Hero/Hero";
 
 const HomePage = ({data}) => {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#tell-us-section') {
+      setTimeout(() => {
+        const element = document.getElementById('tell-us-section');
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    }
+  }, []);
   return (
     <>
       <Hero data={data.hero}/>

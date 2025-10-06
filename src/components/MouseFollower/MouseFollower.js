@@ -46,7 +46,6 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
           this.scale = Math.min(1, this.scale + 0.1); 
         }
         
-        // Only draw the dot if not hovering over banner
         if (this.scale > 0 && !isHoveringBanner) {
           context.fillStyle = color;
           context.beginPath();
@@ -67,7 +66,6 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
     const dot = new Dot(width / 2, height / 2, 8, 2);
     
     const onMouseMove = (e) => {
-      // Touch ve pointer event'leri için koordinat almayı normalize et
       cursor.x = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : cursor.x);
       cursor.y = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : cursor.y);
       mouseMovedOnce = true;
@@ -87,7 +85,6 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
         window.getComputedStyle(elementUnderMouse).cursor === 'pointer'
       );
       
-      // Check if hovering over banner or youtube thumb
       const isOverBanner = elementUnderMouse && (
         elementUnderMouse.hasAttribute('data-banner') ||
         elementUnderMouse.closest('[data-banner]')

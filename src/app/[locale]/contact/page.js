@@ -93,7 +93,7 @@ export default async function Page({ params }) {
       image: "/images/direct-contact-information.png",
       address_name: "Address",
       address_value:
-        "1455 Ocean View Drive, Los Angeles, CA 90049 United States of America",
+        "1455 Ocean View Drive, Los Angeles, CA 90049United States of America",
       phone_name: "Phone",
       phone_value: "+ 994 50 791 32 79",
       contact_name: "Contact",
@@ -103,9 +103,9 @@ export default async function Page({ params }) {
     },
     map: {
       section_title: "Map",
-      latitude: 40.712776,
-      longitude: -74.005974,
-      zoom: 12,
+      latitude: 40.3509772,
+      longitude: 49.7499931,
+      zoom: 14,
     },
     faq: {
       section_title: "Frequently Asked Questions",

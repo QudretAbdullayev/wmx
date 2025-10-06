@@ -27,11 +27,26 @@ const Footer = () => {
 
     return () => clearInterval(interval);
   }, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+  };
+
+  const handleConsultationClick = (e) => {
+    e.preventDefault();
+    const element = document.getElementById('tell-us-section');
+    
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      window.location.href = '/#tell-us-section';
+    }
   };
 
   return (
@@ -60,7 +75,8 @@ const Footer = () => {
               <HoverText
                 text="Consultation"
                 as="a"
-                href="/"
+                href="#tell-us-section"
+                onClick={handleConsultationClick}
                 className={styles.button}
               />
             </div>

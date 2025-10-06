@@ -182,7 +182,6 @@ const Consultation = ({ data }) => {
                     lastIndex = match.index + match[0].length;
                   }
                   
-                  // Add remaining text after the last placeholder
                   if (lastIndex < text.length) {
                     parts.push(text.substring(lastIndex));
                   }

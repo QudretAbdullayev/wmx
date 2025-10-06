@@ -55,7 +55,7 @@ const headerData = {
     ],
     cta_button: {
       label: "Consultation",
-      href: "/consultation",
+      href: "#tell-us-section",
     },
     mobile_menu: {
       open_text: "Menu",
@@ -118,6 +118,20 @@ const headerData = {
 export default function Header() {
   const container = useRef();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleConsultationClick = (e) => {
+    e.preventDefault();
+    const element = document.getElementById('tell-us-section');
+    
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      window.location.href = '/#tell-us-section';
+    }
+  };
 
   const tl = useRef();
   const mobileDropdownTls = useRef({});
@@ -342,6 +356,7 @@ export default function Header() {
           text={headerData.navigation.cta_button.label}
           as="a"
           href={headerData.navigation.cta_button.href}
+          onClick={handleConsultationClick}
           className={styles.nav__cta}
         />
       </nav>

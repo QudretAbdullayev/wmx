@@ -26,7 +26,6 @@ const Mouse = ({ text, elementRef }) => {
     }
 
     const handleMouseMove = (event) => {
-      // Touch ve pointer event'leri için koordinat almayı normalize et
       currentMouseX = event.clientX || (event.touches && event.touches[0] ? event.touches[0].clientX : currentMouseX);
       currentMouseY = event.clientY || (event.touches && event.touches[0] ? event.touches[0].clientY : currentMouseY);
       

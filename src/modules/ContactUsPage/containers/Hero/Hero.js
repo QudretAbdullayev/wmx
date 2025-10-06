@@ -40,7 +40,6 @@ const Hero = ({data}) => {
       }
     }
 
-    // Sayfa yüklendiğinde mouse pozisyonunu kontrol et
     document.addEventListener('mousemove', checkInitialHover, { once: true })
 
     return () => {

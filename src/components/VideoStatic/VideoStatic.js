@@ -21,12 +21,10 @@ const VideoStatic = forwardRef(({
                     try {
                         await playPromiseRef.current;
                     } catch (error) {
-                        // Previous play interrupted
                     }
                 }
                 
                 playPromiseRef.current = videoRef.current.play().catch(error => {
-                    // Video play interrupted
                 });
                 return playPromiseRef.current;
             }
@@ -36,7 +34,6 @@ const VideoStatic = forwardRef(({
                 try {
                     await playPromiseRef.current;
                 } catch (error) {
-                    // Play was interrupted
                 }
                 playPromiseRef.current = null;
             }
@@ -67,25 +64,20 @@ const VideoStatic = forwardRef(({
     useEffect(() => {
         const handleActiveChange = async () => {
             if (isActive && videoRef.current && videoRef.current.paused) {
-                // Wait for any pending play operation
                 if (playPromiseRef.current) {
                     try {
                         await playPromiseRef.current;
                     } catch (error) {
-                        // Previous play was interrupted
                     }
                 }
                 
                 playPromiseRef.current = videoRef.current.play().catch(error => {
-                    // Video play interrupted
                 });
             } else if (!isActive && videoRef.current) {
-                // Wait for any pending play operation before pausing
                 if (playPromiseRef.current) {
                     try {
                         await playPromiseRef.current;
                     } catch (error) {
-                        // Play was interrupted
                     }
                     playPromiseRef.current = null;
                 }
@@ -103,7 +95,6 @@ const VideoStatic = forwardRef(({
         if (onEnded) {
             onEnded();
         }
-        // Video bittiğinde başa sar (loop false ise)
         if (!loop && videoRef.current) {
             videoRef.current.currentTime = 0;
         }

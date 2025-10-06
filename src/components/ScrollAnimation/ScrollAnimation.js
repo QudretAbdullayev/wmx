@@ -17,7 +17,6 @@ const ScrollAnimation = ({ data }) => {
     if (videoRef.current) {
       videoRef.current.seekTo(0);
       
-      // Eğer mouse hala hero alanındaysa videoyu tekrar başlat
       if (isMouseInHeroRef.current) {
         try {
           await videoRef.current.play();

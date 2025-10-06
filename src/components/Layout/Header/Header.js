@@ -175,6 +175,7 @@ export default function Header() {
 
   const [isProgramDropdownOpen, setIsProgramDropdownOpen] = useState(false);
   const [mobileDropdownStates, setMobileDropdownStates] = useState({});
+  const [mobileDropdownAnimating, setMobileDropdownAnimating] = useState({});
   const dropdownRef = useRef(null);
 
   const handleProgramClick = () => {
@@ -216,6 +217,8 @@ export default function Header() {
           return 0;
         };
         
+        const targetHeight = getMobileDropdownHeight();
+        
         mobileDropdownTls.current[index] = gsap.timeline({ paused: true })
           .to(arrowSelector, {
             rotation: 0,
@@ -223,7 +226,7 @@ export default function Header() {
             ease: headerData.animations.arrow_ease
           })
           .to(dropdownSelector, {
-            height: () => getMobileDropdownHeight(),
+            height: targetHeight,
             duration: headerData.animations.dropdown_duration,
             ease: headerData.animations.dropdown_ease
           }, "-=0.1");
@@ -233,10 +236,28 @@ export default function Header() {
 
   const animateMobileDropdown = (index, isOpen) => {
     if (mobileDropdownTls.current[index]) {
+      const tl = mobileDropdownTls.current[index];
+      
+      // Animasyon durumunu güncelle
+      setMobileDropdownAnimating(prev => ({
+        ...prev,
+        [index]: true
+      }));
+      
       if (isOpen) {
-        mobileDropdownTls.current[index].play();
+        tl.timeScale(1).play().eventCallback('onComplete', () => {
+          setMobileDropdownAnimating(prev => ({
+            ...prev,
+            [index]: false
+          }));
+        });
       } else {
-        mobileDropdownTls.current[index].reverse();
+        tl.timeScale(1).reverse().eventCallback('onReverseComplete', () => {
+          setMobileDropdownAnimating(prev => ({
+            ...prev,
+            [index]: false
+          }));
+        });
       }
     }
   };
@@ -385,7 +406,7 @@ export default function Header() {
                       <div
                         data-mobile-dropdown={index}
                         className={`${styles.overlay__link__dropdown} ${
-                          mobileDropdownStates[index]
+                          (mobileDropdownStates[index] || mobileDropdownAnimating[index])
                             ? styles.overlay__link__open
                             : ""
                         }`}

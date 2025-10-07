@@ -100,7 +100,6 @@ const ContactForm = ({ data }) => {
                 if (lastIndex < text.length) {
                   parts.push(text.substring(lastIndex));
                 }
-
                 return parts;
               })()}
             </p>

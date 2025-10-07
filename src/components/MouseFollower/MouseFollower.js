@@ -15,6 +15,7 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
     let hideTimeout;
     let isHoveringInteractive = false;
     let isHoveringBanner = false;
+    let isHoveringPhoneCountry = false;
     let targetSize = 1;
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
@@ -46,7 +47,7 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
           this.scale = Math.min(1, this.scale + 0.1); 
         }
         
-        if (this.scale > 0 && !isHoveringBanner) {
+        if (this.scale > 0 && !isHoveringBanner && !isHoveringPhoneCountry) {
           context.fillStyle = color;
           context.beginPath();
           const currentWidth = this.width * this.sizeMultiplier;
@@ -102,9 +103,21 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
         elementUnderMouse.closest('[data-youtube-thumb]')
       );
       
+      const isOverPhoneCountry = elementUnderMouse && (
+        (elementUnderMouse.classList && elementUnderMouse.classList.contains('PhoneInputCountry')) ||
+        elementUnderMouse.closest && elementUnderMouse.closest('.PhoneInputCountry')
+      );
+      
       isHoveringInteractive = isOverInteractive;
       isHoveringBanner = isOverBanner || isOverYoutubeThumb;
+      isHoveringPhoneCountry = Boolean(isOverPhoneCountry);
       targetSize = isOverInteractive ? 2.5 : 1;
+
+      if (isHoveringPhoneCountry) {
+        document.body.style.cursor = 'grab';
+      } else if (document.body.style.cursor === 'grab') {
+        document.body.style.cursor = '';
+      }
     };
     
     const onWindowResize = () => {
@@ -163,6 +176,12 @@ const FollowCursor = ({ color = '#6ef7fb' }) => {
       window.removeEventListener('resize', onWindowResize);
       canvas = null;
       context = null;
+      // reset body cursor if we changed it
+      if (document && document.body) {
+        if (document.body.style && document.body.style.cursor === 'grab') {
+          document.body.style.cursor = '';
+        }
+      }
     };
     
     prefersReducedMotion.onchange = () => {

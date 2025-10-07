@@ -277,6 +277,10 @@
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-tap-highlight-color: transparent;
 
             &__links {
                 display: flex;
@@ -287,6 +291,8 @@
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
+                -webkit-touch-callout: none;
+                -webkit-tap-highlight-color: transparent;
             }
 
             &__link {
@@ -296,6 +302,8 @@
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
+                -webkit-touch-callout: none;
+                -webkit-tap-highlight-color: transparent;
 
                 &__holder {
                     position: relative;
@@ -303,6 +311,8 @@
                     -webkit-user-select: none;
                     -moz-user-select: none;
                     -ms-user-select: none;
+                    -webkit-touch-callout: none;
+                    -webkit-tap-highlight-color: transparent;
                 }
 
                 &__name {
@@ -315,6 +325,8 @@
                     -webkit-user-select: none;
                     -moz-user-select: none;
                     -ms-user-select: none;
+                    -webkit-touch-callout: none;
+                    -webkit-tap-highlight-color: transparent;
 
                     svg {
                         width: 21rem;
@@ -335,6 +347,8 @@
                     -webkit-user-select: none;
                     -moz-user-select: none;
                     -ms-user-select: none;
+                    -webkit-touch-callout: none;
+                    -webkit-tap-highlight-color: transparent;
                 }
 
                 &__open {
@@ -345,6 +359,8 @@
                         -webkit-user-select: none;
                         -moz-user-select: none;
                         -ms-user-select: none;
+                        -webkit-touch-callout: none;
+                        -webkit-tap-highlight-color: transparent;
                     }
 
                     &__link {
@@ -356,6 +372,8 @@
                         -webkit-user-select: none;
                         -moz-user-select: none;
                         -ms-user-select: none;
+                        -webkit-touch-callout: none;
+                        -webkit-tap-highlight-color: transparent;
                     }
 
                 }

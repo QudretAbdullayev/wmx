@@ -139,6 +139,10 @@ export default function Header() {
   const mobileArrowRefs = useRef({});
 
   const toggleMenu = () => {
+    // Prevent text selection on mobile
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+    }
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -193,6 +197,10 @@ export default function Header() {
 
 
   const handleMobileDropdownClick = (index) => {
+    // Prevent text selection on mobile
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+    }
     setMobileDropdownStates((prev) => ({
       ...prev,
       [index]: !prev[index],
@@ -362,6 +370,16 @@ export default function Header() {
               isMenuOpen ? styles.nav__menu_active : ""
             }`}
             onClick={toggleMenu}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              if (window.getSelection) {
+                window.getSelection().removeAllRanges();
+              }
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              toggleMenu();
+            }}
           >
             <span className={styles.nav__menu__text}>
               {headerData.navigation.mobile_menu.open_text}
@@ -398,6 +416,16 @@ export default function Header() {
                       <div
                         className={styles.overlay__link__name}
                         onClick={() => handleMobileDropdownClick(index)}
+                        onTouchStart={(e) => {
+                          e.preventDefault();
+                          if (window.getSelection) {
+                            window.getSelection().removeAllRanges();
+                          }
+                        }}
+                        onTouchEnd={(e) => {
+                          e.preventDefault();
+                          handleMobileDropdownClick(index);
+                        }}
                       >
                         {link.label}
                         <ArrowDown
@@ -427,6 +455,16 @@ export default function Header() {
                                 className={styles.overlay__link__open__link}
                                 href={dropdownItem.href}
                                 onClick={toggleMenu}
+                                onTouchStart={(e) => {
+                                  e.preventDefault();
+                                  if (window.getSelection) {
+                                    window.getSelection().removeAllRanges();
+                                  }
+                                }}
+                                onTouchEnd={(e) => {
+                                  e.preventDefault();
+                                  toggleMenu();
+                                }}
                               >
                                 {dropdownItem.label}
                               </SafeLink>
@@ -443,6 +481,16 @@ export default function Header() {
                     <div
                       className={styles.overlay__link__holder}
                       onClick={toggleMenu}
+                      onTouchStart={(e) => {
+                        e.preventDefault();
+                        if (window.getSelection) {
+                          window.getSelection().removeAllRanges();
+                        }
+                      }}
+                      onTouchEnd={(e) => {
+                        e.preventDefault();
+                        toggleMenu();
+                      }}
                     >
                       <SafeLink className={styles.overlay__link__name} href={link.path}>
                         {link.label}

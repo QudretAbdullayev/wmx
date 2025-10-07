@@ -160,9 +160,25 @@ export default function ImageMarquee({ images }) {
       },
     });
 
+    const handleEnter = () => {
+      gsap.to(tl, { timeScale: 0.1, duration: 0.2, overwrite: true });
+    };
+    const handleLeave = () => {
+      gsap.to(tl, { timeScale: 1, duration: 0.4 });
+    };
+
+    scrollingImages.forEach((el) => {
+      el.addEventListener("mouseenter", handleEnter);
+      el.addEventListener("mouseleave", handleLeave);
+    });
+
     return () => {
       tl.kill();
       observer.kill();
+      scrollingImages.forEach((el) => {
+        el.removeEventListener("mouseenter", handleEnter);
+        el.removeEventListener("mouseleave", handleLeave);
+      });
     };
   }, []);
 

@@ -4,9 +4,6 @@ const ComponentTitle = ({ title }) => {
   return (
     <div
       className={`${styles.title} mb`}
-      data-aos="fade-up"
-      data-aos-duration={600}
-      data-aos-easing="ease-in-quart"
     >
       <span className={styles.title__star}>{"*     "}</span>
       <span dangerouslySetInnerHTML={{ __html: title }} />

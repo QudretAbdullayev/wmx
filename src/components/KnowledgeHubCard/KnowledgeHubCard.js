@@ -7,9 +7,6 @@ export default function KnowledgeHubCard({ article }) {
     <SafeLink
       href={`/knowledge-hub/${article.slug}`}
       className={styles.card}
-      data-aos="fade-up"
-      data-aos-duration={600}
-      data-aos-easing="ease-in-quart"
     >
       <div className={styles.card__image}>
         <SafeImage src={article.image} alt={article.title} fill />

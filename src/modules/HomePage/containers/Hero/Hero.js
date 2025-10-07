@@ -52,7 +52,6 @@ const Hero = ({ data }) => {
                 }
 
                 if (pct >= 100) {
-                    // Son slide'daysa başa dön, değilse bir sonrakine geç
                     setCurrentSlide((s) => s >= data.sliders.length - 1 ? 0 : s + 1)
                     return
                 }

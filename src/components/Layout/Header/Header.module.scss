@@ -201,10 +201,6 @@
                 background: none;
                 border: none;
                 overflow: hidden;
-                user-select: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
 
                 &__text,
                 &__click {
@@ -216,10 +212,6 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    user-select: none;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
                 }
 
                 &__text {
@@ -273,46 +265,20 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-            -webkit-tap-highlight-color: transparent;
 
             &__links {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 gap: 10rem;
-                user-select: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                -webkit-touch-callout: none;
-                -webkit-tap-highlight-color: transparent;
             }
 
             &__link {
                 width: max-content;
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-                user-select: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                -webkit-touch-callout: none;
-                -webkit-tap-highlight-color: transparent;
 
                 &__holder {
                     position: relative;
-                    user-select: none;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
-                    -webkit-touch-callout: none;
-                    -webkit-tap-highlight-color: transparent;
                 }
 
                 &__name {
@@ -321,12 +287,6 @@
                     text-align: center;
                     text-transform: uppercase;
                     transition: color 0.3s ease;
-                    user-select: none;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
-                    -webkit-touch-callout: none;
-                    -webkit-tap-highlight-color: transparent;
 
                     svg {
                         width: 21rem;
@@ -343,24 +303,12 @@
                     gap: 10rem;
                     height: 0;
                     overflow: hidden;
-                    user-select: none;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
-                    -webkit-touch-callout: none;
-                    -webkit-tap-highlight-color: transparent;
                 }
 
                 &__open {
                     &__item {
                         @include font(30, 700);
                         transition: color 0.3s ease;
-                        user-select: none;
-                        -webkit-user-select: none;
-                        -moz-user-select: none;
-                        -ms-user-select: none;
-                        -webkit-touch-callout: none;
-                        -webkit-tap-highlight-color: transparent;
                     }
 
                     &__link {
@@ -368,12 +316,6 @@
                         color: $main-white;
                         transition: color 0.3s ease;
                         color: $brand-color;
-                        user-select: none;
-                        -webkit-user-select: none;
-                        -moz-user-select: none;
-                        -ms-user-select: none;
-                        -webkit-touch-callout: none;
-                        -webkit-tap-highlight-color: transparent;
                     }
 
                 }

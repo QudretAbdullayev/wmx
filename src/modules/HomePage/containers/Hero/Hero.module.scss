@@ -42,14 +42,15 @@
       width: 775rem;
       @include font(16, 400);
       color: $secondary-color;
-      display: flex;
+      display: flex !important;
       align-items: center;
-      gap: 10rem;
-
       svg {
+        display: flex;
+        align-items: center;
         width: 6rem;
         height: 6rem;
         color: $foundation;
+        margin-right: 8rem;
       }
     }
 

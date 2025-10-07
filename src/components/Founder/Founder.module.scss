@@ -19,19 +19,20 @@
         height: 630rem;
         border-radius: 32rem;
     }
-
     &__image {
         position: relative;
         overflow: hidden;
     }
-
     &__info {
+        width: max-content;
         position: absolute;
         bottom: 32rem;
         background: $main-white;
         padding: 10rem 20rem;
         @include font(16, 500);
         border-radius: 60rem;
+        left: 50%;
+        transform: translateX(-50%);
 
         &__name {
             color: $brand-color;

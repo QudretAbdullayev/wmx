@@ -1,9 +1,11 @@
 import SafeLink from "@/components/SafeLink/SafeLink";
 import styles from "./KnowledgeHubCard.module.scss";
 import SafeImage from "@/components/SafeImage/SafeImage";
+import EffectCard from "../Effect/EffectCard";
 
 export default function KnowledgeHubCard({ article }) {
   return (
+    <EffectCard>
     <SafeLink
       href={`/knowledge-hub/${article.slug}`}
       className={styles.card}
@@ -18,5 +20,6 @@ export default function KnowledgeHubCard({ article }) {
         <p className={styles.card__content__desc}>{article.description}</p>
       </div>
     </SafeLink>
+    </EffectCard>
   );
 }

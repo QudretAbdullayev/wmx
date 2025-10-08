@@ -1,6 +1,7 @@
 import SectionTitle from "@/components/SectiontTitle/SectiontTitle";
 import styles from "./FAQ.module.scss";
 import FAQComponent from "@/components/FAQ/FAQ";
+import EffectCard from "@/components/Effect/EffectCard";
 
 const FAQ = ({ data }) => {
   return (
@@ -8,8 +9,9 @@ const FAQ = ({ data }) => {
       <SectionTitle title={data.section_title} />
       <div
         className="ml"
-      >
-        <FAQComponent faqData={data.faqs} />
+      ><EffectCard>
+          <FAQComponent faqData={data.faqs} />
+        </EffectCard>
       </div>
     </section>
   );

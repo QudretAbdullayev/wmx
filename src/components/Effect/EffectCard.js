@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -9,37 +8,57 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function EffectCard({ children, animateOnScroll = true, delay = 0 }) {
   const containerRef = useRef(null);
+  const hasAnimated = useRef(false);
+  const scrollTriggerRef = useRef(null);
 
   useGSAP(
     () => {
       if (!containerRef.current) return;
 
-      gsap.set(containerRef.current, { 
-        y: "30px", 
+      const element = containerRef.current;
+
+      gsap.set(element, { 
+        y: 30, 
         opacity: 0,
         visibility: "visible"
       });
 
-      const animationProps = {
-        y: "0px",
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        delay: delay,
+      const animate = () => {
+        if (hasAnimated.current) return;
+        hasAnimated.current = true;
+        
+        gsap.to(element, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: delay,
+        });
+
+        // Animasyon başladığında ScrollTrigger'ı temizle
+        if (scrollTriggerRef.current) {
+          scrollTriggerRef.current.kill();
+          scrollTriggerRef.current = null;
+        }
       };
 
       if (animateOnScroll) {
-        gsap.to(containerRef.current, {
-          ...animationProps,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            once: true,
-          },
+        scrollTriggerRef.current = ScrollTrigger.create({
+          trigger: element,
+          start: "top 90%",
+          once: true,
+          onEnter: animate,
         });
       } else {
-        gsap.to(containerRef.current, animationProps);
+        animate();
       }
+
+      // Cleanup
+      return () => {
+        if (scrollTriggerRef.current) {
+          scrollTriggerRef.current.kill();
+        }
+      };
     },
     { scope: containerRef, dependencies: [animateOnScroll, delay] }
   );

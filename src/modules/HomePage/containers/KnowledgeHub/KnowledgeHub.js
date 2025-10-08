@@ -6,6 +6,7 @@ import KnowledgeHubCard from "@/components/KnowledgeHubCard/KnowledgeHubCard";
 const KnowledgeHub = ({ data }) => {
 
   return (
+    
     <section className="g-container mb">
       <SectionTitle title={data.section_title} slug={data.slug} slug_name={data.slug_name} />
       <div className={`${styles.knowledge} mb`}>

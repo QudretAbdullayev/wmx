@@ -6,6 +6,7 @@ import SafeImage from "@/components/SafeImage/SafeImage";
 import Mouse from "@/components/Mouse/Mouse";
 import styles from "./YoutubeThumb.module.scss";
 import "react-responsive-modal/styles.css";
+import EffectCard from "../Effect/EffectCard";
 
 const YoutubeThumb = ({ video, img, reel = false }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -39,26 +40,27 @@ const YoutubeThumb = ({ video, img, reel = false }) => {
 
   return (
     <>
-      <div
-        ref={thumbRef}
-        className={styles.thumb}
-        data-youtube-thumb
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={handleThumbnailClick}
-        style={reel ? { aspectRatio: "9/16" } : { aspectRatio: "16/9" }}
-      >
-        <SafeImage
-          fill
-          src={img}
-          className={styles.thumb__img}
-          alt="Youtube thumbnail"
-        />
+      <EffectCard>
+        <div
+          ref={thumbRef}
+          className={styles.thumb}
+          data-youtube-thumb
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleThumbnailClick}
+          style={reel ? { aspectRatio: "9/16" } : { aspectRatio: "16/9" }}
+        >
+          <SafeImage
+            fill
+            src={img}
+            className={styles.thumb__img}
+            alt="Youtube thumbnail"
+          />
 
-        <div className={`${styles.thumb__button} ${isHovering ? styles.hidden : styles.visible}`}>PLAY</div>
-        {isHovering && <Mouse text="PLAY" elementRef={thumbRef} />}
-      </div>
-
+          <div className={`${styles.thumb__button} ${isHovering ? styles.hidden : styles.visible}`}>PLAY</div>
+          {isHovering && <Mouse text="PLAY" elementRef={thumbRef} />}
+        </div>
+      </EffectCard>
       {/* Modal */}
       <Modal
         open={isPopupOpen}
@@ -76,9 +78,8 @@ const YoutubeThumb = ({ video, img, reel = false }) => {
       >
         <div className={styles.content}>
           <div
-            className={`${
-              reel ? styles.content__reel : styles.content__youtube
-            }`}
+            className={`${reel ? styles.content__reel : styles.content__youtube
+              }`}
           >
             <iframe
               src={`${video}?autoplay=1&rel=0&showinfo=0`}

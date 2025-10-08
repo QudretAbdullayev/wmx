@@ -5,6 +5,7 @@ import Square from '@/assets/icons/Square'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import HoverText from '@/components/HoverText/HoverText'
 import Effect from '@/components/Effect/Effect'
+import EffectCard from '@/components/Effect/EffectCard'
 
 const slideDuration = 5000
 
@@ -173,14 +174,14 @@ const Hero = ({ data }) => {
                         </div>
                     </div>
                 </div>
-                <Effect>
+                <EffectCard>
                     <HoverText
                         text={data.button_text}
                         as="a"
                         href="/consultation"
                         className={styles.hero__cta}
                     />
-                </Effect>
+                </EffectCard>
             </div>
 
         </section>

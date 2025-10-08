@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { useState, useRef, useEffect } from "react";
 import YoutubeThumb from "@/components/YoutubeThumb/YoutubeThumb";
+import EffectCard from "@/components/Effect/EffectCard";
 
 const Explain = ({ data }) => {
   const swiperRef = useRef(null);
@@ -53,11 +54,13 @@ const Explain = ({ data }) => {
     <section className={styles.explain}>
       <div className="g-container">
         <SectionTitle title={data.section_title} />
+        <EffectCard>
         <h4
           className={`${styles.title} ml`}
         >
           {data.title}
         </h4>
+        </EffectCard>
       </div>
 
       {isMobile ? (

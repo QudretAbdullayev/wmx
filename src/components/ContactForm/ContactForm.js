@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
-import PhoneInput from 'react-phone-number-input';
-import { isValidPhoneNumber, parsePhoneNumber } from 'libphonenumber-js';
+import PhoneInput, { getCountries } from 'react-phone-number-input';
+import { isValidPhoneNumber } from 'libphonenumber-js';
 import 'react-phone-number-input/style.css';
 import styles from './ContactForm.module.scss';
 import SafeLink from '../SafeLink/SafeLink';
@@ -75,13 +75,9 @@ const ContactForm = ({ data }) => {
                                 isValid: (value) => {
                                     if (!value) return 'Phone number is required';
                                     try {
-                                        const phoneNumberObj = parsePhoneNumber(value);
-                                        if (!phoneNumberObj || !phoneNumberObj.isValid()) {
+                                        // Modern validation approach - more reliable and recommended
+                                        if (!isValidPhoneNumber(value)) {
                                             return 'Phone Number is invalid';
-                                        }
-                                        const nationalNumber = phoneNumberObj.nationalNumber;
-                                        if (!nationalNumber || nationalNumber.length < 7) {
-                                            return 'Please enter a complete phone number';
                                         }
                                         return true;
                                     } catch (error) {
@@ -102,6 +98,8 @@ const ContactForm = ({ data }) => {
                                     international
                                     countryCallingCodeEditable={false}
                                     limitMaxLength={true}
+                                    countries={getCountries().filter(c => c !== 'AM')}
+                                    countryOptionsOrder={['AZ', 'TR', 'US', 'GB', 'DE', 'FR', 'RU']}
                                 />
                             </div>
                         )}

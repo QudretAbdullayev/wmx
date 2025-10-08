@@ -35,14 +35,9 @@ export default function Effect({ children, animateOnScroll = true, delay = 0 }) 
       elements.forEach((element) => {
         elementRefs.current.push(element);
 
-        // Normalize manual line breaks so SplitText respects them as line boundaries
         const originalHtml = element.innerHTML;
         
-        // Normalize line breaks:
-        // - Single newline => <br/>
-        // - Multiple consecutive newlines => one <br/> plus (count - 1) empty spacer lines
         const normalizedHtml = (() => {
-          // Unify all newline variants to \n for simpler processing
           const unified = originalHtml.replace(/\r\n|\r/g, "\n");
           let result = "";
           let i = 0;
@@ -53,14 +48,11 @@ export default function Effect({ children, animateOnScroll = true, delay = 0 }) 
               continue;
             }
 
-            // Count run length of consecutive newlines
             let runStart = i;
             while (i < unified.length && unified[i] === "\n") i += 1;
             const runLength = i - runStart;
 
-            // Always insert a visible line break for the first newline
             result += "<br/>";
-            // For additional newlines beyond the first, insert empty-line spacers
             for (let k = 1; k < runLength; k += 1) {
               result += '<span data-copy-empty-line="true" aria-hidden="true"></span>';
             }
@@ -73,12 +65,9 @@ export default function Effect({ children, animateOnScroll = true, delay = 0 }) 
           element.innerHTML = normalizedHtml;
         }
 
-        // Size the inserted spacer tags to match the computed line-height
-        // Do this BEFORE splitting into lines so they participate in layout as blank lines
         const computedStyle = window.getComputedStyle(element);
         let lineHeight = computedStyle.lineHeight;
         if (!lineHeight || lineHeight === "normal") {
-          // Fallback approximation when line-height is 'normal'
           const fontSizePx = parseFloat(computedStyle.fontSize || "16");
           lineHeight = `${Math.round(fontSizePx * 1.2)}rem`;
         }
@@ -144,7 +133,6 @@ export default function Effect({ children, animateOnScroll = true, delay = 0 }) 
           }
         });
 
-        // Restore original HTML where we injected spacers/line-breaks
         elementRefs.current.forEach((el) => {
           const original = el.getAttribute("data-copy-original-html");
           if (original != null) {

@@ -22,7 +22,7 @@ const Footer = () => {
         timeZone: "Asia/Baku",
         hour: "2-digit",
         minute: "2-digit",
-        hour12: locale !== 'az'
+        hour12: locale !== "az",
       });
       setCurrentTime(bakuTime);
     };
@@ -36,17 +36,17 @@ const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
   const handleConsultationClick = (e) => {
     e.preventDefault();
-    const sectionId = 'tell-us-section';
+    const sectionId = "tell-us-section";
     const element = document.getElementById(sectionId);
 
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
 
@@ -96,17 +96,17 @@ const Footer = () => {
                   <ul className={styles.list__items}>
                     <li className={styles.list__item}>
                       <HoverText
-                        text="Program"
+                        text="Emerging CMO"
                         as="a"
-                        href="/program"
+                        href="/program/emerging-cmo"
                         className={styles.list__item__link}
                       />
                     </li>
                     <li className={styles.list__item}>
                       <HoverText
-                        text="Shortcast"
+                        text="Marketing Pro"
                         as="a"
-                        href="/shortcast"
+                        href="/program/marketing-pro"
                         className={styles.list__item__link}
                       />
                     </li>
@@ -133,17 +133,17 @@ const Footer = () => {
                     </li>
                     <li className={styles.list__item}>
                       <HoverText
-                        text="FAQ"
+                        text="Privacy Policy"
                         as="a"
-                        href="/faq"
+                        href="/privacy-policy"
                         className={styles.list__item__link}
                       />
                     </li>
                     <li className={styles.list__item}>
                       <HoverText
-                        text="Privacy"
+                        text="Terms"
                         as="a"
-                        href="/privacy"
+                        href="/terms"
                         className={styles.list__item__link}
                       />
                     </li>
@@ -152,14 +152,6 @@ const Footer = () => {
                 <div className={styles.list}>
                   <span className={styles.list__title}>COMMUNITY</span>
                   <ul className={styles.list__items}>
-                    <li className={styles.list__item}>
-                      <HoverText
-                        text="Alumni"
-                        as="a"
-                        href="/alumni"
-                        className={styles.list__item__link}
-                      />
-                    </li>
                     <li className={styles.list__item}>
                       <HoverText
                         text="LinkedIn"
@@ -196,7 +188,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className={styles.lang}>
-                <select 
+                <select
                   className={styles.lang__select}
                   value={locale}
                   onChange={handleLanguageChange}

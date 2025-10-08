@@ -10,8 +10,27 @@ const SafeLink = ({ href, children, className = '', ...rest }) => {
   let localizedHref = href;
 
   if (typeof href === 'string' && href.trim() !== '') {
+    // Handle non-routable or special schemes without localization
+    const lowerHref = href.toLowerCase();
+    const isHashOnly = href.startsWith('#');
+    const isAbsolute = lowerHref.startsWith('http://') || lowerHref.startsWith('https://');
+    const isMailOrTel = lowerHref.startsWith('mailto:') || lowerHref.startsWith('tel:');
+
+    if (isHashOnly || isAbsolute || isMailOrTel) {
+      return (
+        <a href={href} className={className} {...rest}>
+          {children}
+        </a>
+      );
+    }
+
     isValid = true;
-    localizedHref = `/${locale}${href.startsWith('/') ? href : `/${href}`}`;
+    // Avoid double-prefixing if already localized
+    if (href.startsWith(`/${locale}/`) || href === `/${locale}`) {
+      localizedHref = href;
+    } else {
+      localizedHref = `/${locale}${href.startsWith('/') ? href : `/${href}`}`;
+    }
   }
 
   else if (

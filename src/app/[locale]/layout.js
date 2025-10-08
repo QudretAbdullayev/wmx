@@ -9,12 +9,12 @@ import Header from '@/components/Layout/Header/Header';
 import Footer from '@/components/Layout/Footer/Footer';
 import NotificationBanner from '@/components/Layout/NotificationBanner/NotificationBanner';
 
-// export const viewport = {
-//   initialScale: 1.0,
-//   initialScale: 1.0,
-//   maximumScale: 1.0,
-//   userScalable: "no"
-// }
+export const viewport = {
+  initialScale: 1.0,
+  initialScale: 1.0,
+  maximumScale: 1.0,
+  userScalable: "no"
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

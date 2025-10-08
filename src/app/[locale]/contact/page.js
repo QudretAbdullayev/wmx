@@ -32,7 +32,7 @@ import { fetchData } from "@/utils/httpService";
 //   };
 // }
 
-export default async function Page({ params }) {
+async function Page({ params }) {
   const { locale } = await params;
   const data = {
     hero: {
@@ -140,3 +140,5 @@ export default async function Page({ params }) {
   };
   return <ContactUsPage data={data} />;
 }
+
+export default Page

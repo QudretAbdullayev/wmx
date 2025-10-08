@@ -8,6 +8,8 @@ import HeaderSelectVector from "@/assets/icons/HeaderSelectVector";
 import HoverText from "@/components/HoverText/HoverText";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useRouter, usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 
 const headerData = {
   logo: {
@@ -118,19 +120,22 @@ const headerData = {
 export default function Header() {
   const container = useRef();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const locale = useLocale();
 
   const handleConsultationClick = (e) => {
     e.preventDefault();
-    const element = document.getElementById('tell-us-section');
-    
+    const sectionId = 'tell-us-section';
+    const element = document.getElementById(sectionId);
+
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    } else {
-      window.location.href = '/#tell-us-section';
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
     }
+
+    // Navigate client-side to the localized home with hash (no full reload)
+    router.push(`/${locale}/#${sectionId}`);
   };
 
   const tl = useRef();

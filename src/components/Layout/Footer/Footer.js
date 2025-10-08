@@ -42,16 +42,15 @@ const Footer = () => {
 
   const handleConsultationClick = (e) => {
     e.preventDefault();
-    const element = document.getElementById('tell-us-section');
-    
+    const sectionId = 'tell-us-section';
+    const element = document.getElementById(sectionId);
+
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    } else {
-      window.location.href = '/#tell-us-section';
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
     }
+
+    router.push(`/${locale}/#${sectionId}`);
   };
 
   const handleLanguageChange = (e) => {

@@ -1,6 +1,7 @@
 import AboutPage from "@/modules/AboutPage";
 
-const page = () => {
+async function Page({ params }) {
+  const { locale } = await params;
   const data = {
     hero: {
       title:
@@ -106,4 +107,4 @@ const page = () => {
   return <AboutPage data={data} />;
 };
 
-export default page;
+export default Page;

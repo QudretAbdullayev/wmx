@@ -5,7 +5,7 @@ import FAQComponent from '@/components/FAQ/FAQ'
 const FAQ = ({data}) => {
 
   return (
-    <section className='g-container mb'>
+    <section className='g-container'>
         <SectionTitle title={data.section_title} />
         <div className="ml">
             <FAQComponent faqData={data.faqs}/>

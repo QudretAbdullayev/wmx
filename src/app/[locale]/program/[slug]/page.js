@@ -32,7 +32,7 @@ import { fetchData } from "@/utils/httpService";
 //   };
 // }
 
-export default async function Page({ params }) {
+async function Page({ params }) {
   const { locale } = await params;
   const data = {
     color: "#FF3C2A",
@@ -262,3 +262,5 @@ export default async function Page({ params }) {
   };
   return <ProgramPage data={data} />;
 }
+
+export default Page

@@ -5,7 +5,7 @@ import EffectCard from "@/components/Effect/EffectCard";
 
 const FAQ = ({ data }) => {
   return (
-    <section className="g-container mb">
+    <section className="g-container">
       <SectionTitle title={data.section_title} />
       <div
         className="ml"

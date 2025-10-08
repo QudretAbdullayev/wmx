@@ -1,7 +1,8 @@
 import ArticlePage from '@/modules/ArticlePage'
 import React from 'react'
 
-const page = () => {
+async function Page({ params }) {
+  const { locale } = await params;
   const data = {
     hero: {
       created_title: "Posted",
@@ -26,4 +27,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -1,70 +1,96 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function EffectCard({ children, animateOnScroll = true, delay = 0 }) {
-  const containerRef = useRef(null);
-  const hasAnimated = useRef(false);
-  const scrollTriggerRef = useRef(null);
+export default function EffectCard({ 
+  children, 
+  animateOnScroll = true, 
+  delay = 0,
+  duration = 1,
+  ease = "power4.out",
+  from = "bottom" // "bottom", "top", "left", "right", "scale", "fade"
+}) {
+  const cardRef = useRef(null);
 
   useGSAP(
     () => {
-      if (!containerRef.current) return;
+      if (!cardRef.current) return;
 
-      const element = containerRef.current;
-
-      gsap.set(element, { 
-        y: 30, 
+      // Initial state based on animation direction
+      const initialState = {
+        visibility: "hidden",
         opacity: 0,
-        visibility: "visible"
-      });
-
-      const animate = () => {
-        if (hasAnimated.current) return;
-        hasAnimated.current = true;
-        
-        gsap.to(element, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          delay: delay,
-        });
-
-        // Animasyon başladığında ScrollTrigger'ı temizle
-        if (scrollTriggerRef.current) {
-          scrollTriggerRef.current.kill();
-          scrollTriggerRef.current = null;
-        }
       };
 
-      if (animateOnScroll) {
-        scrollTriggerRef.current = ScrollTrigger.create({
-          trigger: element,
-          start: "top 90%",
-          once: true,
-          onEnter: animate,
-        });
-      } else {
-        animate();
+      const animationState = {
+        opacity: 1,
+        duration,
+        ease,
+        delay,
+      };
+
+      switch (from) {
+        case "bottom":
+          initialState.y = 100;
+          animationState.y = 0;
+          break;
+        case "top":
+          initialState.y = -100;
+          animationState.y = 0;
+          break;
+        case "left":
+          initialState.x = -100;
+          animationState.x = 0;
+          break;
+        case "right":
+          initialState.x = 100;
+          animationState.x = 0;
+          break;
+        case "scale":
+          initialState.scale = 0.8;
+          animationState.scale = 1;
+          break;
+        case "fade":
+          // Only fade, no movement
+          break;
+        default:
+          initialState.y = 100;
+          animationState.y = 0;
       }
 
-      // Cleanup
-      return () => {
-        if (scrollTriggerRef.current) {
-          scrollTriggerRef.current.kill();
-        }
-      };
+      gsap.set(cardRef.current, initialState);
+      gsap.set(cardRef.current, { visibility: "visible" });
+
+      if (animateOnScroll) {
+        gsap.to(cardRef.current, {
+          ...animationState,
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: "top 90%",
+            once: true,
+          },
+        });
+      } else {
+        gsap.to(cardRef.current, animationState);
+      }
     },
-    { scope: containerRef, dependencies: [animateOnScroll, delay] }
+    { scope: cardRef, dependencies: [animateOnScroll, delay, duration, ease, from] }
   );
 
+  if (React.Children.count(children) === 1) {
+    return React.cloneElement(children, {
+      ref: cardRef,
+      style: { visibility: "hidden", ...(children.props?.style || {}) },
+    });
+  }
+
   return (
-    <div ref={containerRef} style={{ visibility: "hidden" }}>
+    <div ref={cardRef} style={{ visibility: "hidden" }}>
       {children}
     </div>
   );

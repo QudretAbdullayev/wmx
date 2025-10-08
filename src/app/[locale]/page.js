@@ -232,7 +232,7 @@ export default async function Page({ params }) {
           placeholder: "Email",
         },
         extra_field: {
-          label: "Ex!",
+          label: "Company Name",
           placeholder: "",
         },
         privacy: {

@@ -170,6 +170,23 @@
                     overflow: hidden;
                     flex-shrink: 0;
                 }
+
+                &:-webkit-autofill,
+                &:-webkit-autofill:hover,
+                &:-webkit-autofill:focus {
+                    -webkit-box-shadow: 0 0 0 1000px transparent inset;
+                    box-shadow: 0 0 0 1000px transparent inset;
+                    -webkit-text-fill-color: rgba($main-white, 0.6);
+                    caret-color: rgba($main-white, 0.6);
+                    transition: background-color 9999s ease-out 0s;
+                }
+
+                &:-moz-autofill {
+                    box-shadow: 0 0 0 1000px transparent inset;
+                    background-color: transparent !important;
+                    color: rgba($main-white, 0.6);
+                    caret-color: rgba($main-white, 0.6);
+                }
             }
 
             &:focus {
@@ -212,6 +229,23 @@
 
             &:focus {
                 border: 1rem solid $main-white;
+            }
+
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus {
+                -webkit-box-shadow: 0 0 0 1000px transparent inset;
+                box-shadow: 0 0 0 1000px transparent inset;
+                -webkit-text-fill-color: rgba($main-white, 0.6);
+                caret-color: rgba($main-white, 0.6);
+                transition: background-color 9999s ease-out 0s;
+            }
+
+            &:-moz-autofill {
+                box-shadow: 0 0 0 1000px transparent inset;
+                background-color: transparent !important;
+                color: rgba($main-white, 0.6);
+                caret-color: rgba($main-white, 0.6);
             }
         }
 
@@ -402,7 +436,7 @@
             }
 
             &__submit {
-                
+
                 align-self: flex-start;
                 width: 100%;
                 padding: 14rem 0;
@@ -412,6 +446,7 @@
                 color: $main-white;
                 margin: 10rem 0;
                 order: 6;
+
                 &:hover {
                     background: $foundation-hover;
                 }
@@ -429,12 +464,15 @@
                 &:nth-child(1) {
                     order: 1;
                 }
+
                 &:nth-child(2) {
                     order: 2;
                 }
+
                 &:nth-child(3) {
                     order: 3;
                 }
+
                 &:nth-child(4) {
                     order: 4;
                 }

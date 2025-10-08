@@ -58,7 +58,6 @@
             border-color: $foundation;
         }
 
-        /* Remove browser autofill background color while keeping our transparent style */
         &:-webkit-autofill,
         &:-webkit-autofill:hover,
         &:-webkit-autofill:focus {

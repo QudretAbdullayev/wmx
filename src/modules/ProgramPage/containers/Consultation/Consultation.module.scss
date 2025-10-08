@@ -93,11 +93,27 @@
                 -webkit-text-fill-color: #AAAAAA;
                 transition: initial;
             }
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus {
+                -webkit-box-shadow: 0 0 0 1000px transparent inset;
+                box-shadow: 0 0 0 1000px transparent inset;
+                -webkit-text-fill-color: #AAAAAA;
+                caret-color: #AAAAAA;
+                transition: background-color 9999s ease-out 0s;
+            }
+
+            &:-moz-autofill {
+                box-shadow: 0 0 0 1000px transparent inset;
+                background-color: transparent !important;
+                color: #AAAAAA;
+                caret-color: #AAAAAA;
+            }
         }
 
-        &__filled {
-            border-color: $brand-color;
-        }
+        // &__filled {
+        //     border-color: $brand-color;
+        // }
 
         &__textarea {
             height: 140rem;

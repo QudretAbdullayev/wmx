@@ -4,7 +4,7 @@ import X from '@/assets/icons/X'
 import Square from '@/assets/icons/Square'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import HoverText from '@/components/HoverText/HoverText'
-import Copy from '@/components/Copy/Copy'
+import Effect from '@/components/Effect/Effect'
 
 const slideDuration = 5000
 
@@ -127,11 +127,11 @@ const Hero = ({ data }) => {
                     >
                         {data.sliders.map((item, index) => (
                             <SwiperSlide key={index} className={`${styles.container__slide}`}>
-                                <Copy><h1 className={styles.container__title}>{item.title}</h1></Copy>
-                                <Copy><div className={styles.container__subtitle}>
+                                <Effect><h1 className={styles.container__title}>{item.title}</h1></Effect>
+                                <Effect><div className={styles.container__subtitle}>
                                     <Square />
                                     {item.subtitle}
-                                </div></Copy>
+                                </div></Effect>
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -173,14 +173,14 @@ const Hero = ({ data }) => {
                         </div>
                     </div>
                 </div>
-                <Copy>
+                <Effect>
                     <HoverText
                         text={data.button_text}
                         as="a"
                         href="/consultation"
                         className={styles.hero__cta}
                     />
-                </Copy>
+                </Effect>
             </div>
 
         </section>

@@ -1,5 +1,5 @@
 import styles from "./Description.module.scss";
-import Copy from "../Copy/Copy";
+import Effect from "../Effect/Effect";
 
 const Description = ({
   title,
@@ -9,18 +9,18 @@ const Description = ({
 }) => {
   return (
     <div className={styles.container}>
-      <Copy>
+      <Effect>
         <h4
           className={`${classNameTitle} ${styles.title}`}
           dangerouslySetInnerHTML={{ __html: title }}
         />
-      </Copy>
-      <Copy>
+      </Effect>
+      <Effect>
         <p
           className={`${classNameDescription} ${styles.description}`}
           dangerouslySetInnerHTML={{ __html: description }}
         />
-      </Copy>
+      </Effect>
     </div>
   );
 };

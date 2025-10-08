@@ -5,12 +5,13 @@
     align-items: center;
     justify-content: space-between;
     .title {
-        display: flex;
-        align-items: center;
-        gap: 10rem;
         @include font(16, 400);
         color: $secondary-color;
-
+        :global(.line), :global(.line1){
+            display: flex !important;
+            align-items: center;
+            gap: 10rem;
+        }
         svg {
             width: 6rem;
             height: 6rem;

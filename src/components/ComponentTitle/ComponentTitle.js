@@ -1,16 +1,16 @@
 import styles from "./ComponentTitle.module.scss";
-import Copy from "../Copy/Copy";
+import Effect from "../Effect/Effect";
 
 const ComponentTitle = ({ title }) => {
   return (
-    <Copy>
+    <Effect>
       <div
         className={`${styles.title} mb`}
       >
         <span className={styles.title__star}>{"*     "}</span>
         <span dangerouslySetInnerHTML={{ __html: title }} />
       </div>
-    </Copy>
+    </Effect>
   );
 };
 

@@ -1,10 +1,10 @@
 import styles from "./Founder.module.scss";
 import SafeImage from "../SafeImage/SafeImage";
-import Copy from "../Copy/Copy";
+import EffectCard from "../Effect/EffectCard";
 
 const Founder = ({ image, name, position, size }) => {
   return (
-    <Copy variant="reveal">
+    <EffectCard>
     <div className={styles.founder}>
       <div className={`${styles.founder__image} ${styles[size]}`}>
         <SafeImage src={image} alt={name} fill/>
@@ -17,7 +17,7 @@ const Founder = ({ image, name, position, size }) => {
         <span className={styles.founder__info__position}>{position}</span>
       </div>
     </div>
-    </Copy>
+    </EffectCard>
   );
 };
 

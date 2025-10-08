@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-export default function Copy({ children, animateOnScroll = true, delay = 0 }) {
+export default function Effect({ children, animateOnScroll = true, delay = 0 }) {
   const containerRef = useRef(null);
   const elementRefs = useRef([]);
   const splitRefs = useRef([]);
@@ -19,7 +19,6 @@ export default function Copy({ children, animateOnScroll = true, delay = 0 }) {
     () => {
       if (!containerRef.current) return;
 
-      // Prevent flash of unstyled content before GSAP positions lines
       gsap.set(containerRef.current, { visibility: "hidden" });
 
       splitRefs.current = [];

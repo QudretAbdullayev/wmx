@@ -42,8 +42,11 @@ const ContactForm = ({ data }) => {
             </div>
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <div className={styles.form__field}>
-                    <label className={styles.form__label}>{data.form.full_name.label}</label>
+                    <label htmlFor="fullName" className={styles.form__label}>
+                        {data.form.full_name.label}
+                    </label>
                     <input
+                        id="fullName"
                         type="text"
                         className={`${styles.form__input} ${errors.fullName ? styles.form__inputError : ''}`}
                         placeholder={data.form.full_name.placeholder}
@@ -60,7 +63,9 @@ const ContactForm = ({ data }) => {
                     )}
                 </div>
                 <div className={styles.form__field}>
-                    <label className={styles.form__label}>{data.form.phone.label}</label>
+                    <label htmlFor="phoneNumber" className={styles.form__label}>
+                        {data.form.phone.label}
+                    </label>
                     <Controller
                         name="phoneNumber"
                         control={control}
@@ -88,6 +93,7 @@ const ContactForm = ({ data }) => {
                         render={({ field }) => (
                             <div className={`${styles.form__phone} ${errors.phoneNumber ? styles.form__inputError : ''}`}>
                                 <PhoneInput
+                                    id="phoneNumber"
                                     placeholder={data.form.phone.placeholder}
                                     value={field.value}
                                     onChange={field.onChange}
@@ -105,8 +111,11 @@ const ContactForm = ({ data }) => {
                     )}
                 </div>
                 <div className={styles.form__field}>
-                    <label className={styles.form__label}>{data.form.email.label}</label>
+                    <label htmlFor="email" className={styles.form__label}>
+                        {data.form.email.label}
+                    </label>
                     <input
+                        id="email"
                         type="email"
                         className={`${styles.form__input} ${errors.email ? styles.form__inputError : ''}`}
                         placeholder={data.form.email.placeholder}
@@ -123,8 +132,11 @@ const ContactForm = ({ data }) => {
                     )}
                 </div>
                 <div className={styles.form__field}>
-                    <label className={styles.form__label}>{data.form.extra_field.label}</label>
+                    <label htmlFor="extraField" className={styles.form__label}>
+                        {data.form.extra_field.label}
+                    </label>
                     <input
+                        id="extraField"
                         type="text"
                         placeholder={data.form.extra_field.placeholder}
                         className={`${styles.form__input} ${errors.extraField ? styles.form__inputError : ''}`}
@@ -168,7 +180,9 @@ const ContactForm = ({ data }) => {
                             checked={promotionalEmails}
                             onChange={(e) => setPromotionalEmails(e.target.checked)}
                         />
-                        <label className={styles.form__checkbox__label}>{data.form.checkboxes.agree}</label>
+                        <label htmlFor="promotionalEmails" className={styles.form__checkbox__label}>
+                            {data.form.checkboxes.agree}
+                        </label>
                     </div>
                     <div className={styles.form__checkbox}>
                         <input
@@ -178,7 +192,9 @@ const ContactForm = ({ data }) => {
                             checked={isLegalEntity}
                             onChange={(e) => setIsLegalEntity(e.target.checked)}
                         />
-                        <label className={styles.form__checkbox__label}>{data.form.checkboxes.entity}</label>
+                        <label htmlFor="isLegalEntity" className={styles.form__checkbox__label}>
+                            {data.form.checkboxes.entity}
+                        </label>
                     </div>
                 </div>
             </form>

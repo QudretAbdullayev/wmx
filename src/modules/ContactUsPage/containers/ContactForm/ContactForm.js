@@ -15,6 +15,7 @@ const ContactForm = ({ data }) => {
                 {data.form.subject.label}
               </label>
               <Select
+                id="subject"
                 options={data?.form?.subject?.options}
                 placeholder={`[${data.form.subject?.placeholder}]`}
               />

@@ -55,8 +55,11 @@ const Consultation = ({ data }) => {
           </div>
           <form className={styles.form}>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>{data.form.full_name.label}</label>
+              <label htmlFor="name" className={styles.form__label}>
+                {data.form.full_name.label}
+              </label>
               <input
+                id="name"
                 type="text"
                 placeholder={data.form.full_name.placeholder}
                 name="name"
@@ -79,8 +82,11 @@ const Consultation = ({ data }) => {
               )}
             </div>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>{data.form.email.label}</label>
+              <label htmlFor="email" className={styles.form__label}>
+                {data.form.email.label}
+              </label>
               <input
+                id="email"
                 type="email"
                 placeholder={!focusedFields.email ? data.form.email.placeholder : ""}
                 name="email"
@@ -103,8 +109,11 @@ const Consultation = ({ data }) => {
               )}
             </div>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>{data.form.company.label}</label>
+              <label htmlFor="company" className={styles.form__label}>
+                {data.form.company.label}
+              </label>
               <input
+                id="company"
                 type="text"
                 placeholder={data.form.company.placeholder}
                 name="company"
@@ -127,27 +136,28 @@ const Consultation = ({ data }) => {
               )}
             </div>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>{data.form.industry.label}</label>
+              <label htmlFor="industry" className={styles.form__label}>
+                {data.form.industry.label}
+              </label>
               <Select
-                options={
-                  data?.form?.industry?.options
-                }
+                id="industry"
+                options={data?.form?.industry?.options}
                 onSelectionChange={handleIndustrySelection}
                 error={errors.program}
                 placeholder={data.form.industry.placeholder}
               />
             </div>
             <div className={styles.form__field}>
-              <label className={styles.form__label}>{data.form.seniority.label}</label>
+              <label htmlFor="seniority" className={styles.form__label}>
+                {data.form.seniority.label}
+              </label>
               <Select
-                options={
-                  data?.form?.seniority?.options
-                }
+                id="seniority"
+                options={data?.form?.seniority?.options}
                 onSelectionChange={handleSenioritySelection}
                 error={errors.program}
                 placeholder={data.form.seniority.placeholder}
               />
-
             </div>
             <div className={styles.form__privacy}>
               <p className={styles.form__privacy__text}>

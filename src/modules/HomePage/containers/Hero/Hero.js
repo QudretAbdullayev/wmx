@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import HoverText from '@/components/HoverText/HoverText'
 import Copy from '@/components/Copy/Copy'
 
-const slideDuration = 3000
+const slideDuration = 5000
 
 const Hero = ({ data }) => {
 
@@ -173,12 +173,14 @@ const Hero = ({ data }) => {
                         </div>
                     </div>
                 </div>
-                <HoverText
-                    text={data.button_text}
-                    as="a"
-                    href="/consultation"
-                    className={styles.hero__cta}
-                />
+                <Copy>
+                    <HoverText
+                        text={data.button_text}
+                        as="a"
+                        href="/consultation"
+                        className={styles.hero__cta}
+                    />
+                </Copy>
             </div>
 
         </section>

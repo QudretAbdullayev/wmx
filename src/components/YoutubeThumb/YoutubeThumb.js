@@ -40,7 +40,7 @@ const YoutubeThumb = ({ video, img, reel = false }) => {
 
   return (
     <>
-      <EffectCard>
+      
         <div
           ref={thumbRef}
           className={styles.thumb}
@@ -50,17 +50,17 @@ const YoutubeThumb = ({ video, img, reel = false }) => {
           onClick={handleThumbnailClick}
           style={reel ? { aspectRatio: "9/16" } : { aspectRatio: "16/9" }}
         >
+          <EffectCard>
           <SafeImage
             fill
             src={img}
             className={styles.thumb__img}
             alt="Youtube thumbnail"
           />
-
+          </EffectCard>
           <div className={`${styles.thumb__button} ${isHovering ? styles.hidden : styles.visible}`}>PLAY</div>
           {isHovering && <Mouse text="PLAY" elementRef={thumbRef} />}
         </div>
-      </EffectCard>
       {/* Modal */}
       <Modal
         open={isPopupOpen}

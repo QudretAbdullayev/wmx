@@ -7,7 +7,7 @@
         gap: 24rem;
         @include font(22, 400);
         leading-trim: NONE;
-        color: $brand-color;
+        color: $secondary-color;
     }
     &__active{
         color: $foundation;

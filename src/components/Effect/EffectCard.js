@@ -1,25 +1,44 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function EffectCard({ 
-  children, 
-  animateOnScroll = true, 
+export default function EffectCard({
+  children,
+  animateOnScroll = true,
   delay = 0,
   duration = 1,
   ease = "power4.out",
-  from = "bottom" // "bottom", "top", "left", "right", "scale", "fade"
+  from = "bottom"
 }) {
   const cardRef = useRef(null);
+  const scrollTriggerInstance = useRef(null);
+
+  // Sayfa değişikliklerinde ScrollTrigger'ı yenile
+  useEffect(() => {
+    const handleRouteChange = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('popstate', handleRouteChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
 
   useGSAP(
     () => {
       if (!cardRef.current) return;
+
+      // Önceki ScrollTrigger instance'ını temizle
+      if (scrollTriggerInstance.current) {
+        scrollTriggerInstance.current.kill();
+      }
 
       // Initial state based on animation direction
       const initialState = {
@@ -67,17 +86,29 @@ export default function EffectCard({
       gsap.set(cardRef.current, { visibility: "visible" });
 
       if (animateOnScroll) {
-        gsap.to(cardRef.current, {
-          ...animationState,
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 90%",
-            once: true,
+        const scrollTrigger = ScrollTrigger.create({
+          trigger: cardRef.current,
+          start: "top 90%",
+          once: true,
+          onEnter: () => {
+            gsap.to(cardRef.current, animationState);
           },
         });
+        scrollTriggerInstance.current = scrollTrigger;
       } else {
         gsap.to(cardRef.current, animationState);
       }
+
+      // ScrollTrigger'ı yenile
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+
+      return () => {
+        if (scrollTriggerInstance.current) {
+          scrollTriggerInstance.current.kill();
+        }
+      };
     },
     { scope: cardRef, dependencies: [animateOnScroll, delay, duration, ease, from] }
   );

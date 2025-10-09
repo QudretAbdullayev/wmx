@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
-
+import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,10 +13,30 @@ export default function Effect({ children, animateOnScroll = true, delay = 0 }) 
   const elementRefs = useRef([]);
   const splitRefs = useRef([]);
   const lines = useRef([]);
+  const scrollTriggerInstance = useRef(null);
+
+  // Sayfa değişikliklerinde ScrollTrigger'ı yenile
+  useEffect(() => {
+    const handleRouteChange = () => {
+      ScrollTrigger.refresh();
+    };
+
+    // Route change event listener (Next.js için)
+    window.addEventListener('popstate', handleRouteChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
 
   useGSAP(
     () => {
       if (!containerRef.current) return;
+
+      // Önceki animasyonları temizle
+      if (scrollTriggerInstance.current) {
+        scrollTriggerInstance.current.kill();
+      }
 
       gsap.set(containerRef.current, { visibility: "hidden" });
 
@@ -101,8 +120,6 @@ export default function Effect({ children, animateOnScroll = true, delay = 0 }) 
       });
 
       gsap.set(lines.current, { y: "100%" });
-
-
       gsap.set(containerRef.current, { visibility: "visible" });
 
       const animationProps = {
@@ -114,19 +131,29 @@ export default function Effect({ children, animateOnScroll = true, delay = 0 }) 
       };
 
       if (animateOnScroll) {
-        gsap.to(lines.current, {
-          ...animationProps,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 90%",
-            once: true,
+        const scrollTrigger = ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: "top 90%",
+          once: true,
+          onEnter: () => {
+            gsap.to(lines.current, animationProps);
           },
         });
+        scrollTriggerInstance.current = scrollTrigger;
       } else {
         gsap.to(lines.current, animationProps);
       }
 
+      // Kısa bir gecikme ile ScrollTrigger'ı yenile
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+
       return () => {
+        if (scrollTriggerInstance.current) {
+          scrollTriggerInstance.current.kill();
+        }
+
         splitRefs.current.forEach((split) => {
           if (split) {
             split.revert();

@@ -1,8 +1,8 @@
 import Rule from './containers/Rule/Rule'
 
-const RulesPage = () => {
+const RulesPage = ({data, activeIndex, links}) => {
   return (
-    <Rule />
+    <Rule data={data.rules} activeIndex={activeIndex} links={links} />
   )
 }
 

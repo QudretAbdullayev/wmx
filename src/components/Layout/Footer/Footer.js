@@ -98,7 +98,7 @@ const Footer = () => {
                       <HoverText
                         text="Emerging CMO"
                         as="a"
-                        href="/program/emerging-cmo"
+                        href="/programs/emerging-cmo"
                         className={styles.list__item__link}
                       />
                     </li>
@@ -106,7 +106,7 @@ const Footer = () => {
                       <HoverText
                         text="Marketing Pro"
                         as="a"
-                        href="/program/marketing-pro"
+                        href="/programs/marketing-pro"
                         className={styles.list__item__link}
                       />
                     </li>
@@ -135,7 +135,7 @@ const Footer = () => {
                       <HoverText
                         text="Privacy Policy"
                         as="a"
-                        href="/privacy-policy"
+                        href={`/privacy`}
                         className={styles.list__item__link}
                       />
                     </li>
@@ -143,7 +143,7 @@ const Footer = () => {
                       <HoverText
                         text="Terms"
                         as="a"
-                        href="/terms"
+                        href={`/terms`}
                         className={styles.list__item__link}
                       />
                     </li>

@@ -1,1 +1,26 @@
 @use '@/assets/styles/abstracts/' as *;
+
+.rule {
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: 24rem;
+        @include font(22, 400);
+        leading-trim: NONE;
+        color: $brand-color;
+    }
+    &__active{
+        color: $foundation;
+    }
+
+    &__content {
+        @include font(18, 400);
+        color: $secondary-color;
+        leading-trim: NONE;
+        strong {
+            display: block;
+            @include font(24, 450);
+            color: $brand-color;
+        }
+    }
+}

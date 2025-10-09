@@ -37,3 +37,47 @@
     src: url("/fonts/SuisseIntl-Black.otf") format("truetype");
     font-display: swap;
 }
+
+
+
+//Italic fonts
+
+@font-face {
+    font-family: "Suisse Intl";
+    font-weight: 400;
+    font-style: italic;
+    src: url("/fonts/SuisseIntl-RegulaItalicr.otf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Suisse Intl";
+    font-weight: 450;
+    font-style: italic;
+    src: url("/fonts/SuisseIntl-BookItalic.otf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Suisse Intl";
+    font-weight: 600;
+    font-style: italic;
+    src: url("/fonts/SuisseIntl-SemiBoldItalic.otf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Suisse Intl";
+    font-weight: 700;
+    font-style: italic;
+    src: url("/fonts/SuisseIntl-SemiBoldItalic.otf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Suisse Intl";
+    font-weight: 900;
+    font-style: italic;
+    src: url("/fonts/SuisseIntl-BlackItalic.otf") format("truetype");
+    font-display: swap;
+}

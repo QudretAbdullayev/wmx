@@ -121,7 +121,7 @@ export default function EffectCard({
   }
 
   return (
-    <div ref={cardRef} style={{ visibility: "hidden" }}>
+    <div ref={cardRef} style={{ visibility: "hidden", overflow: "hidden", willChange: "transform" }} className={styles.card}>
       {children}
     </div>
   );

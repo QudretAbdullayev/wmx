@@ -19,21 +19,25 @@ body {
     overflow-x: hidden !important;
     background-color: $main-white;
 }
-main{
+
+main {
     overflow: hidden;
     padding-bottom: 163rem;
     border-radius: 0rem 0rem 70rem 70rem;
     position: relative;
     background-color: inherit;
     z-index: 1;
+
     @media screen and (max-width: 700px) {
         padding-bottom: 69rem;
         border-radius: 0rem 0rem 29rem 29rem;
     }
 }
-img{
+
+img {
     object-fit: cover;
 }
+
 .g-container {
     margin: 0 auto;
     max-width: 1440rem;
@@ -44,27 +48,68 @@ img{
         padding: 0 20rem;
     }
 }
- 
-input, textarea, input::placeholder, textarea::placeholder {
+
+input,
+textarea,
+input::placeholder,
+textarea::placeholder {
     font-family: $font-family-text;
 }
 
-.mt{
+.mt {
     margin-top: 100rem;
 }
-.mb{
+
+.mb {
     margin-bottom: 100rem;
+
     @media screen and (max-width: 700px) {
         margin-bottom: 62rem;
     }
 }
-.ml{
+
+.ml {
     margin-left: 217rem;
+
     @media screen and (max-width: 700px) {
         margin-left: 0;
     }
 }
 
-.pl{
+.mr {
+    margin-right: 217rem;
+
+    @media screen and (max-width: 700px) {
+        margin-right: 0;
+    }
+}
+
+.pl {
     margin-left: 217rem;
+}
+
+.rich {
+    @include font(18, 400);
+    color: $secondary-color;
+
+    h1 {
+        @include font(32, 450);
+        color: $brand-color;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @include font(22, 400);
+        color: $brand-color;
+    }
+
+    p,
+    ul,
+    li {
+        @include font(18, 400);
+        color: $secondary-color;
+    }
 }

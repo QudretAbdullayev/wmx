@@ -25,17 +25,17 @@ const headerData = {
         type: "link",
       },
       {
-        path: "/program",
+        path: "/programs",
         label: "PROGRAM",
         type: "dropdown",
         dropdown_items: [
           {
             label: "Emerging CMO",
-            href: "/program/emerging-cmo",
+            href: "/programs/emerging-cmo",
           },
           {
             label: "Marketing PRO",
-            href: "/program/marketing-pro",
+            href: "/programs/marketing-pro",
           },
         ],
       },

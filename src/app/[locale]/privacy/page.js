@@ -42,7 +42,7 @@ export default async function Page({ params }) {
         `,
       },
       {
-        title: "Terms and Conditions",
+        title: "Terms & Conditions",
         description: `<h1>Terms and Conditions</h1><br>
           <h2>Intellectual Property</h2><br>
           <p>All content on this website—including text, images, videos, graphics, and learning materials—is the intellectual property of Wemark LLC unless otherwise stated.

@@ -23,7 +23,7 @@ const ProgramCard = ({ data }) => {
           <div className={styles.card__detail}>
             {!data.lock && data.icon && (
               <div className={styles.card__small}>
-                <img src={data.icon} alt="icon" />
+                <SafeImage src={data.icon} alt="icon" />
               </div>
             )}
             {data.lock && <div className={styles.card__coming}>Coming Soon</div>}

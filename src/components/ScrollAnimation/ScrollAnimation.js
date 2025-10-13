@@ -131,10 +131,11 @@ const ScrollAnimation = ({ data }) => {
     animate();
 
     return () => {
-      if (heroRef.current) {
-        heroRef.current.removeEventListener("mouseenter", handleMouseEnter);
-        heroRef.current.removeEventListener("mouseleave", handleMouseLeave);
-        heroRef.current.removeEventListener("mousemove", handleMouseMove);
+      const heroElement = heroRef.current;
+      if (heroElement) {
+        heroElement.removeEventListener("mouseenter", handleMouseEnter);
+        heroElement.removeEventListener("mouseleave", handleMouseLeave);
+        heroElement.removeEventListener("mousemove", handleMouseMove);
       }
       document.removeEventListener('mousemove', checkInitialHover);
     };

@@ -69,7 +69,7 @@ const Hero = ({ data }) => {
                 rafRef.current = null
             }
         }
-    }, [currentSlide, data.sliders.length])
+    }, [currentSlide, data.sliders.length, forceCompleteIndex, progress])
 
     useEffect(() => {
         if (swiperRef.current && typeof swiperRef.current.slideTo === 'function') {

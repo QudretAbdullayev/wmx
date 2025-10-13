@@ -50,7 +50,7 @@ export default function ProjectHover({data}) {
         }
       }
     }
-  }, [isDesktop]);
+  }, [isDesktop, isMouseInsideContainer]);
 
   const moveProject = (clientY) => {
     if (!isDesktop || !previewRef.current) return;

@@ -34,7 +34,7 @@ const NotFound = () => {
       <div className={styles.notFound__content}>
         <div className={styles.notFound__title}>Page Not Found</div>
         <p className={styles.notFound__description}>
-          Dear user, it's all gone wrong. But don't fret. Check the URL, shake
+          Dear user, it&apos;s all gone wrong. But don&apos;t fret. Check the URL, shake
           the tension from your shoulders, and clear your mind. Happiness awaits
         </p>
         <SafeLink href="/" className={styles.notFound__button}>Back Home</SafeLink>

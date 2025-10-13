@@ -23,8 +23,7 @@ const NotFound = () => {
     <section className={styles.notFound}>
       <div className={styles.notFound__bg}
       style={{
-        background: `url(/images/404/image-${currentImageIndex + 1}.png) lightgray 50% / cover no-repeat`,
-        filter: 'blur(50px)'
+        background: `url(/images/404/image-${currentImageIndex + 1}.png) lightgray 50% / cover no-repeat`
       }}
       >
       </div>

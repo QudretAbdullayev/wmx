@@ -80,7 +80,7 @@
     @media screen and (max-width: 700px) {
         background-color: #FAF9F6;
         &__bg {
-            filter: blur(90.2px);
+            filter: blur(45px);
         }
         &__code {
             @include font(188, 700, 220);

@@ -8,14 +8,15 @@ const nextConfig = {
     sassOptions: {
         silenceDeprecations: ['legacy-js-api'],
     },
-    // images: {
-    //     remotePatterns: [
-    //         {
-    //             protocol: 'https',
-    //             hostname: 'backend.boutique19hotel.com',
-    //         }
-    //     ],
-    // },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'backend.wmx.school',
+            }
+        ],
+    },
+    reactStrictMode: false,
 };
 
 export default withNextIntl(nextConfig);

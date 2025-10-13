@@ -1,0 +1,104 @@
+@use "@/assets/styles/abstracts/" as *;
+
+.notFound {
+    width: 100%;
+    height: 100svh;
+    position: relative;
+    z-index: 1;
+    &__bg {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 0;
+        opacity: 0.15;
+        mix-blend-mode: overlay;
+        width: 100%;
+        height: 100%;
+        top: 0
+    }
+
+    &__code {
+        @include font(545, 700);
+        text-align: center;
+        color: #FFFFFF;
+        line-height: 1;
+    }
+
+    &__content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+    }
+
+    &__title {
+        color: #FFFFFF;
+        @include font(52, 700);
+        leading-trim: NONE;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+        mix-blend-mode: overlay;
+    }
+    &__description {
+        width: 514rem;
+        color: #FFFFFF;
+        @include font(18, 400);
+        text-align: center;
+        margin: 32rem 0 23rem;
+        position: relative;
+        mix-blend-mode: overlay;
+    }
+    &__button {
+        background-color: #FF3C2A;
+        color: #000000;
+        @include font(18, 400);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 164rem;
+        height: 48rem;
+        border-radius: 12rem;
+        position: relative;
+        mix-blend-mode: initial;
+    }
+
+    @media screen and (max-width: 700px) {
+        &__code {
+            @include font(188, 700, 220);
+        }
+        &__title {
+            @include font(32, 700);
+        }
+        &__description {
+            width: 100%;
+            margin: 24rem 0rem 26rem;
+            font-size: 16rem;
+            padding-inline: 20rem;
+        }
+        &__button {
+            width: 107rem;
+            height: 40rem;
+            font-size: 14rem;
+        }
+    }
+}

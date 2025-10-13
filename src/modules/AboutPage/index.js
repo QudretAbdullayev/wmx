@@ -1,5 +1,4 @@
 import ScrollAnimation from "@/components/ScrollAnimation/ScrollAnimation";
-import ProjectHover from "./components/ProjectHover/ProjectHover";
 import Features from "./containers/Features/Features";
 import Founder from "./containers/Founder/Founder";
 import Mission from "./containers/Mission/Mission";

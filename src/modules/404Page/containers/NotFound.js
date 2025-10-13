@@ -21,12 +21,12 @@ const NotFound = () => {
 
   return (
     <section className={styles.notFound}>
-      <div className={styles.notFound__bg}>
-        <SafeImage 
-          fill 
-          src={`/images/404/image-${currentImageIndex + 1}.png`} 
-          alt="Not Found" 
-        />
+      <div className={styles.notFound__bg}
+      style={{
+        background: `url(/images/404/image-${currentImageIndex + 1}.png) lightgray 50% / cover no-repeat`,
+        filter: 'blur(50px)'
+      }}
+      >
       </div>
       <div className={`${styles.notFound__text}`}>
         <div className={styles.notFound__code}>404</div>

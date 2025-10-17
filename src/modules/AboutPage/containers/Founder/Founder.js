@@ -11,6 +11,7 @@ import Description from "@/components/Description/Description";
 gsap.registerPlugin(ScrollTrigger);
 
 const Founder = ({ data }) => {
+  
   const founderRef = useRef(null);
   const descriptionRef = useRef(null);
   const sectionRef = useRef(null);
@@ -52,9 +53,9 @@ const Founder = ({ data }) => {
   return (
     <section ref={sectionRef} className={`${styles.hero} mb`}>
       <div className="g-container">
-        <SectionTitle title={data.section_title} />
+        <SectionTitle title={data[0].founder_section_title} />
         <div className="ml">
-          <ComponentTitle title={data.title} />
+          <ComponentTitle title={data[0].title} />
         </div>
       </div>
       <div className="g-container">
@@ -62,9 +63,9 @@ const Founder = ({ data }) => {
           <div className={styles.hero__detail}>
             <div ref={founderRef} className={styles.founderContainer}>
               <FounderComponent
-                image={data.image}
-                name={data.name}
-                position={data.position}
+                image={data[0].image}
+                name={data[0].name}
+                position={data[0].position}
                 size={"small"}
               />
             </div>
@@ -72,8 +73,8 @@ const Founder = ({ data }) => {
               <Description
                 classNameDescription={styles.description}
                 classNameTitle={styles.title}
-                title={data.subtitle}
-                description={data.description}
+                title={data[0].subtitle}
+                description={data[0].description}
               />
             </div>
           </div>

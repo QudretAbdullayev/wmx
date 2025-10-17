@@ -2,9 +2,9 @@
 import { useEffect, useRef, useMemo, useCallback } from "react";
 import styles from "./ScrollAnimation.module.scss";
 import Banner from "../Banner/Banner";
-import VideoStatic from "../VideoStatic/VideoStatic";
+import EffectVideoStatic from "../EffectVideoStatic/EffectVideoStatic";
 
-const ScrollAnimation = ({ data }) => {
+const ScrollAnimation = ({  title, banner, video }) => {
   const videoContainerRef = useRef(null);
   const heroRef = useRef(null);
   const videoRef = useRef(null);
@@ -29,9 +29,9 @@ const ScrollAnimation = ({ data }) => {
 
   const memoizedVideoStatic = useMemo(
     () => (
-      <VideoStatic
+      <EffectVideoStatic
         ref={videoRef}
-        src="/videos/videoplayback.mp4"
+        src={video}
         loop={false}
         autoPlay={false}
         isActive={true}
@@ -145,7 +145,7 @@ const ScrollAnimation = ({ data }) => {
     <section>
       <div className={styles.hero} ref={heroRef}>
         <div className="g-container">
-          <h1 className={styles.hero__title}>{data.title}</h1>
+          <h1 className={styles.hero__title}>{title}</h1>
           <div
             className={styles.hero__wrapper}
             ref={videoContainerRef}
@@ -155,7 +155,7 @@ const ScrollAnimation = ({ data }) => {
         </div>
       </div>
       <div className={`g-container mb ${styles.container}`}>
-        <Banner src={data.banner} />
+        <Banner src={banner} />
       </div>
     </section>
   );

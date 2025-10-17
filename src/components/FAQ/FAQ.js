@@ -3,7 +3,7 @@ import styles from './FAQ.module.scss';
 import Minus from '@/assets/icons/Minus';
 import Plus from '@/assets/icons/Plus';
 
-const FAQ = ({faqData}) => {
+const FAQ = ({data}) => {
   const [expandedItems, setExpandedItems] = useState(new Set());
   const [heights, setHeights] = useState({});
   const answerRefs = useRef({});
@@ -16,7 +16,7 @@ const FAQ = ({faqData}) => {
       }
     });
     setHeights(newHeights);
-  }, [faqData]);
+  }, [data]);
 
   const toggleItem = (index) => {
     const newExpandedItems = new Set(expandedItems);
@@ -31,7 +31,7 @@ const FAQ = ({faqData}) => {
   return (
     <div className={styles.faq}>
       <div className={styles.faq__list}>
-        {faqData.map((item, index) => {
+        {data.map((item, index) => {
           const isExpanded = expandedItems.has(index);
           return (
             <div key={index} className={styles.item} onClick={() => toggleItem(index)}>

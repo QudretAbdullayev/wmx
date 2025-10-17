@@ -11,9 +11,9 @@ import ScrollAnimation from "@/components/ScrollAnimation/ScrollAnimation";
 const KnowledgeHubPage = ({data}) => {
   return (
     <>
-      <ScrollAnimation data={data.hero} />
-      <KnowledgeHub data={data.most_readed} />
-      <Articles data={data.articles} />
+      <ScrollAnimation title={data.title} banner={data.image} video={data.video}/>
+      {/* <KnowledgeHub title={data.most_readed_title}/> */}
+      <Articles news={data.news} title={data.articles_title} button={data.button_text}/>
     </>
   )
 }

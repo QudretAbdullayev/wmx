@@ -1,30 +1,52 @@
 import ArticlePage from '@/modules/ArticlePage'
-import React from 'react'
+import { fetchData } from "@/utils/httpService";
+import { notFound } from 'next/navigation';
 
-async function Page({ params }) {
-  const { locale } = await params;
-  const data = {
-    hero: {
-      created_title: "Posted",
-      created_date: "December 28, 2024",
-      author_title: "Author",
-      author_name: "Vugar Mehdiyev",
-      reading_title: "Reading Time",
-      reading_time: "About 5 min read",
-      word_title: "Word",
-      word_count: "1000 words",
-      banner: "/images/article-hero.png",
+export async function generateMetadata({ params }) {
+  const { locale, slug } = await params;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}news/${slug}`);
+
+  if (res.status !== 200) return
+  
+  const data = await res.json();
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+
+  return {
+    title: data.seo_title,
+    description: data.seo_description,
+    openGraph: {
+      title: data.seo_title,
+      description: data.seo_description,
+      images: [data.image],
+      url: `${baseUrl}${locale === "en" ? "" : locale}/knowledge-hub/${slug}`,
+      type: 'website',
+      siteName: 'WMX School',
     },
-    description: {
-      title: "Ali Huseynov, a leading authority on marketing and brand<p>&nbsp;</p><p>&nbsp;</p>",
-      rich_text: "<p>Mark is a former adjunct Professor of Marketing at Melbourne Business School. He has a PhD in Marketing from Lancaster University and has been a marketing professor at London Business School, MIT Sloan (visiting), and the University of Minnesota. He has been the recipient of MBA teaching awards at LBS, MIT, Singapore Management University and MBS.</p><p>&nbsp;</p><p>Mark has been teaching brand management to MBA students at elite business schools and a consulting career working on some of the most successful brands on the planet such as Subaru, De Beers, Ericsson, Sephora, News Corp, Hennessy and Baxter.</p><p>&nbsp;</p><p>&nbsp;</p><img src='/images/article-image-1.png' alt='article-image' /><p>&nbsp;</p><p>&nbsp;</p><img src='/images/article-image-2.png' alt='article-image' />",
-    }
-  }
+    alternates: {
+      canonical: `${baseUrl}${locale === "en" ? "" : locale}`,
+      languages: {
+        'x-default': baseUrl,
+        en: `${baseUrl}`,
+        az: `${baseUrl}az`,
+      },
+    },
+  };
+}
+
+export default async function Page({ params }) {
+  const { locale, slug } = await params;
+
+  const [
+    dataResult,
+  ] = await Promise.allSettled([
+    fetchData(`news/${slug}`, locale)
+  ]);
+
+  const data = dataResult.status === "fulfilled" ? dataResult.value : null
+
   return (
     <>
       <ArticlePage data={data} />
     </>
   )
 }
-
-export default Page

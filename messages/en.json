@@ -1,4 +1,8 @@
 {
   "translate": {
+    "rules": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    }
   }
 }

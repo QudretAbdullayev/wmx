@@ -6,7 +6,7 @@ const Hero = ({ data }) => {
     return (
             <section className="g-container">
                 <div className={styles.hero}>
-                    <div className={`${styles.hero__info} ml`}>
+                    {/* <div className={`${styles.hero__info} ml`}>
                         {(data.created_title && data.created_date) && <div className={styles.hero__info__item}>
                             <span className={styles.hero__info__item__title}>
                                 <Square />
@@ -35,9 +35,9 @@ const Hero = ({ data }) => {
                             </span>
                             <span className={styles.hero__info__item__value}>{data.reading_time}</span>
                         </div>}
-                    </div>
+                    </div> */}
                 </div>
-                <Banner src={data.banner} />
+                <Banner src={data.image} />
             </section>
     )
 }

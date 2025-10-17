@@ -187,7 +187,7 @@ export default function ImageMarquee({ images }) {
       <div className={styles.marquee__rail} ref={railRef}>
         {images.map((src, index) => (
           <div key={index} className={styles.marquee__card}>
-            <SafeImage src={src} alt={`Image ${index + 1}`} fill />
+            <SafeImage src={src.image} alt={`Image ${index + 1}`} fill />
           </div>
         ))}
       </div>

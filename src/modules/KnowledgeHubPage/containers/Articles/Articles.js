@@ -3,18 +3,18 @@ import styles from "./Articles.module.scss";
 import KnowledgeHubCard from "@/components/KnowledgeHubCard/KnowledgeHubCard";
 import HoverText from "@/components/HoverText/HoverText";
 
-const Articles = ({ data }) => {
+const Articles = ({ title, news, button }) => {
   return (
     <section className="g-container mb">
-      <SectionTitle title={data.section_title} />
+      <SectionTitle title={title} />
       <div className={styles.container}>
         <div className={`${styles.container__articles} ml`}>
-          {data.list.map((article) => (
+          {news.map((article) => (
             <KnowledgeHubCard key={article.id} article={article} />
           ))}
         </div>
         <HoverText 
-          text={data.button}
+          text={button}
           className={styles.container__button}
         />
       </div>

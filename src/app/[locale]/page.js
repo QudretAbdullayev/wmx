@@ -3,7 +3,7 @@ import { fetchData } from "@/utils/httpService";
 
 // export async function generateMetadata({ params }) {
 //   const { locale } = await params;
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}home/seo`);
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}home/seo`);
 
 //   if (res.status !== 200) return
 

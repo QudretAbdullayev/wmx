@@ -1,0 +1,20 @@
+@use '@/assets/styles/abstracts/' as *;
+
+.rule {
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: 24rem;
+        @include font(22, 400);
+        leading-trim: NONE;
+        color: $secondary-color;
+    }
+    &__active{
+        color: $foundation;
+    }
+    @media screen and (max-width: 700px) {
+        &__title{
+            font-size: 20rem;
+        }
+    }
+}

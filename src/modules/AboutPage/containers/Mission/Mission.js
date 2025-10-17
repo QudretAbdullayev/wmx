@@ -2,13 +2,13 @@ import styles from "./Mission.module.scss";
 import XAbout from "@/assets/icons/XAbout";
 import SectionTitle from "@/components/SectiontTitle/SectiontTitle";
 
-const Mission = ({ data }) => {
+const Mission = ({ missions, title}) => {
   return (
     <section className="g-container mb">
-      <SectionTitle title={data.section_title} />
+      <SectionTitle title={title} />
       <div className="ml">
         <div className={styles.mission}>
-          {data.list.map((item, index) => (
+          {missions.map((item, index) => (
             <div key={index} className={styles.mission__item}>
               <div className={styles.mission__icon}>
                 <XAbout />

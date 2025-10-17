@@ -4,7 +4,7 @@ import { useState, forwardRef, useImperativeHandle } from 'react';
 import styles from './LetsTalk.module.scss';
 import SafeImage from '@/components/SafeImage/SafeImage';
 
-const LetsTalk = forwardRef(function LetsTalk({ effect }, ref) {
+const LetsTalk = forwardRef(function LetsTalk({ left, right, banner }, ref) {
   const [animating, setAnimating] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -60,15 +60,15 @@ const LetsTalk = forwardRef(function LetsTalk({ effect }, ref) {
         <div
           className={`${styles.item} ${isHovered ? styles.item_hovered : ''}`}
         >
-          <div className={`${styles.item__word} ${styles.item__word1}`}>{effect.text_left}</div>
+          <div className={`${styles.item__word} ${styles.item__word1}`}>{left}</div>
           <div className={styles.item__image}>
             <SafeImage
-              src={effect.image}
-              alt={`${effect.text_left}${" "}${effect.text_right}`}
+              src={banner}
+              alt={`${left}${" "}${right}`}
               fill
             />
           </div>
-          <div className={`${styles.item__word} ${styles.item__word2}`}>{effect.text_right}</div>
+          <div className={`${styles.item__word} ${styles.item__word2}`}>{right}</div>
         </div>
       </div>
     </>

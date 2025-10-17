@@ -50,7 +50,7 @@ export default function Select({options, onSelectionChange, error, placeholder})
             selected ? styles.selected : ""
           }`}
         >
-          {selected ? selected.name : placeholder}
+          {selected ? selected.subject : placeholder}
         </span>
         <span className={`${styles.arrow} ${(open && !isClosing) ? styles.open : ""}`}>
           <ArrowDown/>
@@ -73,7 +73,7 @@ export default function Select({options, onSelectionChange, error, placeholder})
                 closeDropdown();
               }}
             >
-              {option.name}
+              {option.subject}
             </li>
           ))}
         </ul>

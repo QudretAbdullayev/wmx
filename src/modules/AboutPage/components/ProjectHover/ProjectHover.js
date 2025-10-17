@@ -12,7 +12,6 @@ export default function ProjectHover({data}) {
   const animationFrameRef = useRef(null);
   const [isDesktop, setIsDesktop] = useState(true);
 
-  // Ekran boyutunu kontrol et
   useEffect(() => {
     const checkScreenSize = () => {
       setIsDesktop(window.innerWidth >= 700);
@@ -68,7 +67,7 @@ export default function ProjectHover({data}) {
   };
 
   useEffect(() => {
-    if (!isDesktop) return; // Desktop değilse event listener'ları ekleme
+    if (!isDesktop) return;
     
     let isTracking = false;
 
@@ -146,7 +145,7 @@ export default function ProjectHover({data}) {
             <div className={styles.preview__image__container} ref={previewImgRef}>
               {data.map((project, index) => (
                 <div key={index} className={styles.preview__image__single}>
-                  <SafeImage src={project.image_desktop} alt={project.title} fill />
+                  <SafeImage src={project.image} alt={project.title} fill />
                 </div>
               ))}
             </div>
@@ -180,10 +179,10 @@ export default function ProjectHover({data}) {
               <div className={styles.project__text}>
                 <div className={styles.animation}>
                   <span className={styles.animation__text}>
-                    {project.category}
+                    {project.subtitle}
                   </span>
                   <span className={styles.animation__hover}>
-                    {project.category}
+                    {project.subtitle}
                   </span>
                 </div>
               </div>
@@ -199,7 +198,7 @@ export default function ProjectHover({data}) {
               </div>
             </div>
             <div className={styles.project__image}>
-              <SafeImage src={project.image_mobile} alt={project.title} fill />
+              <SafeImage src={project.image} alt={project.title} fill />
             </div>
           </div>
         ))}

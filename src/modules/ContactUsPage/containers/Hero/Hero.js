@@ -3,7 +3,8 @@ import Parenthes from '@/assets/icons/Parenthes'
 import LetsTalk from '../../components/LetsTalk/LetsTalk'
 import styles from './Hero.module.scss'
 
-const Hero = ({data}) => {
+const Hero = ({title, left, right, banner}) => {
+  console.log(title)
   const letsTalkRef = useRef(null)
   const hasTriggeredRef = useRef(false)
   const containerRef = useRef(null)
@@ -56,12 +57,12 @@ const Hero = ({data}) => {
     >
         <div className={styles.hero}>
           <span className={styles.hero__left}><Parenthes/></span>
-          <h1 className={styles.hero__title}>{data.title}</h1>
+          <h1 className={styles.hero__title}>{title}</h1>
           <span className={styles.hero__right}>
             <Parenthes/>
           </span>
         </div>
-        <LetsTalk ref={letsTalkRef} effect={data.effect} />
+        <LetsTalk ref={letsTalkRef} left={left} right={right} banner={banner}/>
     </section>
   )
 }
